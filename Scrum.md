@@ -1,0 +1,28 @@
+
+
+The 5 Core Scrum Ceremonies
+
+
+1. Sprint Planning
+
+Whole team in beginning of sprint
+Purpose: Define the Sprint Goal and select product backlog items to complete during the sprint, creating the Sprint Backlog.
+
+Plannering är A och O när det kommer till AI arbete. PLanera vad du skall göra, vilken context behöver AIn, använda kommandon som /grill /plan etc. 
+
+2. Daily Scrum (Daily Stand-up)
+
+
+
+3. Sprint Review
+
+Se över så att allt som ni kom överens om faktiskt stämmer, är DoD klar?
+
+4. Sprint Retrospective
+
+• Purpose: Reflect on team dynamics, processes, and tools; identify what went well, what didn't, and commit to continuous improvement action items for the next sprint.
+
+Superviktigt. Din Ai kommer hitta fel, buggar, issues och ha egna problem som att dens scripts failar, den skriver LF och inte CRLF etc. För att undvika allt sånt i nästa session så måste den komma ihåg det någonstans, i en rule, dokumentation, skill eller context om projektet.
+
+Jag använder Findings, Decisions, Issues och Logs som AI minne. 
+I mitt privata projekt har jag en inbox med allt den hittar och en inbox-sweep skill som går igenom allt inför varje release
