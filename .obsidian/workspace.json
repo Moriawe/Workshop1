@@ -97,12 +97,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Arbetsmetoder.md",
+                "file": "2. Context.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Arbetsmetoder"
+              "title": "2. Context"
             }
           }
         ],
@@ -273,16 +273,18 @@
       "bases:Create new base": false
     }
   },
-  "active": "91ff465238497ec1",
+  "active": "c18cf769dcad5255",
   "lastOpenFiles": [
-    "git issues.md",
-    "Arbetsmetoder.md",
-    "Pasted image 20261108083114.png",
-    "Context.md",
-    "Vad är en LLM.md",
-    "Budget och rate limits.md",
-    "Scrum.md",
+    "1. Vad är en LLM.md",
+    "workplan-and-issues-workflow.svg",
     "Underhåll - Städa.md",
+    "Scrum.md",
+    "Pasted image 20261108083114.png",
+    "git issues.md",
+    "2. Context.md",
+    "Budget och rate limits.md",
+    "Arbetsmetoder.md",
+    "Workshop1",
     "Welcome.md"
   ]
 }
