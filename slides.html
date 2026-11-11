@@ -84,6 +84,21 @@ th{font-size:16px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute
 .lvl span{font-family:Consolas,monospace;font-size:15px;opacity:.8}
 .ph{border:3px dashed var(--line);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-direction:column;color:var(--muted);font-size:22px;text-align:center;background:#fff}
 .map td{padding:10px 12px;font-size:19px}.map td:first-child{font-weight:600}
+/* real context + plan tree */
+.ctxt{width:100%;font-size:17px;border-collapse:collapse}
+.ctxt td{padding:5px 8px;border-bottom:1px solid var(--line)}
+.ctxt td:nth-child(2),.ctxt td:nth-child(3){text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ctxt td:nth-child(3){color:var(--muted)}
+.ctxt .sw{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:9px;vertical-align:-1px}
+.ctxt tr.def td{color:var(--muted);font-style:italic}
+.tree{font-family:Consolas,"Cascadia Code",monospace;font-size:16px;line-height:1.42;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 24px}
+.tree div{white-space:nowrap}
+.tree .d::before{content:"▸ ";color:var(--muted)}
+.tree .o::before{content:"▾ ";color:var(--muted)}
+.tree .f::before{content:"  ";white-space:pre}
+.tree .hl-p{color:var(--accent);font-weight:700}
+.tree .hl-r{color:var(--teal);font-weight:700}
+.tree .hl-m{color:var(--warm);font-weight:700}
 /* wheel */
 #wheelWrap{display:flex;gap:56px;align-items:center;flex:1}
 #wheel{width:400px;height:400px;transition:transform 2.6s cubic-bezier(.17,.67,.2,1)}
@@ -437,6 +452,21 @@ button.spin{font:inherit;font-size:22px;font-weight:600;background:var(--accent)
     <li class="small"><b>Balans:</b> tillräckligt med regler för att den gör rätt – inte så mycket att den tappar fokus.</li>
   </ul>
   <div class="notes">Varje nytt meddelande till modellen innehåller alltså hela kontexten. DEMO: be AI:n visa hur mycket kontext som går åt i början av en ny session (/context i Claude Code) – systemets harness, ditt eget, och sedan din prompt. Stapeln här är en illustration, inte riktiga siffror. Om någon frågar: att skicka allt varje gång låter dyrt, men harness använder prompt caching – det som inte ändrats behöver inte bearbetas från början. Billigare, men inte gratis.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Kontext · på riktigt</div>
+  <h2 style="margin-bottom:22px">En av mina sessioner: 238k av 1M</h2>
+  <div class="ctx"><div style="flex:143.7;background:#B5541C" title="Konversationen"></div><div style="flex:31;background:#D98A52" title="Sedan senaste svaret"></div><div style="flex:26.9;background:#888780" title="Inbyggda verktyg"></div><div style="flex:14.1;background:#6F6D66" title="MCP-verktyg"></div><div style="flex:9.8;background:#5F5E5A" title="Systemprompt"></div><div style="flex:6.1;background:#7A71D1" title="Skills"></div><div style="flex:5.6;background:#3C3489" title="Agentfiler & rules"></div><div style="flex:0.979;background:#534AB7" title="Egna subagenter"></div><div style="flex:33;background:#C9C5BA" title="Reserv för komprimering"></div><div style="flex:728.9;background:#fff;color:var(--muted)">ledigt 72,9 %</div></div>
+  <div class="grid" style="grid-template-columns:1.05fr 1fr;gap:36px;margin-top:22px">
+    <table class="ctxt"><tr><td><span class="sw" style="background:#B5541C"></span>Konversationen</td><td>143,7k</td><td>14,4 %</td></tr><tr><td><span class="sw" style="background:#D98A52"></span>Sedan senaste svaret</td><td>31,0k</td><td>3,1 %</td></tr><tr><td><span class="sw" style="background:#888780"></span>Inbyggda verktyg</td><td>26,9k</td><td>2,7 %</td></tr><tr><td><span class="sw" style="background:#6F6D66"></span>MCP-verktyg</td><td>14,1k</td><td>1,4 %</td></tr><tr><td><span class="sw" style="background:#5F5E5A"></span>Systemprompt</td><td>9,8k</td><td>1,0 %</td></tr><tr><td><span class="sw" style="background:#7A71D1"></span>Skills</td><td>6,1k</td><td>0,6 %</td></tr><tr><td><span class="sw" style="background:#3C3489"></span>Agentfiler & rules</td><td>5,6k</td><td>0,6 %</td></tr><tr><td><span class="sw" style="background:#534AB7"></span>Egna subagenter</td><td>979</td><td>0,1 %</td></tr><tr><td><span class="sw" style="background:#C9C5BA"></span>Reserv för komprimering</td><td>33,0k</td><td>3,3 %</td></tr><tr class="def"><td><span class="sw" style="background:none;border:1px dashed #8E8B82"></span>MCP-verktyg, väntande (142 st)</td><td>56,7k</td><td>–</td></tr></table>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card warm" style="padding:16px 20px"><h3 style="font-size:21px">Konversationen äter mest</h3><p style="font-size:17px">Varje meddelande, verktygssvar och fil den läst ligger kvar – och skickas med i nästa anrop.</p></div>
+      <div class="card" style="padding:16px 20px"><h3 style="font-size:21px">142 MCP-verktyg väntar</h3><p style="font-size:17px">56,7k ligger utanför kontexten och laddas först när de behövs. Annars hade de ätit fyra gånger mer.</p></div>
+      <div class="card purple" style="padding:16px 20px"><h3 style="font-size:21px">Skills är billiga</h3><p style="font-size:17px">6,1k – bara namn och beskrivning ligger i kontexten tills en skill används.</p></div>
+    </div>
+  </div>
+  <div class="notes">Det här är /context från en av mina egna sessioner i Claude Code. 24 % använt av 1M tokens. Konversationen (Messages) är klart störst – det är därför långa sessioner blir sämre och dyrare. Autocompact buffer är plats som reserveras för att kunna komprimera historiken när det blir fullt. Deferred-verktygen ligger inte i kontexten förrän de behövs. DEMO: kör /context live i en ny session och jämför.</div>
 </section>
 
 <section class="slide section">
@@ -799,6 +829,43 @@ säkerhet och best practice.</div>
   </div>
   <p class="big" style="margin-top:40px">Varför filer? <span class="muted">Jag kan gå igenom, stryka småsaker och svara själv – istället för att leta i en enorm memory-fil.</span></p>
   <div class="notes">Tasks och details är separerade för att listan annars blev för plottrig. En del av det AI:n hittar är onödigt – frågor jag redan vet svaret på. Då går jag in och stryker. TIPS: Obsidian läser md-filer snyggt och visar SVG:er – be AI:n göra en SVG-översikt av projektet.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Workplan · på riktigt</div>
+  <h2 style="margin-bottom:20px">Så ser det ut i mitt projekt</h2>
+  <div class="grid" style="grid-template-columns:430px 1fr;gap:44px;align-items:start">
+    <div class="tree">
+      <div class="o">GameStore-App</div>
+      <div style="padding-left:20px">
+        <div class="d">backend-alignment</div>
+        <div class="d">launcher-alignment</div>
+        <div class="o hl-p">plans</div>
+        <div style="padding-left:20px">
+          <div class="d">align-with-material-design-3</div>
+          <div class="d">design-system-tests</div>
+          <div class="d hl-p">event-delivery-part-2</div>
+          <div class="d">release-to-live</div>
+          <div class="d hl-p">release-to-live-part-2</div>
+          <div class="d hl-r">RETIRED</div>
+          <div class="d">security-update</div>
+          <div class="d">subscription-and-install</div>
+          <div class="d">testing-workflow</div>
+          <div class="d hl-p">testing-workflow-part-2</div>
+        </div>
+        <div class="f hl-m">decisions</div>
+        <div class="f hl-m">fixed-issues</div>
+        <div class="f hl-m">issues-found</div>
+        <div class="f hl-m">project-findings</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="card purple"><h3>En mapp per workplan</h3><p>Varje mapp innehåller sina fem filer. Blev det fler än 15 tasks delades den – därav <code>-part-2</code>.</p></div>
+      <div class="card teal"><h3>RETIRED</h3><p>Stängda workplans flyttas hit. Historiken finns kvar – utan att leta i gamla chattar.</p></div>
+      <div class="card warm"><h3>Projektets minne</h3><p>När en workplan stängs flyttas findings, decisions och issues hit – så nästa workplan kan läsa dem.</p></div>
+    </div>
+  </div>
+  <div class="notes">Skärmbild från mitt Obsidian-vault för GameStore-App. Varje mapp under plans är en workplan. -part-2 är där arbetet blev för stort och delades. RETIRED är arkivet. Filerna längst ner är projektnivå: dit hamnar det som ska överleva workplanen.</div>
 </section>
 
 <!-- flow svg -->
