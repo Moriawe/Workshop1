@@ -8,105 +8,91 @@
         "type": "tabs",
         "children": [
           {
-            "id": "08185d60a536fa65",
+            "id": "f5027e9b42229c75",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Underhåll - Städa.md",
+                "file": "4.2 Secrets.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Underhåll - Städa"
+              "title": "4.2 Secrets"
             }
           },
           {
-            "id": "17124b07c2494b32",
+            "id": "3d827797414d7d54",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Scrum.md",
+                "file": "4.2 Secrets.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Scrum"
+              "title": "4.2 Secrets"
             }
           },
           {
-            "id": "50cfb95512c31584",
+            "id": "109ca2665a0341f4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Budget och rate limits.md",
+                "file": "4. Security.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Budget och rate limits"
+              "title": "4. Security"
             }
           },
           {
-            "id": "40a1d218bbd45153",
+            "id": "181169dd70799b54",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Budget och rate limits.md",
+                "file": "5.4 Scrum.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Budget och rate limits"
+              "title": "5.4 Scrum"
             }
           },
           {
-            "id": "30294fd9f659f0f1",
+            "id": "4d79074785dc4434",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Vad är en LLM.md",
+                "file": "6. Sammanfattning.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Vad är en LLM"
+              "title": "6. Sammanfattning"
             }
           },
           {
-            "id": "ed4f997d92a01893",
+            "id": "559db706554ebd85",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Arbetsmetoder.md",
+                "file": "2.2 Agentloopen.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Arbetsmetoder"
-            }
-          },
-          {
-            "id": "91ff465238497ec1",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2. Context.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "2. Context"
+              "title": "2.2 Agentloopen"
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -273,18 +259,43 @@
       "bases:Create new base": false
     }
   },
-  "active": "c18cf769dcad5255",
+  "active": "559db706554ebd85",
   "lastOpenFiles": [
-    "1. Vad är en LLM.md",
+    "1.2 Sannolikhetsmaskin.md",
+    "5. Mina workflows.md",
+    "5.5 Lärdomar.md",
+    "5.4 Scrum.md",
+    "6. Sammanfattning.md",
+    "7.0 Hur kan man som junior imponera på intervjun.md",
+    "5.2 På jobbet.md",
     "workplan-and-issues-workflow.svg",
+    "AiWorkflows.jpg",
+    "5.3 Hemma.md",
+    "4. Security.md",
+    "4.1 Databassäkerhet.md",
+    "4.5 Prompt injection.md",
+    "4.4 Hela systemet.md",
+    "4.3 Dina MCP.md",
+    "4.2 Secrets.md",
+    "4.2.md",
+    "_to_delete/4.2-utkast.md",
+    "_to_delete",
+    "_to_delete/4.2 AIn och databasen.md",
+    "4.2 AIn och databasen.md",
+    "3.2.3 Settings & Hooks.md",
+    "Anteckningar från föreläsningar.md",
+    "References.md",
     "Underhåll - Städa.md",
-    "Scrum.md",
     "Pasted image 20261108083114.png",
-    "git issues.md",
-    "2. Context.md",
     "Budget och rate limits.md",
+    "git issues.md",
+    "Scrum.md",
     "Arbetsmetoder.md",
-    "Workshop1",
-    "Welcome.md"
+    "sed3Sl3RS",
+    "sedtVI2VS",
+    "sedAnuvEQ",
+    "sedY08kjB",
+    "sedBclkUg",
+    "Workshop1"
   ]
 }
