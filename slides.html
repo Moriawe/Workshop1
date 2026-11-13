@@ -99,6 +99,23 @@ th{font-size:16px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute
 .tree .hl-p{color:var(--accent);font-weight:700}
 .tree .hl-r{color:var(--teal);font-weight:700}
 .tree .hl-m{color:var(--warm);font-weight:700}
+/* loop-stepper */
+.lp [data-s]{opacity:0;transition:opacity .35s}.lp [data-s].vis{opacity:1}
+.lp [data-o]{display:none}.lp [data-o].vis{display:block}
+.lp .seg{width:0;transition:width .5s,opacity .35s}.lp .seg.vis{width:var(--w)}
+.lrow{display:grid;grid-template-columns:30px 1.05fr 18px 1fr 70px;align-items:center;gap:8px;padding:6px 10px;border-radius:10px;font-size:16px;margin-bottom:6px;background:#fff;border:1px solid var(--line)}
+.lrow.hd{background:none;border:0;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0 10px;margin-bottom:4px}
+.lrow .n{font-weight:700;color:var(--muted)}.lrow .arr{color:var(--muted)}
+.lrow .out{font-family:Consolas,"Cascadia Code",monospace;font-size:14px;color:#3C3489;background:var(--accent-soft);padding:3px 8px;border-radius:6px;justify-self:start}
+.lrow .out.txt{font-family:inherit;font-size:15px;color:#085041;background:var(--teal-soft)}
+.lrow .tk{text-align:right;font-family:Consolas,monospace;font-size:14px;color:var(--muted)}
+.lrow.tot{grid-template-columns:30px 1fr 90px;background:var(--warm-soft);border-color:#F1CFB2;color:#8A3A0E}
+.lrow.tot .tk{color:#8A3A0E;font-size:15px}
+.lrow.base{background:#ECE9E1;grid-template-columns:30px 1fr 70px}
+.mini{font-family:Consolas,"Cascadia Code",monospace;font-size:14.5px;line-height:1.5;background:#1F1E1B;color:#EDEAE2;border-radius:12px;padding:12px 8px;white-space:pre}
+.mini span{display:block;padding:0 8px;border-radius:5px;transition:background .3s}.mini span.hl{background:#534AB7;color:#fff}
+.lcap{font-size:18px;line-height:1.4;margin-top:14px;border-left:4px solid var(--accent);padding:4px 0 4px 14px;min-height:80px}
+.ctx2{display:flex;height:30px;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:#fff;margin-top:12px}
 /* wheel */
 #wheelWrap{display:flex;gap:56px;align-items:center;flex:1}
 #wheel{width:400px;height:400px;transition:transform 2.6s cubic-bezier(.17,.67,.2,1)}
@@ -308,6 +325,7 @@ button.spin{font:inherit;font-size:22px;font-weight:600;background:var(--accent)
         <li class="small"><b>Låt en ny session granska.</b><br><span class="muted">Den har inte redan hållit med dig.</span></li>
         <li class="small"><b>Byter den åsikt direkt?</b><br><span class="muted">Fråga varför. Ett bra svar tål att ifrågasättas.</span></li>
       </ul>
+      <p class="small" style="margin-top:16px;color:#085041"><b>Sykofansin sitter i träningen – men du kan motverka den med ditt harness.</b></p>
     </div>
   </div>
   <div class="notes">Träningen har en bieffekt: sykofansi. När människor bedömer svar föredrar vi ofta det som håller med oss, och då lär sig modellen att det lönar sig att hålla med. Min egen historia: jag hade läst att Claude var bäst på att säga emot, medan ChatGPT klappade dig på axeln. När jag kollade upp det inför workshopen visade Anthropics egen studie motsatsen – de testade fem assistenter och alla höll med för mycket. Frågade man ”Är du säker?” på en fråga Claude 1.3 hade svarat rätt på, erkände den felaktigt ett fel i 98 % av fallen. GPT-4 stod emot bäst, men gav också efter i 42 %. Och det har fortsatt: OpenAI fick dra tillbaka en GPT-4o-uppdatering 2025, och Claude Code blev en meme med ”You’re absolutely right!”. Ingen modell är immun – och kolla källan, särskilt när den bekräftar det du redan tror. Höger sida: det här kan du göra åt det.</div>
@@ -320,102 +338,38 @@ button.spin{font:inherit;font-size:22px;font-weight:600;background:var(--accent)
   <div class="notes">Nu när vi vet vad modellen är – vad händer runt omkring den?</div>
 </section>
 
-<!-- alignment vs harness -->
-<section class="slide">
-  <div class="kicker">Harness</div>
-  <h2>Alignment ≠ harness</h2>
-  <div class="grid g2" style="gap:26px">
-    <div class="card purple" style="padding:28px 30px">
-      <h3 style="font-size:30px">Alignment</h3>
-      <ul class="b" style="margin-top:16px">
-        <li class="small"><b>Träning</b> – inbakat i modellen</li>
-        <li class="small">Följer med var du än använder den</li>
-        <li class="small">Kan du <b>inte</b> ändra</li>
-      </ul>
-    </div>
-    <div class="card teal" style="padding:28px 30px">
-      <h3 style="font-size:30px">Harness</h3>
-      <ul class="b" style="margin-top:16px">
-        <li class="small"><b>Mjukvara</b> runt modellen</li>
-        <li class="small">Claude Code, rules, skills, settings</li>
-        <li class="small">Bygger du <b>själv</b></li>
-      </ul>
-    </div>
-  </div>
-  <p class="quote" style="margin-top:40px">Sykofansin sitter i alignmenten.<br><span class="muted">Men du kan motverka den med ditt harness.</span></p>
-  <div class="notes">Alignment är träning – det är inbakat i modellen och följer med var du än använder den. Harness är mjukvara runt modellen: Claude Code, dina rules och skills. Det styr vad den får se och göra i just din miljö. Alignment kan du inte påverka, harness bygger du själv. Exempel: lägg ”säg emot mig när du tror att jag har fel” i dina rules – då motverkar du sykofansin. Mer om hur du bygger ditt harness kommer efter kontext.</div>
-</section>
-
-<!-- harness lager -->
-<section class="slide">
-  <div class="kicker">Harness</div>
-  <h2>Lådan som AI:n agerar i</h2>
-  <div class="grid" style="grid-template-columns:1.15fr 1fr;gap:48px;align-items:center">
-    <div>
-      <div class="layer l3"><div class="lbl">Du</div><div class="sub">CLAUDE.md, rules, skills, settings, hooks, agenter</div>
-        <div class="layer lorg"><div class="lbl">Organisationen</div><div class="sub">Vilka verktyg, kommandon och MCP som är tillåtna</div>
-          <div class="layer l2"><div class="lbl">Mjukvaran</div><div class="sub">Claude Code, Codex, Cursor, Lovable – systemprompt, verktyg, agentloop, behörigheter</div>
-            <div class="layer l1">LLM:en <span style="font-weight:400;opacity:.7">· alignment inbakat</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <p class="big">Du kan inte påverka hur modellen tränas.</p>
-      <p class="muted" style="margin-top:18px">Du kan välja modell och leverantör – men det som påverkar mest är hur du sätter upp ditt harness.</p>
-    </div>
-  </div>
-  <div class="notes">Du kan inte påverka hur AI:n tränas, inte ännu i alla fall. Du kan välja modell och leverantör, men det som påverkar mest är hur du sätter upp ditt harness. Ordet harness används lite olika i olika sammanhang – för mig är det lådan som AI:n får agera inom: vilka regler som gäller, vad den får göra och hur. Tre lager: mjukvaran (systemprompt, verktyg, agentloop, behörigheter, kontextkomprimering), organisationens regler, och dina egna skills, rules, settings, hooks och agenter – dem återkommer vi till i del 3.</div>
-</section>
-
-<!-- agentloop -->
+<!-- loop (översikt) -->
 <section class="slide">
   <div class="kicker">Agentloopen</div>
-  <h2>En agent är bara en loop</h2>
-  <div style="display:flex;gap:40px;align-items:flex-start">
-    <svg viewBox="0 0 560 460" width="560" height="460" aria-label="Agentloopen">
-      <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6B6962"/></marker></defs>
-      <g font-family="Segoe UI,Helvetica Neue,Arial,sans-serif" font-size="17">
-        <rect x="60" y="8" width="200" height="44" rx="12" fill="#fff" stroke="#DDD9CF"/><text x="160" y="36" text-anchor="middle" font-weight="600">Du skriver</text>
-        <rect x="60" y="84" width="340" height="64" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="2"/><text x="80" y="110" font-weight="700" fill="#085041">Harness skickar till modellen</text><text x="80" y="134" font-size="15" fill="#085041">systemprompt + verktyg + hela historiken</text>
-        <rect x="60" y="180" width="200" height="44" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/><text x="160" y="208" text-anchor="middle" font-weight="700" fill="#3C3489">Modellen svarar</text>
-        <rect x="340" y="180" width="200" height="44" rx="12" fill="#fff" stroke="#DDD9CF"/><text x="440" y="208" text-anchor="middle" font-weight="600">Klart – du ser svaret</text>
-        <text x="300" y="196" text-anchor="middle" font-size="13" fill="#6B6962">bara text</text>
-        <rect x="60" y="256" width="340" height="44" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/><text x="80" y="284" fill="#3C3489"><tspan font-weight="700">Ber om ett verktyg:</tspan> ”läs fil X”</text>
-        <rect x="60" y="332" width="260" height="44" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="2"/><text x="80" y="360" font-weight="700" fill="#085041">Harness kör verktyget</text>
-        <rect x="336" y="338" width="86" height="32" rx="16" fill="#FBEBDD" stroke="#B5541C"/><text x="379" y="359" text-anchor="middle" font-size="14" font-weight="700" fill="#8A3A0E">hooks</text>
-        <rect x="60" y="408" width="340" height="44" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="2"/><text x="80" y="436" font-weight="700" fill="#085041">Resultatet läggs i historiken</text>
-      </g>
-      <g stroke="#6B6962" stroke-width="2" fill="none" marker-end="url(#ah)">
-        <path d="M160 52V82"/><path d="M160 148V178"/><path d="M260 202H338"/><path d="M160 224V254"/><path d="M160 300V330"/><path d="M160 376V406"/>
-        <path d="M60 430H24V116H58" stroke="#0F6E56" stroke-width="3"/>
-      </g>
-    </svg>
-    <div style="flex:1">
-      <div class="codebox">historik = [din fråga]
+  <h2 style="margin-bottom:22px">En agent är bara en loop</h2>
+  <div class="grid" style="grid-template-columns:1fr 330px;gap:40px;align-items:start">
+    <div>
+      <div class="codebox" style="font-size:18px">historik = [din fråga]
 <span class="k">while</span> True:
-    svar = modell(systemprompt,
-                  verktyg, historik)
+    svar = modell(systemprompt, verktyg, historik)
     historik.append(svar)
     <span class="k">if not</span> svar.vill_använda_verktyg:
         <span class="k">break</span>
     resultat = kör_verktyg(svar)
     historik.append(resultat)</div>
-      <ul class="b" style="margin-top:22px">
-        <li class="small"><b>Modellen minns ingenting.</b><br><span class="muted">Harness skickar med allt – varje gång.</span></li>
-        <li class="small"><b>Modellen kör aldrig något själv.</b><br><span class="muted">Den ber – harness kör.</span></li>
-      </ul>
+      <p class="small" style="margin:22px 0 10px"><b>Modellen minns ingenting.</b> Varje anrop skickar allt:</p>
+      <div><span style="display:inline-block;padding:6px 12px;border-radius:8px;margin:0 6px 8px 0;font-size:17px;font-weight:600;color:#fff;background:#5F5E5A">Systemprompt</span><span style="display:inline-block;padding:6px 12px;border-radius:8px;margin:0 6px 8px 0;font-size:17px;font-weight:600;color:#fff;background:#888780">Verktyg</span><span style="display:inline-block;padding:6px 12px;border-radius:8px;margin:0 6px 8px 0;font-size:17px;font-weight:600;color:#fff;background:#3C3489">CLAUDE.md & rules</span><span style="display:inline-block;padding:6px 12px;border-radius:8px;margin:0 6px 8px 0;font-size:17px;font-weight:600;color:#fff;background:#7A71D1">Skills</span><span style="display:inline-block;padding:6px 12px;border-radius:8px;margin:0 6px 8px 0;font-size:17px;font-weight:600;color:#fff;background:#0F6E56">Hela historiken</span><span style="display:inline-block;padding:6px 12px;border-radius:8px;margin:0 6px 8px 0;font-size:17px;font-weight:600;color:#fff;background:#B5541C">Din fråga</span></div>
+      <p class="small muted" style="margin-top:10px">Modellen svarar med vilket verktyg den vill köra – loopen kör det och skickar tillbaka resultatet.</p>
+    </div>
+    <div>
+      <img src="kontext-session.png" alt="Kontextvy från Claude Code: 238,1k av 1M använt, uppdelat på meddelanden, verktyg, systemprompt, skills med mera" style="height:420px;width:auto;max-width:100%;border-radius:12px;display:block;margin-left:auto">
+      <p class="small" style="margin-top:10px;font-size:16px;text-align:right"><b>Konversationen äter mest</b><br>143,7k av 238k<br><span class="muted">Se din egen: kör <code>/context</code></span></p>
     </div>
   </div>
-  <div class="notes">Min andra aha-upplevelse, från en föreläsning på Queenslab: det är bara en loop. Modellen har inget minne mellan anropen. Varje gång skickar harness med systemprompten, verktygen, hela historiken och din nya fråga – det är därför det känns som ett samtal. Det är inte modellen som minns, det är harness som påminner den. Svarar modellen med bara text är vi klara. Ber den om ett verktyg kör harness det, lägger resultatet i historiken och skickar allt igen. Hooks körs i loopen, före och efter verktyg – vi återkommer till dem i del 3. Och eftersom modellen bara ber om verktyg kan harness säga nej.</div>
+  <div class="notes">Min andra aha-upplevelse kom på en föreläsning på Queenslab där Tore Nestenius pratade om vad en agent är: det är bara en loop. Själva loopen är en väldigt enkel kodsnutt – den här. Modellen minns ingenting mellan anropen. Varje gång skickas allt den behöver veta: systemprompten, verktygen, hela historiken och din nya fråga. LLM:en svarar med vilket verktyg den vill köra och med vilken data – loopen kör verktyget och skickar tillbaka resultatet. Till höger: min egen kontext i en session – 238k av 1 miljon. Konversationen äter mest – 143,7k av 238k. Varje meddelande, verktygssvar och fil den läst ligger kvar och skickas med i nästa anrop, det är därför långa sessioner blir dyrare och sämre. Om någon frågar: 142 MCP-verktyg (56,7k) väntar utanför kontexten och laddas först när de behövs, skills tar bara 6,1k eftersom bara namn och beskrivning ligger i kontexten, och autocompact buffer är plats som reserveras för att kunna komprimera historiken. Kör /context i Claude Code så ser ni er egen.</div>
 </section>
 
 <!-- n8n -->
 <section class="slide">
   <div class="kicker">n8n</div>
-  <h2>Bygg loopen själv – och se den</h2>
+  <h2>Vi byggde loopen i n8n</h2>
   <div class="grid" style="grid-template-columns:1.2fr 1fr;gap:40px;flex:1;min-height:0">
-    <div class="ph">[ Skärmdump från n8n ]<span class="small" style="margin-top:8px">Ta bort kundnamn och data</span></div>
+    <div style="display:flex;align-items:center"><img src="n8n-chat-flow.png" alt="n8n-flöde: AI Agent med Chat Model, Simple Memory och ett verktyg" style="width:100%;border-radius:12px;border:1px solid var(--line)"></div>
     <div>
       <table class="map">
         <tr><th>I n8n</th><th>I Claude Code</th></tr>
@@ -425,48 +379,511 @@ button.spin{font:inherit;font-size:22px;font-weight:600;background:var(--accent)
         <tr><td>AI Agent-noden</td><td>Loopen – harness</td></tr>
       </table>
       <p class="small" style="margin-top:26px"><b>Utan Memory-noden glömmer agenten allt</b> mellan meddelandena.</p>
+      <p class="small muted" style="margin-top:14px">Verktyget är en färdig fråga mot databasen – mer om det i del 4.</p>
     </div>
   </div>
-  <div class="notes">Jag och en kollega byggde i samma veva ett system i n8n åt en kund. Där bygger man harnesset och loopen själv – man sätter ihop minne, verktyg och en agentnod och bestämmer hur det ska flöda. Det blir väldigt visuellt tydligt. Kopplar du inte in minnet glömmer agenten allt – där ser man att modellen inte minns något.</div>
+  <div class="notes">Jag och en kollega byggde i samma veva ett verktyg i n8n åt en kund – och där bygger man själva loopen själv. Man kopplar ihop en modell, ett minne och verktyg med en agentnod och bestämmer hur det ska flöda. Det blir väldigt visuellt tydligt. Kopplar du inte in minnet glömmer agenten allt – där ser man att modellen inte minns något. Verktyget här är en färdig databasfråga – samma princip som våra stored procedures i del 4.</div>
 </section>
 
-<!-- kontext -->
+<!-- agentloop (stegvis) -->
 <section class="slide">
-  <div class="kicker">Kontext</div>
-  <h2>Varje anrop skickar allt – varje gång</h2>
-  <div class="ctx ctxs">
-    <div style="flex:7;background:#5F5E5A">System</div>
-    <div style="flex:7;background:#888780">Verktyg</div>
-    <div style="flex:9;background:#3C3489">CLAUDE.md</div>
-    <div style="flex:6;background:#534AB7">Regler</div>
-    <div style="flex:5;background:#7A71D1">Skills</div>
-    <div style="flex:20;background:#0F6E56">Filer den läst</div>
-    <div style="flex:13;background:#B5541C">Konversationen</div>
-    <div style="flex:33;background:#fff;color:var(--muted)">ledigt</div>
+  <div class="kicker">Agentloopen · exempel</div>
+  <h2 style="margin-bottom:20px">Ett varv i taget</h2>
+  <div class="lp" data-steps="6" data-step="0">
+    <div class="grid" style="grid-template-columns:1fr 330px;gap:28px;align-items:start">
+      <div>
+        <div class="lrow hd"><span>#</span><span>Nytt i historiken</span><span></span><span>Modellen svarar</span><span style="text-align:right">Hela anropet</span></div>
+        <div class="lrow base" data-s="0"><span class="n">0</span><span>Systemprompt + verktyg + CLAUDE.md</span><span class="tk">38 000</span></div>
+      <div class="lrow" data-s="1"><span class="n">1</span><span><b>Du:</b> ”Sortera fikalistan på datum, nyast först”</span><span class="arr">→</span><span class="out">vill köra Grep("FikaList")</span><span class="tk">38 050</span></div>
+      <div class="lrow" data-s="2"><span class="n">2</span><span>Grep → 3 filer</span><span class="arr">→</span><span class="out">vill köra Read(FikaListViewModel.kt)</span><span class="tk">38 730</span></div>
+      <div class="lrow" data-s="3"><span class="n">3</span><span>Read → 180 rader kod</span><span class="arr">→</span><span class="out">vill köra Edit(FikaListViewModel.kt)</span><span class="tk">43 990</span></div>
+      <div class="lrow" data-s="4"><span class="n">4</span><span>Edit ✓ · hook: ktlint ✓</span><span class="arr">→</span><span class="out">vill köra Bash(./gradlew test)</span><span class="tk">44 690</span></div>
+      <div class="lrow" data-s="5"><span class="n">5</span><span>42 tester gröna</span><span class="arr">→</span><span class="out txt">bara text: ”Klart!” → du ser svaret</span><span class="tk">48 850</span></div>
+      <div class="lrow tot" data-s="5"><span></span><span><b>Första frågan, 5 anrop – totalt:</b></span><span class="tk"><b>214 310</b></span></div>
+      <div class="lrow" data-s="6"><span class="n">6</span><span><b>Du:</b> ”Lägg till en sökruta också”</span><span class="arr">→</span><span class="out txt">… och loopen börjar om</span><span class="tk">49 140</span></div>
+      </div>
+      <div>
+        <div class="mini"><span data-h="6">historik = [din fråga]</span><span>while True:</span><span data-h="1 2 3 4 5">  svar = modell(system, verktyg,
+               historik)</span><span data-h="1 2 3 4 5">  historik.append(svar)</span><span data-h="5">  if not svar.vill_använda_verktyg:</span><span data-h="5">    break</span><span data-h="2 3 4">  resultat = kör_verktyg(svar)</span><span data-h="2 3 4">  historik.append(resultat)</span></div>
+        <div class="lcap">
+        <div data-o="0">Innan du skrivit något: systemprompt, verktyg och CLAUDE.md.</div>
+        <div data-o="1">Modellen kör inget själv – den <b>ber</b> om ett verktyg.</div>
+        <div data-o="2">Loopen kör verktyget och lägger resultatet i historiken.</div>
+        <div data-o="3">En fil = tusentals tokens. Den följer med i <b>alla</b> kommande anrop.</div>
+        <div data-o="4">Hooks körs i loopen – utanför modellen.</div>
+        <div data-o="5">Bara text → <code>break</code>. Fem anrop – och varje anrop skickade <b>allt</b> igen.</div>
+        <div data-o="6">Ny fråga – men <b>hela historiken</b> skickas med igen.</div>
+        </div>
+      </div>
+    </div>
+    <div class="ctx2"><div class="seg" data-s="0" style="--w:63%;background:#5F5E5A;"></div><div class="seg" data-s="1" style="--w:0.6%;background:#B5541C;"></div><div class="seg" data-s="2" style="--w:1.1%;background:#0F6E56;"></div><div class="seg" data-s="3" style="--w:8.8%;background:#0F6E56;"></div><div class="seg" data-s="4" style="--w:1.2%;background:#0F6E56;"></div><div class="seg" data-s="5" style="--w:7%;background:#0F6E56;"></div><div class="seg" data-s="6" style="--w:0.6%;background:#B5541C;"></div></div>
+    <p class="small muted" style="margin-top:6px;font-size:14px">Fiktivt projekt: Fikalistan (Android). Ungefärliga tokens per anrop.</p>
   </div>
-  <div class="legend small"><span style="--c:#5F5E5A">Systemets harness</span><span style="--c:#534AB7">Ditt harness</span><span style="--c:#0F6E56">Filer den läst</span><span style="--c:#B5541C">Det ni pratat om</span></div>
-  <ul class="b" style="margin-top:34px">
-    <li class="small"><b>Varje varv gör historiken längre.</b> När den blir full komprimeras den – och tappar information.</li>
-    <li class="small"><b>Ny session = tomt minne.</b> Det som ska överleva måste ligga i en fil.</li>
-    <li class="small"><b>Det som måste gälla, lägg i loopen.</b> Rules <i>kan</i> följas – hooks och settings körs <i>alltid</i>.</li>
-    <li class="small"><b>Balans:</b> tillräckligt med regler för att den gör rätt – inte så mycket att den tappar fokus.</li>
+  <div class="notes">[Klicka/pil höger för att stega igenom loopen – 6 steg innan nästa slide.] Nu ett påhittat exempel, ett varv i taget. Kolumnen längst till höger är hela anropet: de 38 000 från start plus allt som hänt hittills. Efter steg 5 summerar vi: första frågan blev fem anrop och 214 310 tokens in – men det är inte vad det kostar, för cachen spelar in. Mer på nästa slide. Filen den läste i steg 3 följer med i alla kommande anrop. Projektet är påhittat och siffrorna ungefärliga.</div>
+</section>
+
+<!-- cache -->
+<section class="slide">
+  <div class="kicker">Kontext · cachen</div>
+  <h2>Vad kostade första frågan?</h2>
+  <div class="grid" style="grid-template-columns:1.15fr 1fr;gap:44px;align-items:start">
+    <div>
+      <p class="small" style="margin-bottom:18px">Samma <b>214 310 tokens</b> skickas – men <b>165 460</b> av dem läses från cachen för 10&nbsp;% av priset.</p>
+      <div style="font-size:17px;font-weight:600;margin-bottom:6px">Utan cache</div>
+      <div style="display:flex;align-items:center;gap:12px"><div style="height:34px;width:85%;background:#888780;border-radius:0 4px 4px 0"></div><b>100&nbsp;%</b></div>
+      <div style="font-size:17px;font-weight:600;margin:22px 0 6px">Med cache</div>
+      <div style="display:flex;align-items:center;gap:12px"><div style="display:flex;width:31%;height:34px"><div style="width:78.7%;background:#534AB7"></div><div style="width:2px"></div><div style="flex:1;background:#7FD1B0;border-radius:0 4px 4px 0"></div></div><b>≈ 36&nbsp;%</b></div>
+      <div class="legend small" style="margin-top:14px"><span style="--c:#534AB7">Nya tokens (48 850) – 28&nbsp;%</span><span style="--c:#7FD1B0">Från cachen (165 460) – 8&nbsp;%</span></div>
+      <p class="big" style="font-size:26px;margin-top:22px">Ungefär en tredjedel av kostnaden.</p>
+      <p class="muted" style="font-size:14px;margin-top:6px">Fiktiva siffror från Fikalistan, enligt Anthropics prismodell.</p>
+    </div>
+    <div class="card teal">
+      <h3>Så funkar cachen</h3>
+      <ul class="b" style="margin-top:10px">
+        <li class="small"><b>Samma början som förra anropet</b> läses från cachen – för en tiondel av priset.</li>
+        <li class="small"><b>Bara det nya</b> på slutet räknas fullt – plus 25&nbsp;%, eftersom det sparas i cachen.</li>
+        <li class="small"><b>Lever 5 minuter</b> – en timme med Claude-abonnemang – och förnyas varje gång den används.</li>
+        <li class="small"><b>Byt modell eller koppla in en MCP-server</b> mitt i – så räknas allt om.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card warm" style="margin-top:12px;padding:12px 22px"><p style="font-size:18px;color:#8A3A0E"><b>Ska du på lunch?</b> En gammal chatt efter pausen räknar om hela historiken. Kör <code>/compact</code> innan du går – eller spara det viktiga i en fil och starta en ny chatt.</p></div>
+  <div class="notes">Varje anrop skickar allt – men modellen behöver inte bearbeta allt från början varje gång. Den del av anropet som är exakt likadan som förra gången läses från en cache och kostar en tiondel. Bara det nya på slutet räknas fullt, och kostar lite extra eftersom det sparas till nästa gång. Antalet tokens som skickas är detsamma – 214 310 – men kostnaden blir ungefär en tredjedel: de nya 48 850 tokens kostar fullt pris plus 25 %, de 165 460 från cachen kostar 10 %. Två fällor: cachen lever fem minuter (en timme i huvudkonversationen med Claude-abonnemang, så länge du är inom planens användning) och förnyas varje gång den används – tar du en längre paus räknas allt om, till skrivpris. Och byter du modell eller kopplar in en MCP-server mitt i en session räknas allt om. Att ändra CLAUDE.md mitt i bryter inte cachen – men ändringen gäller inte heller förrän efter /clear, /compact eller omstart. Ska du på lunch? Kommer du tillbaka efter att cachen gått ut räknas hela historiken om till skrivpris – och /compact efter pausen är dyrast av allt, eftersom sammanfattningen kräver att hela historiken läses utan cache. Kör /compact innan du går, medan cachen är varm, eller spara det viktiga i en fil och starta en ny chatt. Det är därför jag sparar allt i workplanen: en ny chatt kostar ungefär 38 000 tokens, en gammal chatt efter lunch kan kosta flera gånger mer. Billigare – men inte gratis. Siffrorna är påhittade men räknade med Anthropics priser (cache-skrivning 1,25×, cache-läsning 0,1×; Opus 5.5 och Sonnet 5.5 läser för 0,05×).</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Minne</div>
+  <h2>Modellen minns ingenting – filerna gör</h2>
+  <div class="grid" style="grid-template-columns:0.85fr 1.15fr;gap:40px;align-items:center">
+    <div style="text-align:center">
+      <svg viewBox="0 0 400 330" style="width:100%;max-width:420px" role="img" aria-label="En digital hjärna – ena halvan organisk, andra halvan kretskort">
+        <defs>
+          <linearGradient id="brainGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#534AB7"/><stop offset="1" stop-color="#0F6E56"/></linearGradient>
+          <filter id="brainGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <!-- vänster halva: organisk -->
+        <path d="M196 40 C150 18 100 32 88 72 C55 78 36 112 48 142 C22 164 28 210 58 226 C52 262 90 292 126 282 C148 306 186 304 196 284 Z" fill="#EEEDFE" stroke="url(#brainGrad)" stroke-width="5"/>
+        <g fill="none" stroke="#534AB7" stroke-width="4" stroke-linecap="round" opacity=".75">
+          <path d="M98 108 C128 96 150 122 178 106"/>
+          <path d="M70 168 C104 156 132 186 172 168"/>
+          <path d="M104 234 C132 218 158 248 182 228"/>
+          <path d="M140 60 C134 80 150 90 146 112"/>
+        </g>
+        <!-- höger halva: digital -->
+        <path d="M204 40 C250 18 300 32 312 72 C345 78 364 112 352 142 C378 164 372 210 342 226 C348 262 310 292 274 282 C252 306 214 304 204 284 Z" fill="#E1F5EE" stroke="url(#brainGrad)" stroke-width="5"/>
+        <g fill="none" stroke="#0F6E56" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#brainGlow)">
+          <path d="M214 84 H256 V112 H300"/>
+          <path d="M214 150 H246 V182 H334"/>
+          <path d="M214 216 H268 V250"/>
+          <path d="M282 60 V84"/>
+        </g>
+        <g fill="#fff" stroke="#0F6E56" stroke-width="4">
+          <circle cx="300" cy="112" r="7"/><circle cx="334" cy="182" r="7"/><circle cx="268" cy="250" r="7"/><circle cx="282" cy="60" r="7"/>
+        </g>
+        <text x="300" y="150" font-family="Consolas,monospace" font-size="16" fill="#0F6E56" opacity=".6">0101</text>
+        <text x="226" y="276" font-family="Consolas,monospace" font-size="14" fill="#0F6E56" opacity=".5">10</text>
+        <line x1="200" y1="36" x2="200" y2="290" stroke="url(#brainGrad)" stroke-width="3" stroke-dasharray="6 6"/>
+      </svg>
+      <p class="small muted" style="margin-top:8px">Minne = filer som läses in i kontexten</p>
+    </div>
+    <div>
+      <div class="grid g2" style="gap:14px">
+        <div class="card purple" style="padding:14px 18px"><h3 style="font-size:20px">CLAUDE.md</h3><p style="font-size:16px"><b>Du</b> skriver. Instruktioner. Delas via git.</p></div>
+        <div class="card teal" style="padding:14px 18px"><h3 style="font-size:20px">Auto memory</h3><p style="font-size:16px"><b>Claude</b> skriver. Lärdomar. Bara på din dator.</p></div>
+      </div>
+      <div class="codebox" style="font-size:14px;margin-top:14px;padding:14px 18px">~/.claude/projects/&lt;projekt&gt;/memory/
+├── MEMORY.md    <span class="c">← index, laddas varje session</span>
+└── debugging.md <span class="c">← läses vid behov</span></div>
+      <ul class="b" style="margin-top:14px">
+        <li class="small"><b>På som standard.</b> "Writing memory" = nu sparar den.</li>
+        <li class="small">Säg <i>"kom ihåg att…"</i> – eller stäng av i <code>/memory</code>.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="notes">Kommer ni ihåg att modellen inte har något state? Varje anrop skickar allt. Det som ska överleva till nästa session måste ligga i en fil som läses in i kontexten – det är allt minne är. Claude Code har två sorter. CLAUDE.md skriver du: instruktioner, och projektets CLAUDE.md delas via git. Auto memory skriver Claude själv medan den jobbar: byggkommandon, saker den lärt sig när den felsökt, dina preferenser. Den ligger i ~/.claude/projects/&lt;projekt&gt;/memory/ – bara på din dator, inte i git. MEMORY.md är ett index; de första 200 raderna eller 25 KB laddas i varje session, resten av filerna läses när de behövs. Ser du "Writing memory" eller "Recalled memory" så läser eller skriver den där. Det är på som standard. Stänga av: /memory, autoMemoryEnabled: false i settings, eller miljövariabeln CLAUDE_CODE_DISABLE_AUTO_MEMORY=1. Jag har stängt av det – jag vill att minnet ligger i projektet där jag och teamet ser det. Mer om det i del 5. Se anteckningarna i 2.3 Minne.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Minne</div>
+  <h2>Allt sparas – men nästan inget minns</h2>
+  <div class="grid g2" style="gap:24px;align-items:stretch">
+    <div class="card teal" style="padding:20px 24px">
+      <h3>🧠 Läses in i nästa session</h3>
+      <ul class="b" style="margin-top:10px">
+        <li class="small"><code>CLAUDE.md</code> och rules</li>
+        <li class="small">Auto memory – <code>MEMORY.md</code></li>
+        <li class="small">Dina egna filer – när något pekar dit</li>
+      </ul>
+    </div>
+    <div class="card" style="padding:20px 24px">
+      <h3>🗄️ Sparas – men läses inte in</h3>
+      <ul class="b" style="margin-top:10px">
+        <li class="small">Konversationen – för att <b>återuppta</b></li>
+        <li class="small"><code>file-history</code> – för att <b>backa</b></li>
+        <li class="small">Plans, scratchpad, worktrees</li>
+      </ul>
+      <p class="small muted" style="margin-top:10px">Rensas efter 30 dagar.</p>
+    </div>
+  </div>
+  <p class="quote" style="margin-top:26px;font-size:26px">En logg är inte ett minne.</p>
+  <div class="card warm" style="margin-top:20px;padding:12px 20px">
+    <p style="font-size:17px;color:#8A3A0E">🔒 <b>Allt sparas i klartext.</b> Läser AI:n din <code>.env</code> ligger nycklarna kvar i en loggfil – mer i del 4.</p>
+  </div>
+  <div class="notes">Kollar du i din .claude-mapp ser du massor av filer: konversationer, file-history, plans, scratchpads, worktrees. Det ser ut som att den minns allt – men nästan inget av det läses in när du startar en ny session. Konversationen sparas så att du kan återuppta den, file-history så att du kan backa till en checkpoint. Plans, scratchpad och worktrees är tillfälliga arbetsytor. Allt det rensas efter 30 dagar (cleanupPeriodDays). Det enda som automatiskt läses in i en ny session är CLAUDE.md, rules och auto memory. Därför har jag strukturerade filer – det är det nästa session faktiskt får veta. Säkerhet: allt ligger i klartext. Läser AI:n din .env hamnar nycklarna i projects/&lt;projekt&gt;/&lt;session&gt;.jsonl. Mer i del 4. Se anteckningarna i 2.3.1 Temporära filer.</div>
+</section>
+
+<!-- harness lager -->
+<section class="slide">
+  <div class="kicker">Harness</div>
+  <h2>Lådan som AI:n agerar i</h2>
+  <div class="grid" style="grid-template-columns:1.15fr 1fr;gap:48px;align-items:center">
+    <div>
+      <div class="layer l3"><div class="lbl">Du</div><div class="sub">CLAUDE.md, rules, skills, settings, hooks, agenter</div><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><span class="pill s">Alla dina projekt</span><span class="pill s">Projektet – via git</span><span class="pill s">Bara du, här</span></div>
+        <div class="layer lorg"><div class="lbl">Organisationen</div><div class="sub">Tillåtna verktyg, kommandon och MCP</div>
+          <div class="layer l2"><div class="lbl">Mjukvaran</div><div class="sub">Claude Code, Codex, Cursor – systemprompt, verktyg, loopen</div>
+            <div class="layer l1">LLM:en <span style="font-weight:400;opacity:.7">· alignment inbakat</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="big">Den här loopen körs i det som kallas för <b>harness</b>.</p>
+      <p class="muted" style="margin-top:18px">Lådan som AI:n får agera inom – vilka regler som gäller, vad den får göra och hur.</p>
+      <ul class="b" style="margin-top:22px">
+        <li class="small"><b>Scaffolding</b> <span class="muted">– används ibland om samma sak</span></li>
+        <li class="small"><b>Guardrails</b> <span class="muted">– de delar som sätter gränser</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="notes">Den här loopen körs i det som kallas för harness. Ordet används lite olika i olika sammanhang – för mig är det lådan som AI:n får agera inom. Tre lager: mjukvaran, organisationens regler och ditt eget – skills, rules, settings, hooks och agenter, som vi kommer till strax. Samma nivåer gäller för lagar och instruktioner, men de beter sig olika – det tar vi i del 3. De delar som sätter gränser kallas ofta guardrails.</div>
+</section>
+
+<!-- settings & hooks -->
+<section class="slide">
+  <div class="kicker">Lagar · settings & hooks</div>
+  <h2>Modellen kör aldrig något själv</h2>
+  <p class="small" style="margin:-10px 0 22px">Den <b>ber</b> om ett verktyg – loopen kör det. Därför kan settings och hooks stoppa den. Det är inte text som modellen tolkar – det är <b>lagar</b>.</p>
+  <div class="grid g3" style="gap:20px">
+    <div class="card"><h3>Settings</h3><p>Vad den <b>får</b> göra: vilka kommandon, filer och verktyg som är tillåtna eller förbjudna.</p><p style="margin-top:10px"><b>Högsta nivån vinner</b> – organisationen går före allt.</p></div>
+    <div class="card"><h3>Hooks</h3><p>Egna script som körs i loopen:</p><ul class="b" style="margin-top:8px">
+      <li class="small"><b>Före</b> ett verktyg – kan stoppa</li>
+      <li class="small"><b>Efter</b> – linter, tester</li></ul></div>
+    <div class="card warm"><h3>Kan den skriva om sina lagar?</h3><p><b>Ja – men inte i smyg.</b> <code>.claude</code> är skyddad: du får frågan. Lagen håller så länge du säger nej.</p></div>
+  </div>
+  <ul class="b" style="margin-top:24px">
+    <li class="small">Ändringar i settings gäller <b>direkt</b>, mitt i sessionen.</li>
+    <li class="small">Lägg hook-scripten i <code>.claude/hooks/</code> – annars är de vanliga filer.</li>
+    <li class="small">Med <code>--dangerously-skip-permissions</code> försvinner skyddet helt.</li>
   </ul>
-  <div class="notes">Varje nytt meddelande till modellen innehåller alltså hela kontexten. DEMO: be AI:n visa hur mycket kontext som går åt i början av en ny session (/context i Claude Code) – systemets harness, ditt eget, och sedan din prompt. Stapeln här är en illustration, inte riktiga siffror. Om någon frågar: att skicka allt varje gång låter dyrt, men harness använder prompt caching – det som inte ändrats behöver inte bearbetas från början. Billigare, men inte gratis.</div>
+  <div class="notes">Se anteckningarna i 2.5 Lagar.</div>
 </section>
 
 <section class="slide">
-  <div class="kicker">Kontext · på riktigt</div>
-  <h2 style="margin-bottom:22px">En av mina sessioner: 238k av 1M</h2>
-  <div class="ctx"><div style="flex:143.7;background:#B5541C" title="Konversationen"></div><div style="flex:31;background:#D98A52" title="Sedan senaste svaret"></div><div style="flex:26.9;background:#888780" title="Inbyggda verktyg"></div><div style="flex:14.1;background:#6F6D66" title="MCP-verktyg"></div><div style="flex:9.8;background:#5F5E5A" title="Systemprompt"></div><div style="flex:6.1;background:#7A71D1" title="Skills"></div><div style="flex:5.6;background:#3C3489" title="Agentfiler & rules"></div><div style="flex:0.979;background:#534AB7" title="Egna subagenter"></div><div style="flex:33;background:#C9C5BA" title="Reserv för komprimering"></div><div style="flex:728.9;background:#fff;color:var(--muted)">ledigt 72,9 %</div></div>
-  <div class="grid" style="grid-template-columns:1.05fr 1fr;gap:36px;margin-top:22px">
-    <table class="ctxt"><tr><td><span class="sw" style="background:#B5541C"></span>Konversationen</td><td>143,7k</td><td>14,4 %</td></tr><tr><td><span class="sw" style="background:#D98A52"></span>Sedan senaste svaret</td><td>31,0k</td><td>3,1 %</td></tr><tr><td><span class="sw" style="background:#888780"></span>Inbyggda verktyg</td><td>26,9k</td><td>2,7 %</td></tr><tr><td><span class="sw" style="background:#6F6D66"></span>MCP-verktyg</td><td>14,1k</td><td>1,4 %</td></tr><tr><td><span class="sw" style="background:#5F5E5A"></span>Systemprompt</td><td>9,8k</td><td>1,0 %</td></tr><tr><td><span class="sw" style="background:#7A71D1"></span>Skills</td><td>6,1k</td><td>0,6 %</td></tr><tr><td><span class="sw" style="background:#3C3489"></span>Agentfiler & rules</td><td>5,6k</td><td>0,6 %</td></tr><tr><td><span class="sw" style="background:#534AB7"></span>Egna subagenter</td><td>979</td><td>0,1 %</td></tr><tr><td><span class="sw" style="background:#C9C5BA"></span>Reserv för komprimering</td><td>33,0k</td><td>3,3 %</td></tr><tr class="def"><td><span class="sw" style="background:none;border:1px dashed #8E8B82"></span>MCP-verktyg, väntande (142 st)</td><td>56,7k</td><td>–</td></tr></table>
-    <div style="display:flex;flex-direction:column;gap:14px">
-      <div class="card warm" style="padding:16px 20px"><h3 style="font-size:21px">Konversationen äter mest</h3><p style="font-size:17px">Varje meddelande, verktygssvar och fil den läst ligger kvar – och skickas med i nästa anrop.</p></div>
-      <div class="card" style="padding:16px 20px"><h3 style="font-size:21px">142 MCP-verktyg väntar</h3><p style="font-size:17px">56,7k ligger utanför kontexten och laddas först när de behövs. Annars hade de ätit fyra gånger mer.</p></div>
-      <div class="card purple" style="padding:16px 20px"><h3 style="font-size:21px">Skills är billiga</h3><p style="font-size:17px">6,1k – bara namn och beskrivning ligger i kontexten tills en skill används.</p></div>
+  <div class="kicker">Instruktioner</div>
+  <h2>Text som AI:n tolkar</h2>
+  <p class="small" style="margin:-10px 0 20px">Den kan köra över dem – eller bli övertalad att göra det. Allt det här är instruktioner:</p>
+  <div class="grid" style="grid-template-columns:1.1fr 1fr;gap:30px;align-items:start">
+    <div class="card purple"><h3>Agentfilen · CLAUDE.md / AGENTS.md</h3><p>Projektets översikt – laddas i <b>varje</b> session: vad projektet är, hur man bygger och testar, viktiga konventioner.</p><p style="margin-top:12px">Claude Code läser <code>AGENTS.md</code> om det inte finns någon CLAUDE.md. En fil för alla verktyg? Skriv <code>@AGENTS.md</code> i din CLAUDE.md.</p><p style="margin-top:12px">Blir den för stor? <b>Dela upp den.</b></p></div>
+    <ul class="b">
+      <li class="small"><b>Rules</b> – hur vi gör saker här</li>
+      <li class="small"><b>Skills</b> – hur man gör en uppgift</li>
+      <li class="small"><b>Commands</b> – skills du startar med <code>/namn</code></li>
+      <li class="small"><b>Agenter</b> – en egen loop med egna instruktioner</li>
+      <li class="small"><b>Dokumentation</b> – hur systemet fungerar</li>
+    </ul>
+  </div>
+  <p class="small muted" style="margin-top:22px"><b>Frontmatter</b> – ett litet yaml-block överst i filen – styr <b>när</b> den laddas. Ladda inte mer kontext än du behöver.</p>
+  <div class="notes">Se anteckningarna i 2.6 Instruktioner.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Instruktioner · rules</div>
+  <h2>Rule – hur vi gör saker här</h2>
+  <div class="grid" style="grid-template-columns:1.1fr 1fr;gap:36px;align-items:start">
+    <div>
+      <div class="codebox" style="font-size:17px"><span class="c">---
+paths:
+  - "app/src/test/**/*.kt"
+---</span>
+# Testregler
+- Namnge tester:
+  funktion_situation_förväntatResultat
+- Använd fakes, inte mocks, för
+  repository-lagret
+- Ett koncept per test</div>
+      <p class="small muted" style="margin-top:10px"><code>.claude/rules/testregler.md</code> – Fikalistan</p>
+    </div>
+    <ul class="b">
+      <li class="small"><b>Utan frontmatter</b> – laddas alltid, som CLAUDE.md.</li>
+      <li class="small"><b>Med <code>paths</code></b> – laddas först när AI:n läser eller ändrar en matchande fil.</li>
+      <li class="small"><b>Bättre än CLAUDE.md</b> när något bara gäller en del av koden.</li>
+      <li class="small">Ligger i <code>.claude/rules/</code> – eller <code>~/.claude/rules/</code> för alla dina projekt.</li>
+    </ul>
+  </div>
+  <div class="notes">Se anteckningarna i 2.6.1 Rules.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Instruktioner · skills</div>
+  <h2>Skill – hur man gör en uppgift</h2>
+  <div class="grid" style="grid-template-columns:1.15fr 1fr;gap:34px;align-items:start">
+    <div>
+      <div class="codebox" style="font-size:15px">.claude/skills/release/
+├── SKILL.md            <span class="c">← namn, beskrivning, steg</span>
+├── checklista.md       <span class="c">← läses vid behov</span>
+└── scripts/
+    └── bump-version.sh <span class="c">← körs, läses aldrig in</span></div>
+      <div class="codebox" style="font-size:15px;margin-top:12px"><span class="c">---
+name: release
+description: Skapar en release – höjer version,
+  uppdaterar changelog och taggar i git.
+disable-model-invocation: true
+---</span>
+1. Kör scripts/bump-version.sh
+2. Uppdatera CHANGELOG.md
+3. Gå igenom checklista.md</div>
+    </div>
+    <ul class="b">
+      <li class="small"><b>Bara namn och beskrivning</b> ligger alltid i kontexten – resten laddas när den behövs.</li>
+      <li class="small"><b>Scripts körs utan att läsas in</b> – bara resultatet kostar tokens.</li>
+      <li class="small"><b>Commands = skills.</b> Båda körs med <code>/namn</code>.</li>
+      <li class="small"><code>disable-model-invocation</code> – bara <b>du</b> kan starta den. Bra för sådant med sidoeffekter.</li>
+    </ul>
+    <p class="small muted" style="grid-column:1/-1;margin-top:4px">Tips: Anthropic har en färdig skill för att bygga skills – <b>skill-creator</b>.</p>
+  </div>
+  <div class="notes">Se anteckningarna i 2.6.2 Skills.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Instruktioner · agenter</div>
+  <h2>En subagent är en ny loop</h2>
+  <div class="grid" style="grid-template-columns:1.1fr 1fr;gap:36px;align-items:start">
+    <div>
+      <div class="codebox" style="font-size:16px"><span class="c">---
+name: code-reviewer
+description: Granskar kod för kvalitet och
+  best practice. Använd efter kodändringar.
+tools: Read, Glob, Grep
+model: sonnet
+---</span>
+Du är en kodgranskare. Ge konkret,
+genomförbar feedback på kvalitet,
+säkerhet och best practice.</div>
+      <p class="small muted" style="margin-top:10px"><code>.claude/agents/code-reviewer.md</code> – frontmatter + systemprompt</p>
+    </div>
+    <ul class="b">
+      <li class="small"><b>Egen loop, eget harness</b><br><span class="muted">Egen systemprompt, egna verktyg, egen tom kontext.</span></li>
+      <li class="small"><b>Spinns upp automatiskt</b> via <code>description</code><br><span class="muted">– eller när du ber om den.</span></li>
+      <li class="small"><b>Bara slutsatsen kommer tillbaka</b><br><span class="muted">Allt den läser stannar i dess kontext.</span></li>
+      <li class="small"><b>Skill</b> = samma kontext. <b>Agent</b> = egen kontext.</li>
+    </ul>
+  </div>
+  <div class="notes">Kommer ni ihåg att en agent bara är en loop? En subagent är när huvudagenten startar en ny loop med eget harness. Den beskrivs i en markdown-fil i .claude/agents/. Frontmatter: name och description måste finnas, tools och model är valfria – utan tools får den samma verktyg som huvudagenten. Resten av filen är dess systemprompt. Huvudagenten matchar uppgiften mot description – samma princip som för skills. Claude Code har också inbyggda subagenter, t.ex. Explore och Plan.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Instruktioner · agenter</div>
+  <h2>Vad får subagenten med sig?</h2>
+  <div class="grid g2" style="gap:24px">
+    <div class="card teal"><h3>Den får</h3><ul class="b" style="margin-top:10px">
+      <li class="small">Sin egen systemprompt</li>
+      <li class="small"><b>Uppdraget</b> – det huvudagenten skriver</li>
+      <li class="small">Projektets CLAUDE.md</li>
+      <li class="small">Beskrivningar av sina verktyg</li></ul></div>
+    <div class="card warm"><h3>Den får inte</h3><ul class="b" style="margin-top:10px">
+      <li class="small">Er konversation</li>
+      <li class="small">Filerna huvudagenten redan läst</li>
+      <li class="small">Det ni kommit överens om</li></ul>
+      <p class="small" style="margin-top:12px;color:#8A3A0E">Undantag: en <b>forkad</b> agent ärver allt.</p></div>
+  </div>
+  <p class="quote" style="margin-top:28px;font-size:28px">Huvudagenten promptar en annan agent.<br><span class="muted">Ett otydligt uppdrag ger ett dåligt resultat – den kan inte fråga vad som menades.</span></p>
+  <div class="notes">En vanlig subagent startar tom. Den får sin egen systemprompt, uppdraget som huvudagenten skriver, projektets CLAUDE.md (vissa inbyggda agenter som Explore och Plan hoppar över den) och beskrivningar av sina verktyg. Den får inte er konversation, filerna huvudagenten läst eller det ni kommit överens om. Står det inte i uppdraget vet den inte om det. En forkad agent ärver hela huvudagentens kontext. Varje överlämning är en ny kontext som byggs från noll.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Instruktioner · agenter</div>
+  <h2>Varför subagenter?</h2>
+  <div class="grid g2" style="gap:24px">
+    <div class="card teal"><h3>Fördelar</h3><ul class="b" style="margin-top:10px">
+      <li class="small"><b>Skyddar kontexten</b> – research och loggar skräpar inte ner</li>
+      <li class="small"><b>Specialiserar</b> – färre verktyg, billigare modell</li>
+      <li class="small"><b>Parallellt</b> – med tydliga avgränsningar</li>
+      <li class="small"><b>Färsk blick</b> – har inte redan hållit med dig</li></ul></div>
+    <div class="card warm"><h3>Nackdelar</h3><ul class="b" style="margin-top:10px">
+      <li class="small"><b>Det kostar</b> – varje subagent läser in sin egen kontext</li>
+      <li class="small"><b>Info tappas i överlämningen</b> – du ser bara sammanfattningen</li></ul></div>
+  </div>
+  <p class="small muted" style="margin-top:24px"><b>Forkade agenter</b> ärver huvudagentens kontext – bra när flera ska göra liknande saker, t.ex. research, och billigare tack vare caching. Men svårare att specialisera.</p>
+  <div class="notes">Parallella agenter behöver tydliga instruktioner och avgränsningar så att de inte skriver i samma filer. Den färska blicken kopplar tillbaka till sykofansin – och till mina review-agenter i del 5.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Instruktioner · agenter</div>
+  <h2>Worktrees – en egen arbetskopia per agent</h2>
+  <div class="grid" style="grid-template-columns:1fr 1.05fr;gap:40px;align-items:center">
+    <div><svg viewBox="0 0 440 330" style="width:100%" role="img" aria-label="Ett gemensamt git-repo med tre arbetsmappar: din, agent 1:s och agent 2:s">
+        <rect x="120" y="10" width="200" height="62" rx="12" fill="#1F1E1B"/>
+        <text x="220" y="38" text-anchor="middle" font-family="Consolas,monospace" font-size="18" fill="#EDEAE2">.git</text>
+        <text x="220" y="60" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" fill="#7FD1B0">gemensam historik</text>
+        <g fill="none" stroke="#9A958A" stroke-width="3">
+          <path d="M220 72 V110 H75 V150"/><path d="M220 72 V150"/><path d="M220 110 H365 V150"/>
+        </g>
+        <g font-family="Inter,system-ui,sans-serif">
+          <rect x="10" y="150" width="130" height="150" rx="12" fill="#ECE9E1" stroke="#C9C4B8" stroke-width="2"/>
+          <text x="75" y="186" text-anchor="middle" font-size="30">🧑‍💻</text>
+          <text x="75" y="218" text-anchor="middle" font-size="16" font-weight="700" fill="#1F1E1B">Du</text>
+          <text x="75" y="240" text-anchor="middle" font-family="Consolas,monospace" font-size="13" fill="#6B675E">main</text>
+          <text x="75" y="278" text-anchor="middle" font-family="Consolas,monospace" font-size="12" fill="#6B675E">./</text>
+
+          <rect x="155" y="150" width="130" height="150" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+          <text x="220" y="186" text-anchor="middle" font-size="30">🤖</text>
+          <text x="220" y="218" text-anchor="middle" font-size="16" font-weight="700" fill="#3C3489">Agent 1</text>
+          <text x="220" y="240" text-anchor="middle" font-family="Consolas,monospace" font-size="13" fill="#534AB7">worktree-auth</text>
+          <text x="220" y="278" text-anchor="middle" font-family="Consolas,monospace" font-size="11" fill="#534AB7">worktrees/auth/</text>
+
+          <rect x="300" y="150" width="130" height="150" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="2"/>
+          <text x="365" y="186" text-anchor="middle" font-size="30">🤖</text>
+          <text x="365" y="218" text-anchor="middle" font-size="16" font-weight="700" fill="#0F6E56">Agent 2</text>
+          <text x="365" y="240" text-anchor="middle" font-family="Consolas,monospace" font-size="13" fill="#0F6E56">worktree-bugfix</text>
+          <text x="365" y="278" text-anchor="middle" font-family="Consolas,monospace" font-size="11" fill="#0F6E56">worktrees/bugfix/</text>
+        </g>
+      </svg></div>
+    <div>
+      <ul class="b">
+        <li class="small"><b>Egen mapp, egen branch</b> – samma git-historik. Parallella ändringar krockar inte.</li>
+        <li class="small"><code>claude --worktree auth</code> – en hel session i ett eget worktree.</li>
+        <li class="small"><code>isolation: worktree</code> – en subagent får alltid ett eget.</li>
+        <li class="small"><b>Inga ändringar</b> → tas bort. <b>Ändringar</b> → ligger kvar tills du mergat.</li>
+        <li class="small">Ny utcheckning: <code>.env</code> följer inte med – lägg den i <code>.worktreeinclude</code>.</li>
+      </ul>
     </div>
   </div>
-  <div class="notes">Det här är /context från en av mina egna sessioner i Claude Code. 24 % använt av 1M tokens. Konversationen (Messages) är klart störst – det är därför långa sessioner blir sämre och dyrare. Autocompact buffer är plats som reserveras för att kunna komprimera historiken när det blir fullt. Deferred-verktygen ligger inte i kontexten förrän de behövs. DEMO: kör /context live i en ny session och jämför.</div>
+  <div class="card warm" style="margin-top:22px;padding:12px 20px">
+    <p style="font-size:18px;color:#8A3A0E"><b>Isolerar filerna – inte besluten.</b> Två agenter kan fortfarande lösa samma sak på olika sätt.</p>
+  </div>
+  <div class="notes">Ett worktree är en git-funktion: en extra arbetsmapp med egna filer och egen branch, som delar samma historik som ditt repo. Det är inte en full kopia – .git delas, bara filerna checkas ut på nytt. Varje agent får sin egen arbetskopia, så den ena kan bygga en feature medan den andra fixar en bugg utan att de skriver i samma filer. claude --worktree auth skapar .claude/worktrees/auth/ på branchen worktree-auth. En subagent med isolation: worktree i frontmattern får alltid ett eget. Gör den inga ändringar tas worktreet bort automatiskt, annars ligger det kvar så du kan granska och merga. Eftersom det är en ny utcheckning saknas gitignorade filer som .env – lägg dem i .worktreeinclude – och beroenden måste installeras. Varning: om agenterna inte kan kommunicera kan de ändra samma saker eller skapa oordning. Man kan ha en organizer- eller teamlead-agent, men Oscar på Queenslab har gjort experiment med flera agenter som pratar med varandra – de fick mindre gjort och det kostade mer. Hur man använder det för att jobba effektivt tar vi i del 3. Se anteckningarna i 2.6.3.1 Worktrees.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Instruktioner · dokumentation</div>
+  <h2>Dokumentation som faktiskt stämmer</h2>
+  <div class="grid g2" style="gap:26px;align-items:stretch">
+    <div>
+      <h3 style="color:var(--warm);margin-bottom:10px">Förr</h3>
+      <div class="codebox" style="font-size:16px"><span style="color:#9A958A"># docs/kom-igang.md
+# senast ändrad: mars 2022</span>
+
+1. Installera <s style="color:#E8875A">Java 8</s>
+2. Kör ./gradlew assembleDebug
+3. API-nyckel: <s style="color:#E8875A">fråga Kalle</s>
+4. <s style="color:#E8875A">Starta mock-servern</s></div>
+      <p class="small muted" style="margin-top:10px">Kalle slutade 2024. Mock-servern finns inte.<br>Nya kollegan – och AI:n – gör precis som det står.</p>
+    </div>
+    <div>
+      <h3 style="color:var(--teal);margin-bottom:10px">Nu</h3>
+      <div class="codebox" style="font-size:16px"><span class="c">---
+paths:
+  - "app/src/**/data/**"
+---</span>
+Ändrar du API:t eller datalagret:
+uppdatera docs/arkitektur.md
+i samma commit.</div>
+      <p class="small muted" style="margin-top:10px">En rule som håller dokumentationen levande.<br>AI:n får bättre förståelse på köpet.</p>
+    </div>
+  </div>
+  <p class="quote" style="margin-top:26px;font-size:26px">Förstår en ny kollega den, förstår AI:n den också.</p>
+  <p class="small muted" style="margin-top:14px">Tips: <code>/doctor prompt-audit</code> hittar inaktuella och motsägelsefulla instruktioner.</p>
+  <div class="notes">Dokumentationen skrivs för människor – men AI:n läser den när den behöver veta hur något fungerar. Förr var den sällan prioriterad och blev snabbt inaktuell – och en inaktuell dokumentation är värre för AI:n än ingen alls, för den gör precis som det står. Nu kan man lägga in en check, t.ex. en rule, så att AI:n håller dokumentationen à jour. Se anteckningarna i 2.6.4 Dokumentation.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Instruktioner</div>
+  <h2>Rule, skill, agent eller dokumentation?</h2>
+  <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:16px;align-items:stretch;flex:0 0 360px">
+    <div class="card purple" style="padding:22px 22px;display:flex;flex-direction:column">
+      <div style="font-size:48px;line-height:1">📏</div>
+      <h3 style="margin-top:8px">Rule</h3>
+      <p style="font-size:19px;font-weight:600">Vad som måste gälla</p>
+      <p style="font-size:16px;margin-top:14px" class="muted"><b>Laddas:</b> alltid – eller när den rör matchande filer</p>
+      <p style="font-size:16px;margin-top:8px" class="muted"><b>T.ex.</b> ”Namnge tester så här”</p>
+      <p style="font-size:18px;margin-top:auto;padding-top:14px;border-top:1px solid rgba(0,0,0,.08)"><b>Gäller alltid → rule</b></p>
+    </div>
+    <div class="card " style="padding:22px 22px;display:flex;flex-direction:column">
+      <div style="font-size:48px;line-height:1">🛠️</div>
+      <h3 style="margin-top:8px">Skill</h3>
+      <p style="font-size:19px;font-weight:600">Hur man gör en uppgift</p>
+      <p style="font-size:16px;margin-top:14px" class="muted"><b>Laddas:</b> när beskrivningen matchar – eller med <code>/namn</code></p>
+      <p style="font-size:16px;margin-top:8px" class="muted"><b>T.ex.</b> ”Skapa en release”</p>
+      <p style="font-size:18px;margin-top:auto;padding-top:14px;border-top:1px solid rgba(0,0,0,.08)"><b>Görs ibland → skill</b></p>
+    </div>
+    <div class="card warm" style="padding:22px 22px;display:flex;flex-direction:column">
+      <div style="font-size:48px;line-height:1">🤖</div>
+      <h3 style="margin-top:8px">Agent</h3>
+      <p style="font-size:19px;font-weight:600">Någon som gör jobbet – i egen kontext</p>
+      <p style="font-size:16px;margin-top:14px" class="muted"><b>Laddas:</b> när <code>description</code> matchar – eller när du ber om den</p>
+      <p style="font-size:16px;margin-top:8px" class="muted"><b>T.ex.</b> ”Granska min branch”</p>
+      <p style="font-size:18px;margin-top:auto;padding-top:14px;border-top:1px solid rgba(0,0,0,.08)"><b>Egen kontext → agent</b></p>
+    </div>
+    <div class="card teal" style="padding:22px 22px;display:flex;flex-direction:column">
+      <div style="font-size:48px;line-height:1">📖</div>
+      <h3 style="margin-top:8px">Dokumentation</h3>
+      <p style="font-size:19px;font-weight:600">Hur systemet fungerar – och varför</p>
+      <p style="font-size:16px;margin-top:14px" class="muted"><b>Laddas:</b> när människor eller AI:n behöver förstå</p>
+      <p style="font-size:16px;margin-top:8px" class="muted"><b>T.ex.</b> ”Så hänger datalagret ihop”</p>
+      <p style="font-size:18px;margin-top:auto;padding-top:14px;border-top:1px solid rgba(0,0,0,.08)"><b>Förklarar varför → docs</b></p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:18px;padding:14px 22px;display:flex;gap:22px;align-items:center;flex-wrap:nowrap;white-space:nowrap">
+    <b style="font-size:19px">✂️ Håll filerna korta</b>
+    <span style="font-size:17px"><code>CLAUDE.md</code> och rules &lt; 200 rader</span>
+    <span style="font-size:17px"><code>SKILL.md</code> &lt; 500 rader</span>
+    <span class="muted" style="font-size:16px">per fil</span>
+  </div>
+  <div class="notes">Fyra sorters instruktioner, fyra frågor. Måste det alltid gälla när den jobbar – rule. Är det något den gör ibland, en uppgift med steg – skill. Behöver jobbet en egen kontext, en färsk blick eller ett eget verktygsset – agent. Skillnaden skill/agent: en skill lägger till instruktioner i samma kontext, en agent jobbar i en egen och lämnar tillbaka ett resultat. Förklarar det hur systemet fungerar och varför – dokumentation, för både människor och AI. Håll filerna korta: Anthropic rekommenderar under 200 rader för CLAUDE.md, som laddas i varje session. Rules utan paths laddas på samma sätt, så samma gräns är rimlig där, och under 500 för SKILL.md, som bara laddas vid behov. Det gäller per fil. Långa filer äter kontext och den följer instruktionerna sämre. Mitt eget max är 250 rader – det var rekommendationen när jag satte upp det. Saker ändras, häng med. Se anteckningarna i 2.6.5 Håll isär.</div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Verktyg</div>
+  <h2>MCP – ett standarduttag för AI:ns verktyg</h2>
+  <svg viewBox="0 0 1100 150" style="width:100%" role="img" aria-label="Claude Code pratar med en MCP-server, som i sin tur pratar med GitHub, Figma eller en databas">
+      <defs><marker id="mcpArr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9A958A"/></marker></defs>
+      <g font-family="Inter,system-ui,sans-serif">
+        <rect x="0" y="20" width="260" height="96" rx="14" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+        <text x="130" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#3C3489">🤖 Claude Code</text>
+        <text x="130" y="90" text-anchor="middle" font-size="15" fill="#534AB7">ser servern som tools</text>
+
+        <path d="M270 52 H408" stroke="#9A958A" stroke-width="3" marker-end="url(#mcpArr)"/>
+        <path d="M408 86 H270" stroke="#9A958A" stroke-width="3" marker-end="url(#mcpArr)"/>
+        <text x="339" y="40" text-anchor="middle" font-size="14" fill="#6B675E">"vad kan du?"</text>
+        <text x="339" y="110" text-anchor="middle" font-size="14" fill="#6B675E">lista med tools</text>
+
+        <rect x="418" y="20" width="264" height="96" rx="14" fill="#1F1E1B"/>
+        <text x="550" y="60" text-anchor="middle" font-size="22" font-weight="700" fill="#EDEAE2">🔌 MCP-server</text>
+        <text x="550" y="90" text-anchor="middle" font-size="15" fill="#7FD1B0">lokal process · eller på nätet</text>
+
+        <path d="M692 68 H830" stroke="#9A958A" stroke-width="3" marker-end="url(#mcpArr)"/>
+        <text x="761" y="56" text-anchor="middle" font-size="14" fill="#6B675E">med din inloggning</text>
+
+        <rect x="840" y="20" width="260" height="96" rx="14" fill="#E1F5EE" stroke="#0F6E56" stroke-width="2"/>
+        <text x="970" y="60" text-anchor="middle" font-size="20" font-weight="700" fill="#0F6E56">GitHub · Figma · DB</text>
+        <text x="970" y="90" text-anchor="middle" font-size="15" fill="#0F6E56">tjänsten du kopplar in</text>
+      </g>
+    </svg>
+  <div class="grid" style="grid-template-columns:1.15fr 1fr;gap:30px;margin-top:22px;align-items:start">
+    <ul class="b">
+      <li class="small"><b>Ett API är svårt för en AI att upptäcka.</b> En MCP-server berättar själv vad den kan.</li>
+      <li class="small"><b>Lokal</b> – en process på din dator. <b>Remote</b> – en tjänst på nätet.</li>
+      <li class="small"><b>Laddas vid behov</b> – men varje verktyg som används tar plats i kontexten.</li>
+      <li class="small"><b>Jobbar som du</b> – mer om det i del 4.</li>
+    </ul>
+    <div class="card warm" style="padding:16px 20px">
+      <h3 style="font-size:20px">Är MCP på väg ut?</h3>
+      <p style="font-size:16px"><b>CLI + skill</b> – ofta billigare för det AI:n redan kan, som <code>git</code> och <code>gh</code>.</p>
+      <p style="font-size:16px;margin-top:8px"><b>MCP</b> – för tjänster med inloggning och behörigheter.</p>
+      <p style="font-size:16px;margin-top:8px"><b>Inte antingen eller – båda.</b></p>
+    </div>
+  </div>
+  <div class="notes">MCP – Model Context Protocol – är en öppen standard för att koppla verktyg till AI. Ett vanligt API är svårt för en AI att använda: den måste hitta dokumentationen, förstå vad som går och hur man autentiserar. En MCP-server berättar själv vad den kan, och det exponeras som tools för modellen – samma sorts verktyg som Read och Bash. Servern kan vara en lokal process på din dator (stdio) eller en tjänst på nätet (HTTP). Verktygen laddas vid behov via tool search – i min egen /context låg 142 MCP-verktyg och väntade utanför kontexten – men varje verktyg som används tar plats. Är MCP på väg ut? Det pratas mycket om det. För saker modellen redan kan, som git och gh, är ett CLI-verktyg plus en skill ofta billigare och lika bra. MCP passar för tjänster som kräver inloggning, behörigheter och där organisationen vill styra åtkomsten. Svaret är båda. I del 3 pratar vi om att bara koppla in det du behöver, och i del 4 om att MCP-servern jobbar med din inloggning. Se anteckningarna i 2.7 MCP.</div>
 </section>
 
 <section class="slide section">
@@ -495,172 +912,17 @@ button.spin{font:inherit;font-size:22px;font-weight:600;background:var(--accent)
   <div class="notes">Systemprompten och loopen kan du inte ändra – Anthropic publicerar inte ens Claude Codes systemprompt. Men du har reglage. Exemplen är från Claude Code, de andra verktygen har motsvarigheter. Byter du modell mitt i en session läses hela samtalet in igen utan cache. Behörighetsläget byter du med Shift+Tab (kolla vilka lägen som finns i din version – det finns även ett auto-läge). --dangerously-skip-permissions: namnet är en varning, kör det bara i en isolerad miljö som en Docker-container.</div>
 </section>
 
-<!-- vem bestämmer -->
 <section class="slide">
   <div class="kicker">Systemets harness</div>
-  <h2>Vem bestämmer?</h2>
-  <div class="grid" style="grid-template-columns:1.2fr 1fr;gap:44px;align-items:center">
-    <div>
-      <div class="lvl" style="background:var(--warm-soft);border:2px solid var(--warm)"><b>1 · Organisationen</b><span>managed settings</span></div>
-      <div class="lvl" style="background:var(--accent-soft)"><b>2 · Projekt, lokalt</b><span>.claude/settings.local.json</span></div>
-      <div class="lvl" style="background:var(--accent-soft)"><b>3 · Projekt, delat</b><span>.claude/settings.json</span></div>
-      <div class="lvl" style="background:#ECE9E1"><b>4 · Användare</b><span>~/.claude/settings.json</span></div>
-      <p class="small muted" style="margin-top:6px">Högst upp vinner. Kör <code>/status</code> för att se vilka som gäller.</p>
-    </div>
-    <div>
-      <p class="quote" style="font-size:30px">Settings är lagar, inte önskemål.</p>
-      <p class="small muted" style="margin-top:18px">De ligger i loopen, utanför modellen – den kan inte prata sig förbi en deny-regel.</p>
-    </div>
+  <h2>Vilken nivå bestämmer?</h2>
+  <p class="small" style="margin:-10px 0 20px">Lagar och instruktioner finns på samma nivåer som i harness-lådan – men de beter sig olika.</p>
+  <div class="grid g2" style="gap:28px;align-items:start">
+    <div class="card" style="padding:18px 22px"><h3>Lagar <span class="muted" style="font-size:16px;font-weight:400">· settings</span></h3><p style="margin-bottom:12px">Samma nivåer – <b>högsta vinner</b></p><div style="padding:8px 14px;border-radius:9px;font-size:17px;font-weight:600;background:var(--warm-soft);border:2px solid var(--warm);margin-bottom:6px">Organisationen</div><div style="padding:8px 14px;border-radius:9px;font-size:17px;font-weight:600;background:#ECE9E1;color:var(--muted);margin-bottom:6px">Lokalt – bara du, här</div><div style="padding:8px 14px;border-radius:9px;font-size:17px;font-weight:600;background:#ECE9E1;color:var(--muted);margin-bottom:6px">Projektet</div><div style="padding:8px 14px;border-radius:9px;font-size:17px;font-weight:600;background:#ECE9E1;color:var(--muted);margin-bottom:6px">Du, i alla projekt</div></div>
+    <div class="card purple" style="padding:18px 22px"><h3>Instruktioner <span class="muted" style="font-size:16px;font-weight:400">· CLAUDE.md, rules</span></h3><p style="margin-bottom:12px">Samma nivåer – <b>allt läggs ihop</b></p><div style="padding:8px 14px;border-radius:9px;font-size:17px;font-weight:600;background:#fff;border:1px solid #CFCBF5;color:#3C3489">Organisationen</div><div style="text-align:center;color:var(--muted);font-weight:700;line-height:1;margin:2px 0">+</div><div style="padding:8px 14px;border-radius:9px;font-size:17px;font-weight:600;background:#fff;border:1px solid #CFCBF5;color:#3C3489">Du, i alla projekt</div><div style="text-align:center;color:var(--muted);font-weight:700;line-height:1;margin:2px 0">+</div><div style="padding:8px 14px;border-radius:9px;font-size:17px;font-weight:600;background:#fff;border:1px solid #CFCBF5;color:#3C3489">Projektet</div><div style="text-align:center;color:var(--muted);font-weight:700;line-height:1;margin:2px 0">+</div><div style="padding:8px 14px;border-radius:9px;font-size:17px;font-weight:600;background:#fff;border:1px solid #CFCBF5;color:#3C3489">Lokalt</div></div>
   </div>
-  <div class="notes">Settings finns på flera nivåer, och högst upp vinner. Här blir organisationslagret konkret: på jobbet är det kunden och företaget som bestämmer vad AI:n får se och göra, och det slår igenom oavsett vad jag själv ställer in. Det delade projektet ligger i git så hela teamet får samma regler; det lokala är bara mitt.</div>
-</section>
-
-<!-- ditt harness -->
-<section class="slide">
-  <div class="kicker">Ditt harness</div>
-  <h2>Önskemål eller lagar?</h2>
-  <div class="grid g3" style="gap:20px">
-    <div class="card purple"><h3>Önskemål</h3><p style="margin-bottom:10px">Text i kontexten – modellen <i>kan</i> följa den</p><ul class="b"><li class="small">CLAUDE.md / AGENTS.md</li><li class="small">Rules</li><li class="small">Skills</li><li class="small">Dokumentation</li></ul></div>
-    <div class="card teal"><h3>Lagar</h3><p style="margin-bottom:10px">Kod i loopen – körs <i>alltid</i></p><ul class="b"><li class="small">Settings</li><li class="small">Hooks</li></ul></div>
-    <div class="card warm"><h3>Egna agenter</h3><p style="margin-bottom:10px">En egen loop med eget harness</p><ul class="b"><li class="small">Egen kontext</li><li class="small">Egna verktyg</li></ul></div>
-  </div>
-  <p class="big" style="margin-top:30px;font-size:28px">Måste något <b>alltid</b> gälla → kod. Behöver det omdöme → text.</p>
-  <div class="notes">[UNDER ARBETE – fyll på från 3.2 Ditt harness.] Vad är agentfilen (CLAUDE.md i Claude Code, AGENTS.md i Codex, Cursor m.fl.)? Vad är en rule, vad är en skill, hur skiljer man dem åt? Dokumentation, hooks, agenter.</div>
-</section>
-
-<section class="slide">
-  <div class="kicker">Ditt harness</div>
-  <h2>Agentfilen och dokumentationen</h2>
-  <div class="grid g2" style="gap:26px">
-    <div class="card purple"><h3>CLAUDE.md / AGENTS.md</h3><p>Projektets översikt – laddas i <b>varje</b> session: vad projektet är, hur man bygger och testar, viktiga konventioner.</p><p style="margin-top:14px">Blir den för stor? <b>Dela upp den i rules.</b></p></div>
-    <div class="card teal"><h3>Dokumentation</h3><p>Skrivs för människor – men AI:n läser den också när den behöver veta hur något fungerar.</p><p style="margin-top:14px"><b>Förstår en ny kollega den, förstår AI:n den också.</b></p></div>
-  </div>
-  <div class="notes">Agentfilen är projektets översikt och laddas i varje session. I Claude Code heter den CLAUDE.md, i Codex, Cursor m.fl. AGENTS.md. För att den inte ska bli för stor delar man upp den efter ämne – det är dina rules. Dokumentationen skriver jag för människor, men AI:n hämtar info ur den ibland.</div>
-</section>
-
-<!-- rule vs skill -->
-<section class="slide">
-  <div class="kicker">Ditt harness</div>
-  <h2>Rule eller skill?</h2>
-  <div class="grid g2" style="gap:26px">
-    <div class="card purple">
-      <h3>Rule – hur vi gör saker här</h3>
-      <div class="codebox" style="font-size:16px;padding:14px 18px;margin:12px 0"><span class="c">---
-paths:
-  - "**/*Test.kt"
----</span>
-# Testregler
-- Namnge tester: metod_situation_resultat</div>
-      <p>Utan frontmatter: laddas <b>alltid</b>.<br>Med <code>paths</code>: bara när den rör matchande filer.</p>
-    </div>
-    <div class="card teal">
-      <h3>Skill – hur man gör en uppgift</h3>
-      <div class="codebox" style="font-size:16px;padding:14px 18px;margin:12px 0"><span class="c">---
-name: release
-description: Skapar en release –
-  versionsnummer, changelog och git-tagg.
-  Använd när användaren vill släppa
-  en ny version.
----</span></div>
-      <p>Bara <b>beskrivningen</b> ligger alltid i kontexten. Vag beskrivning = skillen används aldrig.</p>
-    </div>
-  </div>
-  <p class="big" style="margin-top:26px;font-size:26px">Gäller det <b>alltid</b> när den jobbar → rule. Något den <b>gör</b> ibland → skill.</p>
-  <div class="notes">Frontmatter är det lilla YAML-blocket överst i filen – det styr när filen hamnar i kontexten. En rule är hur vi gör saker här: konventioner som namngivning och kodstil. Utan frontmatter laddas den alltid; med paths bara när AI:n läser eller ändrar en fil som matchar – som den här testregeln. En skill är en arbetsbeskrivning för en viss uppgift. Den måste ha name och description, och det är bara beskrivningen som alltid ligger i kontexten – det är på den AI:n avgör om skillen ska användas. Du kan också köra den själv med /skill-namn. (Cursor har samma idé med fälten globs, alwaysApply och description.)</div>
-</section>
-
-<!-- filstorlek -->
-<section class="slide">
-  <div class="kicker">Ditt harness</div>
-  <h2>Håll filerna korta</h2>
-  <table style="margin-top:6px">
-    <tr><th>Fil</th><th>Anthropics rekommendation</th><th>Laddas</th></tr>
-    <tr><td><b>CLAUDE.md</b></td><td>under 200 rader</td><td>i varje session</td></tr>
-    <tr><td><b>SKILL.md</b></td><td>under 500 rader</td><td>bara när den behövs</td></tr>
-  </table>
-  <ul class="b" style="margin-top:34px">
-    <li class="small"><b>Per fil, inte totalt.</b> Den klarar att läsa betydligt mer – men långa filer äter kontext och den följer instruktionerna sämre.</li>
-    <li class="small"><b>En skill kan delas upp</b> i flera filer och scripts – då blir den mer som ett eget verktyg.</li>
-    <li class="small"><b>Rekommendationerna ändras.</b> Mitt eget max är 250 rader – häng med.</li>
-  </ul>
-  <div class="notes">Jag har 250 rader per fil som max, för det var vad rekommendationerna sa när jag satte upp det. Saker ändras hela tiden och det gäller att hänga med. Idag rekommenderar Anthropic under 200 rader för CLAUDE.md, som laddas i varje session, medan en SKILL.md kan vara upp till 500 rader eftersom den bara laddas när den behövs. Källor: code.claude.com/docs/en/memory och platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices.</div>
-</section>
-
-<section class="slide">
-  <div class="kicker">Agenter</div>
-  <h2>En subagent är en ny loop</h2>
-  <div class="grid" style="grid-template-columns:1.1fr 1fr;gap:36px;align-items:start">
-    <div>
-      <div class="codebox" style="font-size:16px"><span class="c">---
-name: code-reviewer
-description: Granskar kod för kvalitet och
-  best practice. Använd efter kodändringar.
-tools: Read, Glob, Grep
-model: sonnet
----</span>
-Du är en kodgranskare. Ge konkret,
-genomförbar feedback på kvalitet,
-säkerhet och best practice.</div>
-      <p class="small muted" style="margin-top:10px"><code>.claude/agents/code-reviewer.md</code> – frontmatter + systemprompt</p>
-    </div>
-    <ul class="b">
-      <li class="small"><b>Egen loop, eget harness</b><br><span class="muted">Egen systemprompt, egna verktyg, egen tom kontext.</span></li>
-      <li class="small"><b>Spinns upp automatiskt</b> via <code>description</code><br><span class="muted">– eller när du ber om den.</span></li>
-      <li class="small"><b>Bara slutsatsen kommer tillbaka</b><br><span class="muted">Allt den läser stannar i dess kontext.</span></li>
-      <li class="small"><b>Skill</b> = samma kontext. <b>Agent</b> = egen kontext.</li>
-    </ul>
-  </div>
-  <div class="notes">Kommer ni ihåg att en agent bara är en loop? En subagent är när huvudagenten startar en ny loop med eget harness. Den beskrivs i en markdown-fil i .claude/agents/. Frontmatter: name och description måste finnas, tools och model är valfria – utan tools får den samma verktyg som huvudagenten. Resten av filen är dess systemprompt. Huvudagenten matchar uppgiften mot description – samma princip som för skills. Claude Code har också inbyggda subagenter, t.ex. Explore och Plan.</div>
-</section>
-
-<section class="slide">
-  <div class="kicker">Agenter</div>
-  <h2>Vad får subagenten med sig?</h2>
-  <div class="grid g2" style="gap:24px">
-    <div class="card teal"><h3>Den får</h3><ul class="b" style="margin-top:10px">
-      <li class="small">Sin egen systemprompt</li>
-      <li class="small"><b>Uppdraget</b> – det huvudagenten skriver</li>
-      <li class="small">Projektets CLAUDE.md</li>
-      <li class="small">Beskrivningar av sina verktyg</li></ul></div>
-    <div class="card warm"><h3>Den får inte</h3><ul class="b" style="margin-top:10px">
-      <li class="small">Er konversation</li>
-      <li class="small">Filerna huvudagenten redan läst</li>
-      <li class="small">Det ni kommit överens om</li></ul>
-      <p class="small" style="margin-top:12px;color:#8A3A0E">Undantag: en <b>forkad</b> agent ärver allt.</p></div>
-  </div>
-  <p class="quote" style="margin-top:28px;font-size:28px">Huvudagenten promptar en annan agent.<br><span class="muted">Ett otydligt uppdrag ger ett dåligt resultat – den kan inte fråga vad som menades.</span></p>
-  <div class="notes">En vanlig subagent startar tom. Den får sin egen systemprompt, uppdraget som huvudagenten skriver, projektets CLAUDE.md (vissa inbyggda agenter som Explore och Plan hoppar över den) och beskrivningar av sina verktyg. Den får inte er konversation, filerna huvudagenten läst eller det ni kommit överens om. Står det inte i uppdraget vet den inte om det. En forkad agent ärver hela huvudagentens kontext. Varje överlämning är en ny kontext som byggs från noll.</div>
-</section>
-
-<section class="slide">
-  <div class="kicker">Agenter</div>
-  <h2>Varför subagenter?</h2>
-  <div class="grid g2" style="gap:24px">
-    <div class="card teal"><h3>Fördelar</h3><ul class="b" style="margin-top:10px">
-      <li class="small"><b>Skyddar kontexten</b> – research och loggar skräpar inte ner</li>
-      <li class="small"><b>Specialiserar</b> – färre verktyg, billigare modell</li>
-      <li class="small"><b>Parallellt</b> – med tydliga avgränsningar</li>
-      <li class="small"><b>Färsk blick</b> – har inte redan hållit med dig</li></ul></div>
-    <div class="card warm"><h3>Nackdelar</h3><ul class="b" style="margin-top:10px">
-      <li class="small"><b>Det kostar</b> – varje subagent läser in sin egen kontext</li>
-      <li class="small"><b>Info tappas i överlämningen</b> – du ser bara sammanfattningen</li></ul></div>
-  </div>
-  <p class="small muted" style="margin-top:24px"><b>Forkade agenter</b> ärver huvudagentens kontext – bra när flera ska göra liknande saker, t.ex. research, och billigare tack vare caching. Men svårare att specialisera.</p>
-  <div class="notes">Parallella agenter behöver tydliga instruktioner och avgränsningar så att de inte skriver i samma filer. Den färska blicken kopplar tillbaka till sykofansin – och till mina review-agenter i del 5.</div>
-</section>
-
-<section class="slide">
-  <div class="kicker">Settings & hooks</div>
-  <h2>Utanför promptandet</h2>
-  <div class="grid g2" style="gap:24px">
-    <div class="card"><h3>Settings</h3><p>Vad den <b>får</b> göra: vilka kommandon, filer och verktyg som är tillåtna eller förbjudna.</p></div>
-    <div class="card"><h3>Hooks</h3><p>Egna script som körs vid vissa tillfällen i loopen:</p><ul class="b" style="margin-top:8px">
-      <li class="small"><b>Före</b> ett verktyg – kan stoppa</li>
-      <li class="small"><b>Efter</b> – formatering, linter, tester</li>
-      <li class="small"><b>Innan den avslutar</b> – är testerna gröna?</li></ul></div>
-  </div>
-  <p class="quote" style="margin-top:28px;font-size:28px">Inte text som modellen tolkar – kod som harness kör.<br><span class="muted">En deny-regel eller en blockerande hook kan den inte prata sig förbi.</span></p>
-  <div class="notes">Settings och hooks ligger utanför promptandet. Det är kod som harness kör i loopen, inte text som modellen läser och tolkar.</div>
+  <p class="big" style="margin-top:18px;font-size:24px">Säger två nivåer emot varandra får <b>modellen</b> välja. Måste något alltid gälla → gör det till en lag.</p>
+  <p class="small muted" style="margin-top:10px">Kör <code>/status</code> för att se vilka settings som gäller.</p>
+  <div class="notes">Lagar och instruktioner finns på samma fyra nivåer som i harness-lådan – men de beter sig olika. Settings rangordnas: högst upp vinner, och organisationen går före allt. Här blir organisationslagret konkret: på jobbet är det kunden och företaget som bestämmer vad AI:n får se och göra, och det slår igenom oavsett vad jag själv ställer in. Det delade projektet ligger i git så hela teamet får samma regler; det lokala är bara mitt. Instruktioner – CLAUDE.md och rules – ersätter inte varandra utan läggs ihop, från bredast till mest specifik. Säger två nivåer emot varandra får modellen själv välja. Settings är lagar, inte önskemål – de ligger i loopen och modellen kan inte prata sig förbi en deny-regel. Måste något alltid gälla: gör det till en lag. Se anteckningarna i 3.1 Systemets harness, punkt 4.</div>
 </section>
 
 <section class="slide">
@@ -1072,11 +1334,12 @@ kanban</div>
     const nt=slides[i].querySelector('.notes');
     notes.innerHTML='<b>Anteckningar</b>'+(nt?nt.innerHTML:'<span style="opacity:.5">–</span>');
     history.replaceState(null,'','#'+(i+1));
+    slides[i].querySelectorAll('.lp').forEach(st=>setStep(st,0));
   }
   addEventListener('resize',fit);
   addEventListener('keydown',e=>{
-    if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();show(i+1)}
-    else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();show(i-1)}
+    if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();next()}
+    else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();prev()}
     else if(e.key==='Home')show(0);
     else if(e.key==='End')show(slides.length-1);
     else if(e.key==='n'||e.key==='N')notes.classList.toggle('on');
@@ -1084,7 +1347,16 @@ kanban</div>
     else if((e.key==='s'||e.key==='S')&&slides[i].querySelector('#wheel'))spin();
     else if(/^[1-5]$/.test(e.key)&&slides[i].querySelector('#wheel'))build(+e.key-1);
   });
-  stage.addEventListener('click',e=>{if(e.target.closest('button,.sent'))return;(e.clientX>innerWidth/2)?show(i+1):show(i-1)});
+  // --- stegvisa slides (.lp): pil höger/vänster stegar inom sliden innan den byter ---
+  function setStep(st,n){st.dataset.step=n;
+    st.querySelectorAll('[data-s]').forEach(e=>e.classList.toggle('vis',+e.dataset.s<=n));
+    st.querySelectorAll('[data-o]').forEach(e=>e.classList.toggle('vis',+e.dataset.o===n));
+    st.querySelectorAll('[data-h]').forEach(e=>e.classList.toggle('hl',e.dataset.h.split(' ').includes(String(n))));}
+  function stepper(d){const st=slides[i].querySelector('.lp');if(!st)return false;
+    const n=+st.dataset.step+d;if(n<0||n>+st.dataset.steps)return false;setStep(st,n);return true;}
+  function next(){if(!stepper(1))show(i+1)}
+  function prev(){if(stepper(-1))return;show(i-1);const st=slides[i].querySelector('.lp');if(st)setStep(st,+st.dataset.steps)}
+  stage.addEventListener('click',e=>{if(e.target.closest('button,.sent'))return;(e.clientX>innerWidth/2)?next():prev()});
 
   // --- Probability wheel ---
   // Token-alternativ. Inledande mellanslag = ny ordstart (visas som ␣). Utan mellanslag = fortsättning på ordet.
