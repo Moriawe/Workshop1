@@ -1,0 +1,18 @@
+<section class="slide">
+  <div class="kicker">Minne</div>
+  <h2 class="mb-12">Temporära filer</h2>
+  <p class="small mb-16">Dessa läses inte in och räknas inte som memory. De rensas efter 30 dagar.</p>
+  <table class="map">
+    <tr><th>Det här sparar AI:n</th><th>Vad det är till för</th></tr>
+    <tr><td>Konversationen</td><td>Allt som sagts och gjorts, även av subagenter – så att du kan <b>återuppta</b></td></tr>
+    <tr><td><code>tool-results/</code></td><td>Stora verktygssvar som sparas separat</td></tr>
+    <tr><td><code>file-history/</code></td><td>Filerna som de såg ut innan AI:n ändrade dem – så att du kan <b>backa</b></td></tr>
+    <tr><td><code>plans/</code></td><td>Planer från plan-läget</td></tr>
+    <tr><td>Scratchpad</td><td>Kladdyta för mellanresultat, hjälpscript och utkast</td></tr>
+    <tr><td>Worktrees</td><td>Separata arbetskopior av repot, på egen branch</td></tr>
+  </table>
+  <div class="card warm mt-auto p-12-20">
+    <p class="fs-17 c-warm-ink"><b>Allt sparas i klartext.</b> Läser AI:n din <code>.env</code> ligger nycklarna kvar i en loggfil.</p>
+  </div>
+  <div class="notes">Kollar du i din .claude-mapp ser du massor av filer: konversationer, file-history, plans, scratchpads, worktrees. Det ser ut som att den minns allt – men nästan inget av det läses in när du startar en ny session. Konversationen sparas så att du kan återuppta den, file-history så att du kan backa till en checkpoint. Plans, scratchpad och worktrees är tillfälliga arbetsytor. Allt det rensas efter 30 dagar (cleanupPeriodDays). Det enda som automatiskt läses in i en ny session är CLAUDE.md, rules och auto memory. Därför har jag strukturerade filer – det är det nästa session faktiskt får veta. Säkerhet: allt ligger i klartext. Läser AI:n din .env hamnar nycklarna i projects/&lt;projekt&gt;/&lt;session&gt;.jsonl. Mer i del 4. Se anteckningarna i 2.3.1 Temporära filer.</div>
+</section>

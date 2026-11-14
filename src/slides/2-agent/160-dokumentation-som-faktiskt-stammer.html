@@ -1,0 +1,31 @@
+<section class="slide">
+  <div class="kicker">Instruktioner · dokumentation</div>
+  <h2>Dokumentation som faktiskt stämmer</h2>
+  <div class="grid g2 gap-26 ai-stretch">
+    <div>
+      <h3 class="c-warm mb-10">Förr</h3>
+      <div class="codebox fs-16"><span class="c-grey-3"># docs/kom-igang.md
+# senast ändrad: mars 2022</span>
+
+1. Installera <s class="c-warm-on-dark">Java 8</s>
+2. Kör ./gradlew assembleDebug
+3. API-nyckel: <s class="c-warm-on-dark">fråga Kalle</s>
+4. <s class="c-warm-on-dark">Starta mock-servern</s></div>
+      <p class="small muted mt-10">Kalle slutade 2024. Mock-servern finns inte.<br>Nya kollegan – och AI:n – gör precis som det står.</p>
+    </div>
+    <div>
+      <h3 class="c-teal mb-10">Nu</h3>
+      <div class="codebox fs-16"><span class="c">---
+paths:
+  - "app/src/**/data/**"
+---</span>
+Ändrar du API:t eller datalagret:
+uppdatera docs/arkitektur.md
+i samma commit.</div>
+      <p class="small muted mt-10">En rule som håller dokumentationen levande.<br>AI:n får bättre förståelse på köpet.</p>
+    </div>
+  </div>
+  <p class="quote mt-26 fs-26">Förstår en ny kollega den, förstår AI:n den också.</p>
+  <p class="small muted mt-14">Tips: <code>/doctor prompt-audit</code> hittar inaktuella och motsägelsefulla instruktioner.</p>
+  <div class="notes">Dokumentationen skrivs för människor – men AI:n läser den när den behöver veta hur något fungerar. Förr var den sällan prioriterad och blev snabbt inaktuell – och en inaktuell dokumentation är värre för AI:n än ingen alls, för den gör precis som det står. Nu kan man lägga in en check, t.ex. en rule, så att AI:n håller dokumentationen à jour. Se anteckningarna i 2.6.4 Dokumentation.</div>
+</section>

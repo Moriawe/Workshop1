@@ -1,0 +1,24 @@
+<section class="slide">
+  <div class="kicker">Modell</div>
+  <h2>Planera stort – utför billigt</h2>
+  <div class="d-grid cols-1fr-150-1fr gap-12 ai-center">
+    <div class="card purple p-18-22"><h3 class="mt-6">Stor modell planerar</h3><p class="fs-17">Förstår problemet, bestämmer lösningen, skriver tydliga och avgränsade steg.</p></div>
+    <div class="ta-center c-muted fs-16 fw-600">tydlig plan<div class="fs-40 lh-1 c-accent">→</div></div>
+    <div class="card teal p-18-22"><h3 class="mt-6">Billig modell utför</h3><p class="fs-17">Följer stegen. Behöver inte resonera lika mycket – snabbare och billigare.</p></div>
+  </div>
+  <div class="grid cols-1fr-1fr gap-26 mt-22 ai-start">
+    <ul class="b">
+      <li class="small"><code>/model opusplan</code> – Opus planerar, Sonnet utför.</li>
+      <li class="small"><b>En planerings-skill</b> som beskriver hur en bra plan ser ut.</li>
+      <li class="small"><code>model:</code> i agentens frontmatter.</li>
+    </ul>
+    <div class="codebox fs-15 p-12-18"><span class="c">---
+name: test-runner
+description: Kör testerna och rapporterar
+  vilka som failar.
+model: haiku
+---</span></div>
+  </div>
+  <p class="small muted mt-16">Ju tydligare planen är, desto billigare modell klarar jobbet.</p>
+  <div class="notes">Den största modellen är inte alltid bäst – den är dyrare och långsammare. Det svåra är oftast att förstå problemet och bestämma lösningen, inte att skriva koden. Så: planera med en stor modell och hög effort, låt den skriva tydliga och avgränsade steg, och låt en billigare modell utföra dem. opusplan gör det automatiskt: Opus i plan-läget, Sonnet när den utför. En subagent utan model ärver huvudsessionens modell – sätt model för de som gör enkla saker. Men en otydlig plan gör att den billiga modellen gissar, och då har du inte sparat något. Se anteckningarna i 3.3 Rätt modell för rätt jobb.</div>
+</section>

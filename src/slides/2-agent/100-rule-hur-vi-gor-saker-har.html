@@ -1,0 +1,26 @@
+<section class="slide">
+  <div class="kicker">Instruktioner · rules</div>
+  <h2>Rule – hur vi gör saker här</h2>
+  <div class="grid cols-1_1fr-1fr gap-36 ai-start">
+    <div>
+      <div class="codebox fs-17"><span class="c">---
+paths:
+  - "app/src/test/**/*.kt"
+---</span>
+# Testregler
+- Namnge tester:
+  funktion_situation_förväntatResultat
+- Använd fakes, inte mocks, för
+  repository-lagret
+- Ett koncept per test</div>
+      <p class="small muted mt-10"><code>.claude/rules/testregler.md</code> – Fikalistan</p>
+    </div>
+    <ul class="b">
+      <li class="small"><b>Utan frontmatter</b> – laddas alltid, som CLAUDE.md.</li>
+      <li class="small"><b>Med <code>paths</code></b> – laddas först när AI:n läser eller ändrar en matchande fil.</li>
+      <li class="small"><b>Bättre än CLAUDE.md</b> när något bara gäller en del av koden.</li>
+      <li class="small">Ligger i <code>.claude/rules/</code> – eller <code>~/.claude/rules/</code> för alla dina projekt.</li>
+    </ul>
+  </div>
+  <div class="notes">Se anteckningarna i 2.6.1 Rules.</div>
+</section>

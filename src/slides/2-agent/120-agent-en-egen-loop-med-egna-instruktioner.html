@@ -1,0 +1,27 @@
+<section class="slide">
+  <div class="kicker">Instruktioner · agenter</div>
+  <h2>Agent – en egen loop med egna instruktioner</h2>
+  <div class="grid cols-1_1fr-1fr gap-36 ai-start">
+    <div>
+      <div class="codebox fs-16"><span class="c">---
+name: code-reviewer
+description: Granskar kod för kvalitet och
+  best practice. Använd efter kodändringar.
+tools: Read, Glob, Grep
+model: sonnet
+---</span>
+Du är en kodgranskare. Ge konkret,
+genomförbar feedback på kvalitet,
+säkerhet och best practice.</div>
+      <p class="small muted mt-10"><code>.claude/agents/code-reviewer.md</code> – frontmatter + systemprompt</p>
+    </div>
+    <ul class="b">
+      <li class="small"><b>En markdown-fil</b> i <code>.claude/agents/</code><br><span class="muted">– eller <code>~/.claude/agents/</code> för alla dina projekt.</span></li>
+      <li class="small"><b><code>name</code> och <code>description</code></b> måste finnas<br><span class="muted"><code>tools</code> och <code>model</code> är valfria.</span></li>
+      <li class="small"><b>Resten av filen är systemprompten</b><br><span class="muted">Vem den är och hur den ska jobba.</span></li>
+      <li class="small"><b>Inbyggda:</b> Explore <span class="muted">(snabb, läser bara)</span> och Plan <span class="muted">(research inför en plan)</span></li>
+      <li class="small"><b>Skill</b> = samma kontext. <b>Agent</b> = egen kontext.</li>
+    </ul>
+  </div>
+  <div class="notes">Du kan också skapa dina egna agenter. En agent är en specialiserad AI: du väljer vilken modell den ska köra, vilka verktyg den får använda, vilka skills – och vilken färg den ska ha i konsolen. Den beskrivs i en markdown-fil i .claude/agents/. Frontmatter: name och description måste finnas, tools och model är valfria – utan tools får den samma verktyg som huvudagenten. Resten av filen är dess systemprompt. Claude Code har också inbyggda agenter, t.ex. Explore och Plan. Se anteckningarna i 2.6.3 Agenter.</div>
+</section>

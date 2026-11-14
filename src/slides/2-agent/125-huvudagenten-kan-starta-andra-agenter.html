@@ -1,0 +1,20 @@
+<section class="slide">
+  <div class="kicker">Instruktioner · delegering</div>
+  <h2>Huvudagenten kan starta andra agenter</h2>
+  <p class="small m-n10-0-20">Du pratar med huvudagenten. Den skriver ett uppdrag, agenten gör jobbet i en egen loop – och bara slutsatsen kommer tillbaka.</p>
+  <div class="d-grid cols-1fr-150-1fr gap-12 ai-center">
+    <div class="card purple p-18-22"><h3>Huvudagenten</h3><p class="fs-17">Skriver uppdraget och får tillbaka slutsatsen.</p></div>
+    <div class="ta-center c-muted fs-16 fw-600">uppdrag<div class="fs-40 lh-1 c-accent">→</div><div class="fs-40 lh-1 c-accent">←</div>slutsats</div>
+    <div class="card p-18-22"><h3>Subagent eller fork</h3><p class="fs-17">Jobbar i en egen loop, med egen kontext.</p></div>
+  </div>
+  <div class="grid g2 gap-20 mt-20">
+    <div class="card teal p-18-22"><h3>Fördelar</h3><ul class="b mt-10">
+      <li class="small fs-18"><b>Skyddar kontexten</b> – research och loggar skräpar inte ner huvudsessionen</li>
+      <li class="small fs-18"><b>Parallellt</b> – med tydliga avgränsningar</li></ul></div>
+    <div class="card warm p-18-22"><h3>Nackdelar</h3><ul class="b mt-10">
+      <li class="small fs-18"><b>Det kostar</b> – varje agent är en egen loop</li>
+      <li class="small fs-18"><b>Info tappas i överlämningen</b> – åt båda håll</li></ul></div>
+  </div>
+  <p class="quote mt-22 fs-24">Huvudagenten promptar en annan agent.<br><span class="muted">Ett otydligt uppdrag ger ett dåligt resultat – och du ser bara sammanfattningen.</span></p>
+  <div class="notes">Kommer ni ihåg att en agent bara är en loop? Huvudagenten kan starta en ny loop och ge den ett uppdrag. Det finns två sorter: subagent och fork – mer om skillnaden på nästa slide. Du pratar normalt bara med huvudagenten: den skriver uppdraget, agenten gör jobbet, och bara slutsatsen kommer tillbaka. Allt agenten läser och söker igenom stannar i dess egen kontext. (I Claude Code kan du öppna en agents transcript och skriva till den, men det är undantaget.) Här kan information försvinna åt båda håll. På vägen ut: agenten kan inte fråga vad som menades, så ett otydligt uppdrag ger ett dåligt resultat – samma regler som när du promptar. På vägen tillbaka: du ser bara sammanfattningen, inte allt den hittade. Fördelarna: research, loggar och stora sökningar skräpar inte ner huvudsessionen, och flera kan jobba samtidigt – men ge tydliga instruktioner och avgränsningar så att de inte skriver i samma filer. Nackdelen: det kostar, varje agent är en egen loop. Huvudagenten matchar uppgiften mot agentens description – samma princip som för skills – eller så ber du om den, t.ex. ”låt code-reviewer granska det här”. Se anteckningarna i 2.6.3.1 Subagenter.</div>
+</section>

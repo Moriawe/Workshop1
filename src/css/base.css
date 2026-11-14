@@ -1,0 +1,34 @@
+/* Grunden: reset, scen, slide, typografi, logo och ramen runt decket (räknare, anteckningar). */
+/* Komponenter ligger i ett lager. Hjälpklasserna längre ner ligger utanför lagret och vinner därför alltid,
+   precis som inline-stilarna gjorde – oavsett hur specifik komponentens selektor är. */
+@layer components{
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--backdrop);overflow:hidden}
+body{font-family:var(--sans);color:var(--ink)}
+#stage{position:absolute;width:1280px;height:720px;left:50%;top:50%;transform-origin:center center}
+.slide{position:absolute;inset:0;background:var(--bg);padding:60px 76px 52px 92px;display:none;flex-direction:column}
+/* tjock linje till vänster i delens färg */
+.slide::before{content:"";position:absolute;left:0;top:0;bottom:0;width:16px;background:var(--pc)}
+.slide.active{display:flex}
+.kicker{font-size:17px;color:var(--accent);font-weight:600;margin-bottom:10px}
+h1{font-size:64px;line-height:1.04;font-weight:700;letter-spacing:-.025em}
+h2{font-size:42px;line-height:1.1;font-weight:700;letter-spacing:-.02em;margin-bottom:30px}
+p,li{font-size:26px;line-height:1.45}
+ul{list-style:none}
+ul.b li{position:relative;padding-left:32px;margin-bottom:14px}
+ul.b li::before{content:"";position:absolute;left:4px;top:15px;width:9px;height:9px;background:var(--accent)}
+.muted{color:var(--muted)}
+.small{font-size:20px}
+code,.mono{font-family:var(--mono);font-size:.9em;background:var(--sunken);padding:1px 7px;border-radius:var(--r)}
+/* UI chrome */
+#bar{position:fixed;left:0;bottom:0;height:4px;background:var(--on-dark-muted);transition:width .25s}
+#count{position:fixed;right:16px;bottom:12px;color:var(--grey-3);font-size:14px}
+#notesPanel{position:fixed;left:0;right:0;bottom:0;max-height:34vh;overflow:auto;background:var(--notes-bg);color:var(--on-dark);padding:18px 28px 28px;font-size:18px;line-height:1.5;display:none;border-top:3px solid var(--accent)}
+#notesPanel.on{display:block}
+#notesPanel b{color:var(--accent-on-dark);font-size:13px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:6px}
+#help{position:fixed;left:16px;bottom:12px;color:var(--grey-3);font-size:13px}
+}
+
+/* Keylinx-logon uppe till höger på alla slides. En riktig SVG (vektor) som används som mask,
+   så färgen styrs av --logo: mörk på ljusa slides, vit på mörka. */
+.slide::after{content:"";position:absolute;top:28px;right:40px;width:134px;height:44px;background:var(--logo,var(--ink));-webkit-mask:url("../../keylinx-logo.svg") no-repeat right center/contain;mask:url("../../keylinx-logo.svg") no-repeat right center/contain;pointer-events:none}

@@ -1,0 +1,41 @@
+<section class="slide">
+  <div class="kicker">Instruktioner</div>
+  <h2>Rule, skill, agent eller dokumentation?</h2>
+  <div class="grid cols-4 gap-16 ai-stretch flex-0-0-360">
+    <div class="card purple p-22-22 d-flex fd-column">
+      <h3 class="mt-8">Rule</h3>
+      <p class="fs-19 fw-600">Vad som måste gälla</p>
+      <p class="muted fs-16 mt-14"><b>Laddas:</b> alltid – eller när den rör matchande filer</p>
+      <p class="muted fs-16 mt-8"><b>T.ex.</b> ”Namnge tester så här”</p>
+      <p class="fs-18 mt-auto pt-14 bdt-1-solid-rgba-0-0-0-_08"><b>Gäller alltid → rule</b></p>
+    </div>
+    <div class="card p-22-22 d-flex fd-column">
+      <h3 class="mt-8">Skill</h3>
+      <p class="fs-19 fw-600">Hur man gör en uppgift</p>
+      <p class="muted fs-16 mt-14"><b>Laddas:</b> när beskrivningen matchar – eller med <code>/namn</code></p>
+      <p class="muted fs-16 mt-8"><b>T.ex.</b> ”Skapa en release”</p>
+      <p class="fs-18 mt-auto pt-14 bdt-1-solid-rgba-0-0-0-_08"><b>Görs ibland → skill</b></p>
+    </div>
+    <div class="card warm p-22-22 d-flex fd-column">
+      <h3 class="mt-8">Agent</h3>
+      <p class="fs-19 fw-600">Någon som gör jobbet – i egen kontext</p>
+      <p class="muted fs-16 mt-14"><b>Laddas:</b> när <code>description</code> matchar – eller när du ber om den</p>
+      <p class="muted fs-16 mt-8"><b>T.ex.</b> ”Granska min branch”</p>
+      <p class="fs-18 mt-auto pt-14 bdt-1-solid-rgba-0-0-0-_08"><b>Egen kontext → agent</b></p>
+    </div>
+    <div class="card teal p-22-22 d-flex fd-column">
+      <h3 class="mt-8">Dokumentation</h3>
+      <p class="fs-19 fw-600">Hur systemet fungerar – och varför</p>
+      <p class="muted fs-16 mt-14"><b>Laddas:</b> när människor eller AI:n behöver förstå</p>
+      <p class="muted fs-16 mt-8"><b>T.ex.</b> ”Så hänger datalagret ihop”</p>
+      <p class="fs-18 mt-auto pt-14 bdt-1-solid-rgba-0-0-0-_08"><b>Förklarar varför → docs</b></p>
+    </div>
+  </div>
+  <div class="card mt-18 p-14-22 d-flex gap-22 ai-center fxw-nowrap ws-nowrap">
+    <b class="fs-19">Håll filerna korta</b>
+    <span class="fs-17"><code>CLAUDE.md</code> och rules &lt; 200 rader</span>
+    <span class="fs-17"><code>SKILL.md</code> &lt; 500 rader</span>
+    <span class="muted fs-16">per fil</span>
+  </div>
+  <div class="notes">Fyra sorters instruktioner, fyra frågor. Måste det alltid gälla när den jobbar – rule. Är det något den gör ibland, en uppgift med steg – skill. Behöver jobbet en egen kontext, en färsk blick eller ett eget verktygsset – agent. Skillnaden skill/agent: en skill lägger till instruktioner i samma kontext, en agent jobbar i en egen och lämnar tillbaka ett resultat. Förklarar det hur systemet fungerar och varför – dokumentation, för både människor och AI. Håll filerna korta: Anthropic rekommenderar under 200 rader för CLAUDE.md, som laddas i varje session. Rules utan paths laddas på samma sätt, så samma gräns är rimlig där, och under 500 för SKILL.md, som bara laddas vid behov. Det gäller per fil. Långa filer äter kontext och den följer instruktionerna sämre. Mitt eget max är 250 rader – det var rekommendationen när jag satte upp det. Saker ändras, häng med. Se anteckningarna i 2.6.5 Håll isär.</div>
+</section>

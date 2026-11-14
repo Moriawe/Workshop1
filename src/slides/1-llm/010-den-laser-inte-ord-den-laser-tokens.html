@@ -1,0 +1,29 @@
+<section class="slide">
+  <div class="kicker">Tokens</div>
+  <h2>Den läser inte ord – den läser tokens</h2>
+  <div class="grid cols-1_9fr-1fr gap-36 ai-start">
+    <div>
+      <div class="toklbl mt-0">Svenska · 6 ord · <b>10 tokens</b></div>
+      <div><span class="tok t0">Vi</span><span class="tok t1"><i>·</i>sl</span><span class="tok t0">äp</span><span class="tok t1">per</span><span class="tok t0"><i>·</i>en</span><span class="tok t1"><i>·</i>ny</span><span class="tok t0"><i>·</i>version</span><span class="tok t1"><i>·</i>im</span><span class="tok t0">orgon</span><span class="tok t1">.</span></div>
+      <div class="toklbl">Engelska · 6 ord · <b>7 tokens</b></div>
+      <div><span class="tok t0">We</span><span class="tok t1"><i>·</i>ship</span><span class="tok t0"><i>·</i>a</span><span class="tok t1"><i>·</i>new</span><span class="tok t0"><i>·</i>version</span><span class="tok t1"><i>·</i>tomorrow</span><span class="tok t0">.</span></div>
+      <div class="toklbl mt-26">Svenska · 11 bokstäver · <b>4 tokens</b></div>
+      <div><span class="tok t0"><i>·</i>för</span><span class="tok t1">uts</span><span class="tok t0">äg</span><span class="tok t1">bar</span></div>
+      <div class="toklbl">Engelska · 11 bokstäver · <b>1 token</b></div>
+      <div><span class="tok t0"><i>·</i>predictable</span></div>
+    </div>
+    <div>
+      <div class="card warm ta-center p-26">
+        <div class="num c-warm fs-60 lh-1 ws-nowrap">+30–70&nbsp;%</div>
+        <p class="mt-10 c-warm-ink">fler tokens för samma text på svenska</p><p class="small mt-8 fs-15 c-warm-ink o-_75">Klang Research, nov 2026</p>
+      </div>
+      <ul class="b mt-26">
+        <li class="small">Du <b>betalar</b> per token</li>
+        <li class="small"><b>Kontexten</b> fylls snabbare</li>
+        <li class="small"><b>Rate limits</b> räknas i tokens</li>
+      </ul>
+    </div>
+  </div>
+  <p class="foot">· = mellanslag. Exemplen: OpenAI:s tokenizer (o200k). Siffran: Klang Research, ”The Nordic token tax”.</p>
+  <div class="notes">Innan vi snurrar: vad är det modellen faktiskt väljer? Inte ord, inte stavelser – tokens. Ordbitar som togs fram statistiskt när tokenizern byggdes: de bitar som förekommer oftast i träningsdatan blir egna tokens. Träningsdatan är till största delen engelska, så "tomorrow" blir en token medan "imorgon" blir " im" + "orgon". Meningarna har lika många ord och är nästan lika långa – ändå tio tokens mot sju. Samma sak med ett enda ord: "förutsägbar" och "predictable" har elva bokstäver var, men det svenska hackas sönder i fyra bitar och det engelska är en enda. Lägg märke till att mellanslaget sitter i början av en token – " ny", inte "ny ". Klang Research körde ca 3 000 meningar genom de senaste modellerna (nov 2026): svenska kostar 32–68 % fler tokens än engelska beroende på modell. Texten är nästan exakt lika lång i tecken – det är tokenizern, inte språket, som gör den dyrare. En nordisk modell (Viking) klarar sig med ca 5 % extra. Tumregel för engelska: en token är ungefär tre fjärdedelar av ett ord. Varför spelar det roll? Allt räknas i tokens: priset, hur mycket som får plats i kontexten, och rate limits. Praktiskt tips: filer som läses in varje session – rules, CLAUDE.md, skills – kan vara värda att skriva på engelska. Men skriv på svenska om det gör att du tänker tydligare; en otydlig prompt kostar mer än några extra tokens. Och nu till snurran: varje gång hjulet snurrar väljer den en sådan här bit.</div>
+</section>

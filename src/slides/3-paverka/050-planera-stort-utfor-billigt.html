@@ -1,0 +1,45 @@
+<section class="slide">
+  <div class="kicker">Modell och effort</div>
+  <h2>Planera stort – utför billigt</h2>
+  <!-- Ordningen följer arbetsflödet: stor modell planerar, billigare utför -->
+  <div class="grid g3 gap-20 ai-stretch">
+    <div class="card purple p-22-22 d-flex fd-column">
+      <h3 class="mt-8">Opus 5.5 · high</h3>
+      <p class="fs-19 fw-600">Planerar</p>
+      <p class="muted fs-16 mt-10">Förstår problemet, väljer lösning, skriver tydliga och avgränsade steg.</p>
+      <p class="muted fs-15 mt-14">4 / 20 USD per miljon tokens in / ut</p>
+      <div class="mt-auto pt-14 bdt-1-solid-rgba-0-0-0-_08">
+        <div class="h-12 w-v bg-accent r-0-4-4-0" style="--v:100%"></div>
+        <p class="fs-26 fw-600 mt-8">0,40 USD</p>
+      </div>
+    </div>
+    <div class="card p-22-22 d-flex fd-column">
+      <h3 class="mt-8">Sonnet 5.5 · medium</h3>
+      <p class="fs-19 fw-600">Utför planen</p>
+      <p class="muted fs-16 mt-10">Följer stegen. Ju tydligare planen är, desto billigare modell klarar jobbet.</p>
+      <p class="muted fs-15 mt-14">2 / 10 USD per miljon tokens in / ut</p>
+      <div class="mt-auto pt-14 bdt-1-solid-rgba-0-0-0-_08">
+        <div class="h-12 w-v bg-accent r-0-4-4-0" style="--v:50%"></div>
+        <p class="fs-26 fw-600 mt-8">0,20 USD</p>
+      </div>
+    </div>
+    <div class="card teal p-22-22 d-flex fd-column">
+      <h3 class="mt-8">Haiku 5.5 · low</h3>
+      <p class="fs-19 fw-600">Småjobben</p>
+      <p class="muted fs-16 mt-10">Köra testerna, söka i filer, döpa om. Passar bra som subagent.</p>
+      <p class="muted fs-15 mt-14">0,10 / 0,50 USD per miljon tokens in / ut</p>
+      <div class="mt-auto pt-14 bdt-1-solid-rgba-0-0-0-_08">
+        <div class="h-12 w-v bg-accent r-0-4-4-0" style="--v:2.5%"></div>
+        <p class="fs-26 fw-600 mt-8">0,01 USD</p>
+      </div>
+    </div>
+  </div>
+  <p class="muted fs-15 mt-10">Samma uppgift i alla tre: 50 000 tokens in, 10 000 ut. Utan cache, enligt Anthropics API-priser.</p>
+  <!-- Så gör du i Claude Code: en rad i stället för en egen kodruta -->
+  <div class="card mt-12 p-14-22 d-flex gap-22 ai-center fxw-nowrap ws-nowrap">
+    <span class="fs-17"><code>/model opusplan</code> Opus planerar, Sonnet utför</span>
+    <span class="fs-17"><code>model: haiku</code> i agentens frontmatter</span>
+  </div>
+  <div class="card warm mt-12 p-12-22"><p class="fs-18 c-warm-ink"><b>Effort syns inte i priset per token – men i antalet.</b> Högre effort betyder mer tänkande, och tänkandet räknas som output-tokens – den dyra sorten.</p></div>
+  <div class="notes">Modell och effort är två olika reglage. Modellen är vem som gör jobbet, effort är hur mycket den tänker innan den svarar. Nivåerna i Claude Code är low, medium, high, xhigh och max – du byter med /effort. Den största modellen är inte alltid bäst – den är dyrare och långsammare. Det svåra är oftast att förstå problemet och bestämma lösningen, inte att skriva koden. Så: planera med en stor modell och hög effort, låt den skriva tydliga och avgränsade steg, och låt en billigare modell utföra dem. Haiku på low tar småjobben – köra testerna, söka i filer – ofta som subagent. Samma uppgift – 50 000 tokens in och 10 000 ut – kostar 40 cent på Opus, 20 cent på Sonnet och en cent på Haiku. Opus kostar alltså 40 gånger mer än Haiku per token. opusplan gör uppdelningen automatiskt: Opus i plan-läget, Sonnet när den utför. En subagent utan model ärver huvudsessionens modell – sätt model för de som gör enkla saker. En planerings-skill som beskriver hur en bra plan ser ut hjälper också. Men en otydlig plan gör att den billiga modellen gissar, och då har du inte sparat något. Och effort syns inte i priset per token, utan i hur många tokens som går åt: tänkandet räknas som output, och output kostar fem gånger mer än input. Priser från Anthropics prissida, november 2026. Med abonnemang betalar du inte per token, men det dyra äter din kvot snabbare. Se anteckningarna i 3.2 Rätt modell för rätt jobb.</div>
+</section>

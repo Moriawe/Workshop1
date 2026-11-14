@@ -1,0 +1,27 @@
+<section class="slide">
+  <div class="kicker">Kontext · cachen</div>
+  <h2>Vad kostade första frågan?</h2>
+  <div class="grid cols-1_15fr-1fr gap-44 ai-start">
+    <div>
+      <p class="small mb-18">Samma <b>214 310 tokens</b> skickas – men <b>165 460</b> av dem läses från cachen för 10&nbsp;% av priset.</p>
+      <div class="fs-17 fw-600 mb-6">Utan cache</div>
+      <div class="d-flex ai-center gap-12"><div class="h-34 w-v bg-grey-2 r-0-4-4-0" style="--v:85%"></div><b>100&nbsp;%</b></div>
+      <div class="fs-17 fw-600 m-22-0-6">Med cache</div>
+      <div class="d-flex ai-center gap-12"><div class="d-flex w-v h-34" style="--v:31%"><div class="w-v bg-accent" style="--v:78.7%"></div><div class="w-2"></div><div class="flex-1 bg-teal-on-dark r-0-4-4-0"></div></div><b>≈ 36&nbsp;%</b></div>
+      <div class="legend small mt-14"><span style="--c:#534AB7">Nya tokens (48 850) – 28&nbsp;%</span><span style="--c:#7FD1B0">Från cachen (165 460) – 8&nbsp;%</span></div>
+      <p class="big fs-26 mt-22">Ungefär en tredjedel av kostnaden.</p>
+      <p class="muted fs-14 mt-6">Fiktiva siffror från Fikalistan, enligt Anthropics prismodell.</p>
+    </div>
+    <div class="card teal">
+      <h3>Så funkar cachen</h3>
+      <ul class="b mt-10">
+        <li class="small"><b>Samma början som förra anropet</b> läses från cachen – för en tiondel av priset.</li>
+        <li class="small"><b>Bara det nya</b> på slutet räknas fullt – plus 25&nbsp;%, eftersom det sparas i cachen.</li>
+        <li class="small"><b>Lever 5 minuter</b> – en timme med Claude-abonnemang – och förnyas varje gång den används.</li>
+        <li class="small"><b>Byt modell eller koppla in en MCP-server</b> mitt i – så räknas allt om.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card warm mt-12 p-12-22"><p class="fs-18 c-warm-ink"><b>Ska du på lunch?</b> En gammal chatt efter pausen räknar om hela historiken. Kör <code>/compact</code> innan du går – eller spara det viktiga i en fil och starta en ny chatt.</p></div>
+  <div class="notes">Varje anrop skickar allt – men modellen behöver inte bearbeta allt från början varje gång. Den del av anropet som är exakt likadan som förra gången läses från en cache och kostar en tiondel. Bara det nya på slutet räknas fullt, och kostar lite extra eftersom det sparas till nästa gång. Antalet tokens som skickas är detsamma – 214 310 – men kostnaden blir ungefär en tredjedel: de nya 48 850 tokens kostar fullt pris plus 25 %, de 165 460 från cachen kostar 10 %. Två fällor: cachen lever fem minuter (en timme i huvudkonversationen med Claude-abonnemang, så länge du är inom planens användning) och förnyas varje gång den används – tar du en längre paus räknas allt om, till skrivpris. Och byter du modell eller kopplar in en MCP-server mitt i en session räknas allt om. Att ändra CLAUDE.md mitt i bryter inte cachen – men ändringen gäller inte heller förrän efter /clear, /compact eller omstart. Ska du på lunch? Kommer du tillbaka efter att cachen gått ut räknas hela historiken om till skrivpris – och /compact efter pausen är dyrast av allt, eftersom sammanfattningen kräver att hela historiken läses utan cache. Kör /compact innan du går, medan cachen är varm, eller spara det viktiga i en fil och starta en ny chatt. Det är därför jag sparar allt i workplanen: en ny chatt kostar ungefär 38 000 tokens, en gammal chatt efter lunch kan kosta flera gånger mer. Billigare – men inte gratis. Siffrorna är påhittade men räknade med Anthropics priser (cache-skrivning 1,25×, cache-läsning 0,1×; Opus 5.5 och Sonnet 5.5 läser för 0,05×).</div>
+</section>

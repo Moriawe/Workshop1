@@ -1,0 +1,24 @@
+<section class="slide">
+  <div class="kicker">Agentloopen</div>
+  <h2 class="mb-22">En agent är bara en loop</h2>
+  <div class="grid cols-1fr-330 gap-40 ai-start">
+    <div>
+      <div class="codebox fs-18">historik = [din fråga]
+<span class="k">while</span> True:
+    svar = modell(systemprompt, verktyg, historik)
+    historik.append(svar)
+    <span class="k">if not</span> svar.vill_använda_verktyg:
+        <span class="k">break</span>
+    resultat = kör_verktyg(svar)
+    historik.append(resultat)</div>
+      <p class="small m-22-0-10"><b>Modellen minns ingenting.</b> Varje anrop skickar allt:</p>
+      <div><span class="d-inline-block p-6-12 r m-0-6-8-0 fs-17 fw-600 c-on-strong bg-grey-1">Systemprompt</span><span class="d-inline-block p-6-12 r m-0-6-8-0 fs-17 fw-600 c-on-strong bg-grey-2">Verktyg</span><span class="d-inline-block p-6-12 r m-0-6-8-0 fs-17 fw-600 c-on-strong bg-accent-ink">CLAUDE.md & rules</span><span class="d-inline-block p-6-12 r m-0-6-8-0 fs-17 fw-600 c-on-strong bg-accent-mid">Skills</span><span class="d-inline-block p-6-12 r m-0-6-8-0 fs-17 fw-600 c-on-strong bg-teal">Hela historiken</span><span class="d-inline-block p-6-12 r m-0-6-8-0 fs-17 fw-600 c-on-strong bg-warm">Din fråga</span></div>
+      <p class="small muted mt-10">Modellen svarar med vilket verktyg den vill köra – loopen kör det och skickar tillbaka resultatet.</p>
+    </div>
+    <div>
+      <img class="h-420 w-auto mw-100p r d-block ml-auto" src="kontext-session.png" alt="Kontextvy från Claude Code: 238,1k av 1M använt, uppdelat på meddelanden, verktyg, systemprompt, skills med mera">
+      <p class="small mt-10 fs-16 ta-right"><b>Konversationen äter mest</b><br>143,7k av 238k<br><span class="muted">Se din egen: kör <code>/context</code></span></p>
+    </div>
+  </div>
+  <div class="notes">Min andra aha-upplevelse kom på en föreläsning på Queenslab där Tore Nestenius pratade om vad en agent är: det är bara en loop. Själva loopen är en väldigt enkel kodsnutt – den här. Modellen minns ingenting mellan anropen. Varje gång skickas allt den behöver veta: systemprompten, verktygen, hela historiken och din nya fråga. LLM:en svarar med vilket verktyg den vill köra och med vilken data – loopen kör verktyget och skickar tillbaka resultatet. Till höger: min egen kontext i en session – 238k av 1 miljon. Konversationen äter mest – 143,7k av 238k. Varje meddelande, verktygssvar och fil den läst ligger kvar och skickas med i nästa anrop, det är därför långa sessioner blir dyrare och sämre. Om någon frågar: 142 MCP-verktyg (56,7k) väntar utanför kontexten och laddas först när de behövs, skills tar bara 6,1k eftersom bara namn och beskrivning ligger i kontexten, och autocompact buffer är plats som reserveras för att kunna komprimera historiken. Kör /context i Claude Code så ser ni er egen.</div>
+</section>

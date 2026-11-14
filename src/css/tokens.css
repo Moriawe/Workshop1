@@ -1,0 +1,38 @@
+/* Design-tokens: typsnitt, radier, färger och en färg per del. Allt annat i CSS:en läser härifrån. */
+:root{
+  /* typsnitt – inbäddade ovan, så decket ser likadant ut offline och på alla datorer */
+  --sans:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",Consolas,"Cascadia Code",monospace;
+  /* hörnradier: två steg räcker */
+  --r:4px; --r-s:2px;
+  /* ytor och text */
+  --bg:#FAFAF7; --surface:#FFFFFF; --sunken:#EDEDE8; --backdrop:#1D1D1B; --notes-bg:#1B1A17EE;
+  --ink:#1D1D1B; --muted:#5F5F59; --line:#D9D9D2;
+  --grey-1:#5F5E5A; --grey-2:#888780; --grey-3:#9A958A;
+  --on-strong:#FFFFFF; --on-dark:#F1F1EC; --on-dark-muted:#BDBDB5;
+  /* delens färg. Sätts per del längre ner; allt som heter --accent-* räknas ut från den */
+  --pc:var(--ink);
+  /* grön = gör så här, orange = se upp. Samma i alla delar */
+  --teal:#1F7A4D; --teal-ink:#145A38; --teal-soft:#E3F3EA; --teal-line:#B5DEC6; --teal-mid:#4FA57B; --teal-on-dark:#84D9AE;
+  --warm:#B45309; --warm-ink:#7C3A06; --warm-soft:#FDF0DC; --warm-line:#F3D3A4; --warm-mid:#DD8A3C; --warm-on-dark:#F2A65A;
+}
+/* Härledda accentfärger måste räknas ut på samma element som --pc sätts på (en custom property
+   som använder var() löses upp där den deklareras och ärvs sedan som ett färdigt värde). */
+:root,.slide{
+  --accent:var(--pc);
+  --accent-ink:color-mix(in srgb,var(--pc) 80%,#000);
+  --accent-soft:color-mix(in srgb,var(--pc) 9%,#fff);
+  --accent-line:color-mix(in srgb,var(--pc) 28%,#fff);
+  --accent-mid:color-mix(in srgb,var(--pc) 66%,#fff);
+  --accent-on-dark:color-mix(in srgb,var(--pc) 42%,#fff);
+}
+/* En färg per del. "~ .slide" träffar alla slides efter delens öppningsslide; nästa del skriver över.
+   Flyttar du en slide till en annan del får den alltså rätt färg av sig själv.
+   :is() gör att båda selektorerna väger lika tungt – annars vinner förra delens "~ .slide" över öppningssliden. */
+:is([data-part="1"],[data-part="1"]~.slide){--pc:#3B2DBF}
+:is([data-part="2"],[data-part="2"]~.slide){--pc:#1756A9}
+:is([data-part="3"],[data-part="3"]~.slide){--pc:#86288A}
+:is([data-part="4"],[data-part="4"]~.slide){--pc:#A8183D}
+:is([data-part="5"],[data-part="5"]~.slide){--pc:#0A6A85}
+:is([data-part="6"],[data-part="6"]~.slide){--pc:#46525E}
+:is([data-part="7"],[data-part="7"]~.slide){--pc:#1D1D1B}

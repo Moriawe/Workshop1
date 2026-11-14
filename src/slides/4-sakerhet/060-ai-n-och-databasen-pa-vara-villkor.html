@@ -1,0 +1,21 @@
+<section class="slide">
+  <div class="kicker">Least privilege</div>
+  <h2>AI:n och databasen – på våra villkor</h2>
+  <p class="small m-n10-0-18">Allt den läser räknas som exponerat – så ge den bara det den behöver. Via databasens användare, <b>inte</b> regler AI:n kan skriva om.</p>
+  <div class="grid cols-1_1fr-1fr gap-36 ai-start">
+    <div>
+      <ul class="b">
+        <li class="small"><b>En egen roll</b> – bara läsrätt.<br><span class="muted">Den kan inte skriva eller ta bort något.</span></li>
+        <li class="small"><b>Stored procedures med enbart EXECUTE</b><br><span class="muted">Färdiga anrop i databasen – ingen egen SQL, inga tabeller direkt.</span></li>
+      </ul>
+      <div class="codebox fs-16 mt-14">GRANT EXECUTE ON dbo.GetOrdersForCustomer
+  TO ai_reader;
+<span class="c">-- ingen SELECT, INSERT eller DELETE</span></div>
+      <p class="small muted mt-12">Principen heter <b>least privilege</b>.</p>
+    </div>
+    <div class="card teal"><h3>Bonus</h3><ul class="b mt-8">
+      <li class="small"><b>Personuppgifter</b> – vi bestämmer vilka kolumner som kommer ut. Allt AI:n läser skickas till modellens leverantör.</li>
+      <li class="small"><b>Tunga frågor</b> – ingen <code>SELECT *</code> mot miljontals rader.</li></ul></div>
+  </div>
+  <div class="notes">Hur skyddar du dig mot att AI:n raderar din databas, eller läser persondata som skickas vidare till modellleverantören? Vi har byggt projekt där AI:n kommer åt databasen – men på våra villkor. Det är lagar, inte önskemål: databasen säger nej, oavsett vad modellen försöker. Se anteckningarna i 4.6 Databasen.</div>
+</section>

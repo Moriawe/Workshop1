@@ -1,0 +1,43 @@
+<section class="slide">
+  <div class="kicker">Instruktioner · agenter</div>
+  <h2>Worktrees – en egen arbetskopia per agent</h2>
+  <div class="grid cols-1fr-1_05fr gap-40 ai-center">
+    <div><svg class="w-100p" viewBox="0 0 440 330" role="img" aria-label="Ett gemensamt git-repo med tre arbetsmappar: din, agent 1:s och agent 2:s">
+        <rect class="f-ink" x="120" y="10" width="200" height="62" rx="12"/>
+        <text class="f-on-dark mono-svg" x="220" y="38" text-anchor="middle" font-size="18">.git</text>
+        <text class="f-teal-on-dark" x="220" y="60" text-anchor="middle" font-size="14">gemensam historik</text>
+        <g class="s-grey-3" fill="none" stroke-width="3">
+          <path d="M220 72 V110 H75 V150"/><path d="M220 72 V150"/><path d="M220 110 H365 V150"/>
+        </g>
+        <g>
+          <rect class="f-sunken s-line" x="10" y="150" width="130" height="150" rx="12" stroke-width="2"/>
+          <text class="f-ink" x="75" y="218" text-anchor="middle" font-size="16" font-weight="700">Du</text>
+          <text class="f-muted mono-svg" x="75" y="240" text-anchor="middle" font-size="13">main</text>
+          <text class="f-muted mono-svg" x="75" y="278" text-anchor="middle" font-size="12">./</text>
+
+          <rect class="f-accent-soft s-accent" x="155" y="150" width="130" height="150" rx="12" stroke-width="2"/>
+          <text class="f-accent-ink" x="220" y="218" text-anchor="middle" font-size="16" font-weight="700">Agent 1</text>
+          <text class="f-accent mono-svg" x="220" y="240" text-anchor="middle" font-size="13">worktree-auth</text>
+          <text class="f-accent mono-svg" x="220" y="278" text-anchor="middle" font-size="11">worktrees/auth/</text>
+
+          <rect class="f-teal-soft s-teal" x="300" y="150" width="130" height="150" rx="12" stroke-width="2"/>
+          <text class="f-teal" x="365" y="218" text-anchor="middle" font-size="16" font-weight="700">Agent 2</text>
+          <text class="f-teal mono-svg" x="365" y="240" text-anchor="middle" font-size="13">worktree-bugfix</text>
+          <text class="f-teal mono-svg" x="365" y="278" text-anchor="middle" font-size="11">worktrees/bugfix/</text>
+        </g>
+      </svg></div>
+    <div>
+      <ul class="b">
+        <li class="small"><b>Egen mapp, egen branch</b> – samma git-historik. Parallella ändringar krockar inte.</li>
+        <li class="small"><code>claude --worktree auth</code> – en hel session i ett eget worktree.</li>
+        <li class="small"><code>isolation: worktree</code> – en subagent får alltid ett eget.</li>
+        <li class="small"><b>Inga ändringar</b> → tas bort. <b>Ändringar</b> → ligger kvar tills du mergat.</li>
+        <li class="small">Ny utcheckning: <code>.env</code> följer inte med – lägg den i <code>.worktreeinclude</code>.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card warm mt-22 p-12-20">
+    <p class="fs-18 c-warm-ink"><b>Isolerar filerna – inte besluten.</b> Två agenter kan fortfarande lösa samma sak på olika sätt.</p>
+  </div>
+  <div class="notes">Ett worktree är en git-funktion: en extra arbetsmapp med egna filer och egen branch, som delar samma historik som ditt repo. Det är inte en full kopia – .git delas, bara filerna checkas ut på nytt. Varje agent får sin egen arbetskopia, så den ena kan bygga en feature medan den andra fixar en bugg utan att de skriver i samma filer. claude --worktree auth skapar .claude/worktrees/auth/ på branchen worktree-auth. En subagent med isolation: worktree i frontmattern får alltid ett eget. Gör den inga ändringar tas worktreet bort automatiskt, annars ligger det kvar så du kan granska och merga. Eftersom det är en ny utcheckning saknas gitignorade filer som .env – lägg dem i .worktreeinclude – och beroenden måste installeras. Varning: om agenterna inte kan kommunicera kan de ändra samma saker eller skapa oordning. Man kan ha en organizer- eller teamlead-agent, men Oscar på Queenslab har gjort experiment med flera agenter som pratar med varandra – de fick mindre gjort och det kostade mer. Hur man använder det för att jobba effektivt tar vi i del 3. Se anteckningarna i 2.6.3.3 Worktrees.</div>
+</section>

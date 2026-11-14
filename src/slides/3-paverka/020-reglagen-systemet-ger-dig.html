@@ -1,0 +1,18 @@
+<section class="slide">
+  <div class="kicker">Systemets harness</div>
+  <h2>Reglagen systemet ger dig</h2>
+  <div class="grid g2 gap-20">
+    <div class="card"><h3>Modell och effort</h3><p>Välj modell efter uppgift och ställ in rätt effort nivå.</p></div>
+    <div class="card"><h3>Allow · ask · deny</h3><div class="codebox fs-15 p-12-16 mt-6">"allow": ["Bash(npm run test *)"],
+"ask":   ["Bash(git push *)"],
+"deny":  ["Read(./.env)"]</div></div>
+    <div class="card"><h3>Behörighetsläge</h3>
+      <div class="mode"><b>Default</b><span class="muted">frågar innan den ändrar</span></div>
+      <div class="mode"><b>Accept edits</b><span class="muted">redigerar fritt, frågar för kommandon</span></div>
+      <div class="mode"><b>Plan</b><span class="muted">läser och planerar, ändrar inget</span></div>
+      <div class="mode mb-0"><b class="c-warm">Bypass</b><span class="muted">frågar aldrig – bara i en isolerad container</span></div>
+    </div>
+    <div class="card"><h3>Inkopplade verktyg</h3><p>MCP-servrar ger nya verktyg – men tar plats och ger fler saker att välja fel bland. Koppla in det du behöver, inte allt du kan.</p></div>
+  </div>
+  <div class="notes">Systemprompten och loopen kan du inte ändra – Anthropic publicerar inte ens Claude Codes systemprompt. Men du har reglage. Exemplen är från Claude Code, de andra verktygen har motsvarigheter. Byter du modell mitt i en session läses hela samtalet in igen utan cache. Behörighetsläget byter du med Shift+Tab (kolla vilka lägen som finns i din version – det finns även ett auto-läge). --dangerously-skip-permissions: namnet är en varning, kör det bara i en isolerad miljö som en Docker-container.</div>
+</section>

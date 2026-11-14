@@ -1,0 +1,20 @@
+<section class="slide">
+  <div class="kicker">Kontext</div>
+  <h2>Håll kontexten smal</h2>
+  <p class="small m-n10-0-20">Allt i kontexten skickas med i varje varv – och ju mer text, desto sämre följer den instruktionerna.</p>
+  <div class="grid g3 gap-18">
+    <div class="card p-18-22"><h3>Skriv kort</h3><ul class="b mt-8">
+      <li class="small">En tydlig instruktion slår tre vaga</li>
+      <li class="small">Säg vad – inte hela bakgrunden</li>
+      <li class="small">Under 200 rader per fil</li></ul></div>
+    <div class="card purple p-18-22"><h3>Ladda vid behov</h3><ul class="b mt-8">
+      <li class="small"><code>paths</code> i rules</li>
+      <li class="small"><code>description</code> i skills och agenter</li>
+      <li class="small">CLAUDE.md bara för det som gäller <b>alltid</b></li></ul></div>
+    <div class="card teal p-18-22"><h3>Under sessionen</h3><ul class="b mt-8">
+      <li class="small"><code>/context</code> – vad tar plats?</li>
+      <li class="small"><code>/clear</code> – ny uppgift, ny start</li>
+      <li class="small">Research i en subagent</li></ul></div>
+  </div>
+  <div class="notes">Allt i kontexten skickas med i varje varv i loopen – varje onödig rad betalar du för om och om igen. Skriv tydligt och kort: en vag instruktion ger fler frågor, fler varv och fler omtag. Ladda bara det som behövs: paths gör att en rule bara laddas när den rör matchande filer, och för skills och agenter ligger bara description i kontexten tills de behövs – så skriv den tydligt. CLAUDE.md är för det som gäller alltid. Under sessionen: /context visar vad som tar plats, /clear när du byter uppgift, /compact när det börjar bli fullt, /btw för en sidofråga som inte hamnar i historiken. Och låt en subagent göra researchen – den läser tio filer, du får sammanfattningen. Se anteckningarna i 3.3 Håll kontexten smal.</div>
+</section>

@@ -1,0 +1,12 @@
+<section class="slide">
+  <div class="kicker">Lås ner den</div>
+  <h2>Stäng dörrarna</h2>
+  <div class="grid g2 gap-16">
+    <div class="card purple p-16-20"><h3 class="fs-20">1 · Spärra i settings</h3><div class="codebox fs-14 p-10-14 mt-6">"deny": ["Read(./.env)", "Read(./.env.*)",
+         "Read(./local.properties)"]</div><p class="small muted mt-6">Helst i organisationens settings.</p></div>
+    <div class="card teal p-16-20"><h3 class="fs-20">2 · Inga hemligheter i klartext</h3><p class="fs-16"><b>Infisical</b> – läggs in i processen vid start, ingen fil.<br><b>Varlock</b> – AI:n får schemat, aldrig värdena.</p><p class="muted fs-14 mt-6">Rekommenderade – inte testade av mig</p></div>
+    <div class="card p-16-20"><h3 class="fs-20">3 · Sandbox</h3><p class="fs-16"><code>/sandbox</code> – operativsystemet begränsar vilka filer och vilket nätverk kommandon når, oavsett vad modellen försöker.</p></div>
+    <div class="card warm p-16-20"><h3 class="fs-20">4 · En egen låda</h3><p class="fs-16">Container, devcontainer eller VM. Den når bara det som finns där inne. <b>Ett måste</b> med <code>--dangerously-skip-permissions</code>.</p></div>
+  </div>
+  <div class="notes">Fyra sätt, från enklast till säkrast. Ett: spärra filerna med deny-regler – helst i organisationens managed settings, så att varken du eller AI:n kan ändra det. Två: ha inga hemligheter i klartext alls. Infisical lägger in hemligheterna i processen när den startar, Varlock låter dig committa ett schema utan värden. De har jag fått rekommenderade men inte testat själv. Tre: sandbox-läget, där operativsystemet begränsar vilka filer och vilket nätverk kommandona kommer åt. Fyra: kör den i en egen låda – en Docker-container, devcontainer eller virtuell maskin. Där når den inte dina SSH-nycklar, andra projekt eller dokument. Kör du med --dangerously-skip-permissions är det ett måste. Se anteckningarna i 4.3 Lås ner den.</div>
+</section>

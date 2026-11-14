@@ -1,0 +1,44 @@
+<section class="slide" data-summary="Inte förutsägbar som kod">
+  <div class="kicker">Ej deterministisk</div>
+  <h2>Den är inte deterministisk</h2>
+  <div class="grid g2 ai-stretch">
+    <div class="card"><h3>Kod<span class="muted fs-17 fw-400">&nbsp;· ”vad är 6 × 7?”</span></h3><svg class="illu" viewBox="0 0 480 175" aria-hidden="true">
+      <rect class="f-ink" x="20" y="18" width="170" height="115" rx="10"/>
+      <rect class="f-ink" x="30" y="28" width="150" height="95" rx="4"/>
+      <text class="f-accent-on-dark mono-svg" x="42" y="58" font-size="14">fun svar() =</text>
+      <text class="f-teal-on-dark mono-svg" x="62" y="82" font-size="14">6 * 7</text>
+      <rect class="f-teal-on-dark" x="42" y="96" width="9" height="15"><animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/></rect>
+      <rect class="f-grey-1" x="95" y="133" width="20" height="18"/>
+      <rect class="f-grey-1" x="62" y="151" width="86" height="9" rx="4.5"/>
+      <g class="f-ink mono-svg" font-size="20" font-weight="700" text-anchor="middle">
+        <path class="f-sunken" d="M232 37 l-14 6 l14 4z"/><rect class="f-sunken" x="230" y="20" width="110" height="38" rx="19"/><text x="285" y="46">42</text>
+        <path class="f-sunken" d="M232 87 l-14 6 l14 4z"/><rect class="f-sunken" x="230" y="70" width="110" height="38" rx="19"/><text x="285" y="96">42</text>
+        <path class="f-sunken" d="M232 137 l-14 6 l14 4z"/><rect class="f-sunken" x="230" y="120" width="110" height="38" rx="19"/><text x="285" y="146">42</text>
+      </g>
+      <g class="f-grey-3" font-size="13"><text x="352" y="44">körning 1</text><text x="352" y="94">körning 2</text><text x="352" y="144">körning 3</text></g>
+    </svg><p>Samma input → samma output.<br>Ett test kan bevisa att koden <b>alltid</b> svarar likadant.</p></div>
+    <div class="card purple"><h3>LLM<span class="muted fs-17 fw-400">&nbsp;· ”vad är 6 × 7?”</span></h3><svg class="illu" viewBox="0 0 480 175" aria-hidden="true">
+      <line class="s-accent" x1="95" y1="30" x2="95" y2="14" stroke-width="4"/>
+      <circle class="f-warm" cx="95" cy="11" r="7"><animate attributeName="opacity" values="1;.35;1" dur="1.4s" repeatCount="indefinite"/></circle>
+      <rect class="f-accent-ink" x="33" y="58" width="12" height="26" rx="5"/><rect class="f-accent-ink" x="145" y="58" width="12" height="26" rx="5"/>
+      <rect class="f-accent" x="40" y="30" width="110" height="82" rx="22"/>
+      <circle class="f-surface" cx="72" cy="66" r="13"/><circle class="f-surface" cx="118" cy="66" r="13"/>
+      <circle class="f-ink" cx="75" cy="68" r="5.5"/><circle class="f-ink" cx="121" cy="68" r="5.5"/>
+      <path class="s-surface" d="M76 92 q19 13 38 0" fill="none" stroke-width="4" stroke-linecap="round"/>
+      <rect class="f-accent-mid" x="57" y="117" width="76" height="48" rx="12"/>
+      <circle class="f-teal-soft" cx="78" cy="138" r="5"/><circle class="f-warm-line" cx="95" cy="138" r="5"/><circle class="f-teal-soft" cx="112" cy="138" r="5"/>
+      <g class="f-accent-ink" font-size="16" font-weight="600">
+        <g transform="rotate(-3 300 39)"><path class="f-surface" d="M210 37 l-16 6 l16 4z"/><rect class="f-surface" x="208" y="20" width="130" height="38" rx="19"/><text x="273" y="45" text-anchor="middle">Det blir 42!</text></g>
+        <g transform="rotate(2 300 89)"><path class="f-surface" d="M210 87 l-16 6 l16 4z"/><rect class="f-surface" x="208" y="70" width="140" height="38" rx="19"/><text x="278" y="95" text-anchor="middle">Svaret är 42.</text></g>
+        <g transform="rotate(-1.5 300 139)"><path class="f-surface" d="M210 137 l-16 6 l16 4z"/><rect class="f-surface" x="208" y="120" width="190" height="38" rx="19"/><text x="303" y="145" text-anchor="middle">Fyrtiotvå, så klart!</text></g>
+      </g>
+    </svg><p>Samma input → <i>troligen</i> liknande output.<br>Inget test kan garantera vad den svarar nästa gång.</p></div>
+  </div>
+  <div class="mt-28 d-flex ai-center gap-22">
+    <div class="fs-17 fw-700 ls-_08em tt-uppercase c-accent ws-nowrap">Temperature</div>
+    <div class="small ws-nowrap"><b>Låg</b> <span class="muted">säkrare, mer upprepande</span></div>
+    <div class="flex-1 h-12 r bg-grad-temp"></div>
+    <div class="small ws-nowrap"><b>Hög</b> <span class="muted">mer variation och ”kreativitet”</span></div>
+  </div>
+  <div class="notes">Det gör att du aldrig till 100 % vet vad en LLM kommer svara. Den är inte deterministisk eftersom den inte alltid väljer den mest sannolika token – den väljer en, viktat efter sannolikhet, precis som i snurran. Kod svarar likadant varje gång och kan testas; det kan inte en LLM. Hur mycket slump som tillåts styrs av en inställning som heter temperature: låg ger säkrare och mer upprepande svar, hög ger mer variation och lite mer ”kreativitet”. (Om någon frågar: i Claude Code ställer du inte in temperature själv, och även på 0 blir svaren inte alltid identiska i praktiken.)</div>
+</section>

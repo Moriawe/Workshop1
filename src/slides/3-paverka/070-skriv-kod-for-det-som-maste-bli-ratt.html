@@ -1,0 +1,16 @@
+<section class="slide">
+  <div class="kicker">Deterministiskt</div>
+  <h2>Skriv kod för det som måste bli rätt</h2>
+  <div class="grid g2 gap-18">
+    <div class="card warm p-14-22"><p class="fs-20"><b>AI:n</b> – samma fråga, olika svar</p></div>
+    <div class="card teal p-14-22"><p class="fs-20"><b>Kod</b> – samma indata, samma resultat</p></div>
+  </div>
+  <div class="grid cols-4 gap-14 mt-20">
+    <div class="card p-16-18"><h3 class="fs-19">Scripts i skills</h3><p class="fs-16">Körs utan att läsas in. <code>bump-version.sh</code> i stället för "höj versionen".</p></div>
+    <div class="card p-16-18"><h3 class="fs-19">Egna CLI-verktyg</h3><p class="fs-16">CRUD mot databasen, seeda testdata, återställ miljön.</p></div>
+    <div class="card p-16-18"><h3 class="fs-19">Hooks</h3><p class="fs-16">Linter och format efter varje ändring. Får inte avsluta förrän testerna är gröna.</p></div>
+    <div class="card p-16-18"><h3 class="fs-19">Kompilator & tester</h3><p class="fs-16">Ett rött test är rött – hur säker AI:n än låter.</p></div>
+  </div>
+  <p class="big mt-24 fs-24">Gör den samma sak mer än två gånger → be den skriva ett script för det.</p>
+  <div class="notes">Kommer ni ihåg att AI:n inte är deterministisk? Samma fråga kan ge olika svar. Kod är det. Allt som måste bli rätt varje gång ska därför göras av kod. Ett script i en skill körs utan att läsas in – bara resultatet kostar tokens. Låt AI:n bygga små CLI-verktyg den sedan använder, t.ex. för att skapa och seeda testdata, i stället för att skriva nya SQL-frågor varje gång. Hooks kör linter och tester – det är inte text den tolkar, så den kan inte glömma det. Och kompilatorn och testerna bryr sig inte om hur säker AI:n låter. Se anteckningarna i 3.4 Skriv kod för det som måste bli rätt.</div>
+</section>

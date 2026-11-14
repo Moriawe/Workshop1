@@ -1,0 +1,18 @@
+<section class="slide">
+  <div class="kicker">Lagar · settings & hooks</div>
+  <h2>Modellen kör aldrig något själv</h2>
+  <p class="small m-n10-0-22">Den <b>ber</b> om ett verktyg – loopen kör det. Därför kan settings och hooks stoppa den. Det är inte text som modellen tolkar – det är <b>lagar</b>.</p>
+  <div class="grid g3 gap-20">
+    <div class="card"><h3>Settings</h3><p>Vad den <b>får</b> göra: vilka kommandon, filer och verktyg som är tillåtna eller förbjudna.</p><p class="mt-10"><b>Högsta nivån vinner</b> – organisationen går före allt.</p></div>
+    <div class="card"><h3>Hooks</h3><p>Egna script som körs i loopen:</p><ul class="b mt-8">
+      <li class="small"><b>Före</b> ett verktyg – kan stoppa</li>
+      <li class="small"><b>Efter</b> – linter, tester</li></ul></div>
+    <div class="card warm"><h3>Kan den skriva om sina lagar?</h3><p><b>Ja – men inte i smyg.</b> <code>.claude</code> är skyddad: du får frågan. Lagen håller så länge du säger nej.</p></div>
+  </div>
+  <ul class="b mt-24">
+    <li class="small">Ändringar i settings gäller <b>direkt</b>, mitt i sessionen.</li>
+    <li class="small">Lägg hook-scripten i <code>.claude/hooks/</code> – annars är de vanliga filer.</li>
+    <li class="small">Med <code>--dangerously-skip-permissions</code> försvinner skyddet helt.</li>
+  </ul>
+  <div class="notes">Se anteckningarna i 2.5 Lagar.</div>
+</section>

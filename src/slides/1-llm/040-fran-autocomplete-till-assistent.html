@@ -1,0 +1,16 @@
+<section class="slide">
+  <div class="kicker">Fine tuning</div>
+  <h2>Från autocomplete till assistent</h2>
+  <div class="steps">
+    <div class="step"><div class="n">1 · Förträning</div><h3>Gissa nästa token</h3><p>Om och om igen, på enorma mängder text. Resultat: en väldigt avancerad autocomplete.</p></div>
+    <div class="step al"><div class="n">2</div><h3>Exempeldialoger</h3><p>Människor skriver bra svar som modellen tränas på.</p></div>
+    <div class="step al"><div class="n">3</div><h3>Betyg</h3><p>Människor – och numera AI – väljer det bästa svaret. Modellen tränas mot det.</p></div>
+    <div class="step al"><div class="n">4</div><h3>Principer</h3><p>Claude tränas också mot en <i>konstitution</i> för hur den ska bete sig.</p></div>
+    <div></div><div class="brace">Alignment</div>
+  </div>
+  <div class="grid g2 mt-26 gap-22">
+    <div class="chat bg-sunken"><div class="who muted">Bara förtränad</div><span class="muted">Vad är huvudstaden i Sverige?</span> <b>Vad är huvudstaden i Norge? Vad är huvudstaden i Danmark?</b></div>
+    <div class="chat bg-accent-soft"><div class="who c-accent">Efter alignment</div><span class="muted">Vad är huvudstaden i Sverige?</span> <b>Stockholm.</b></div>
+  </div>
+  <div class="notes">Efter förträningen kan modellen bara fortsätta skriva på en text – som en väldigt avancerad autocomplete. Ställer du en fråga kan den lika gärna fortsätta med tre nya frågor som att svara, för det ser ut som en lista med frågor. I nästa steg tränas den på exempeldialoger där människor har skrivit bra svar. Sedan får människor, och numera även AI, bedöma vilka svar som är bäst, och modellen tränas mot det. Anthropic tränar dessutom Claude mot en konstitution – en uppsättning principer. Det är här den lär sig att svara, följa instruktioner och säga nej, och det är här modellerna skiljer sig åt. (Fackord om någon frågar: supervised fine-tuning, RLHF, Constitutional AI.)</div>
+</section>

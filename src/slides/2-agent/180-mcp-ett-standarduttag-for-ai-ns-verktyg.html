@@ -1,0 +1,43 @@
+<section class="slide">
+  <div class="kicker">Verktyg</div>
+  <h2>MCP – ett standarduttag för AI:ns verktyg</h2>
+  <svg class="w-100p" viewBox="0 0 1100 150" role="img" aria-label="Claude Code pratar med en MCP-server, som i sin tur pratar med GitHub, Figma eller en databas">
+      <defs><marker id="mcpArr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="f-grey-3" d="M0 0 L10 5 L0 10 z"/></marker></defs>
+      <g>
+        <rect class="f-accent-soft s-accent" x="0" y="20" width="260" height="96" rx="14" stroke-width="2"/>
+        <text class="f-accent-ink" x="130" y="60" text-anchor="middle" font-size="22" font-weight="700">Claude Code</text>
+        <text class="f-accent" x="130" y="90" text-anchor="middle" font-size="15">ser servern som tools</text>
+
+        <path class="s-grey-3" d="M270 52 H408" stroke-width="3" marker-end="url(#mcpArr)"/>
+        <path class="s-grey-3" d="M408 86 H270" stroke-width="3" marker-end="url(#mcpArr)"/>
+        <text class="f-muted" x="339" y="40" text-anchor="middle" font-size="14">"vad kan du?"</text>
+        <text class="f-muted" x="339" y="110" text-anchor="middle" font-size="14">lista med tools</text>
+
+        <rect class="f-ink" x="418" y="20" width="264" height="96" rx="14"/>
+        <text class="f-on-dark" x="550" y="60" text-anchor="middle" font-size="22" font-weight="700">MCP-server</text>
+        <text class="f-teal-on-dark" x="550" y="90" text-anchor="middle" font-size="15">lokal process · eller på nätet</text>
+
+        <path class="s-grey-3" d="M692 68 H830" stroke-width="3" marker-end="url(#mcpArr)"/>
+        <text class="f-muted" x="761" y="56" text-anchor="middle" font-size="14">med din inloggning</text>
+
+        <rect class="f-teal-soft s-teal" x="840" y="20" width="260" height="96" rx="14" stroke-width="2"/>
+        <text class="f-teal" x="970" y="60" text-anchor="middle" font-size="20" font-weight="700">GitHub · Figma · DB</text>
+        <text class="f-teal" x="970" y="90" text-anchor="middle" font-size="15">tjänsten du kopplar in</text>
+      </g>
+    </svg>
+  <div class="grid cols-1_15fr-1fr gap-30 mt-22 ai-start">
+    <ul class="b">
+      <li class="small"><b>Ett API är svårt för en AI att upptäcka.</b> En MCP-server berättar själv vad den kan.</li>
+      <li class="small"><b>Lokal</b> – en process på din dator. <b>Remote</b> – en tjänst på nätet.</li>
+      <li class="small"><b>Laddas vid behov</b> – men varje verktyg som används tar plats i kontexten.</li>
+      <li class="small"><b>Jobbar som du</b> – mer om det i del 4.</li>
+    </ul>
+    <div class="card warm p-16-20">
+      <h3 class="fs-20">Är MCP på väg ut?</h3>
+      <p class="fs-16"><b>CLI + skill</b> – ofta billigare för det AI:n redan kan, som <code>git</code> och <code>gh</code>.</p>
+      <p class="fs-16 mt-8"><b>MCP</b> – för tjänster med inloggning och behörigheter.</p>
+      <p class="fs-16 mt-8"><b>Inte antingen eller – båda.</b></p>
+    </div>
+  </div>
+  <div class="notes">MCP – Model Context Protocol – är en öppen standard för att koppla verktyg till AI. Ett vanligt API är svårt för en AI att använda: den måste hitta dokumentationen, förstå vad som går och hur man autentiserar. En MCP-server berättar själv vad den kan, och det exponeras som tools för modellen – samma sorts verktyg som Read och Bash. Servern kan vara en lokal process på din dator (stdio) eller en tjänst på nätet (HTTP). Verktygen laddas vid behov via tool search – i min egen /context låg 142 MCP-verktyg och väntade utanför kontexten – men varje verktyg som används tar plats. Är MCP på väg ut? Det pratas mycket om det. För saker modellen redan kan, som git och gh, är ett CLI-verktyg plus en skill ofta billigare och lika bra. MCP passar för tjänster som kräver inloggning, behörigheter och där organisationen vill styra åtkomsten. Svaret är båda. I del 3 pratar vi om att bara koppla in det du behöver, och i del 4 om att MCP-servern jobbar med din inloggning. Se anteckningarna i 2.7 MCP.</div>
+</section>

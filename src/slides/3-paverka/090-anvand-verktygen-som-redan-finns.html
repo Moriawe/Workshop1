@@ -1,0 +1,15 @@
+<section class="slide">
+  <div class="kicker">Inbyggt</div>
+  <h2>Använd verktygen som redan finns</h2>
+  <div class="grid cols-4 gap-14">
+    <div class="card purple p-16-18"><h3 class="fs-19">Planera</h3><ul class="b mt-6"><li class="small"><code>/plan</code> <span class="muted">– ändrar inget</span></li><li class="small"><code>/init</code> <span class="muted">– första CLAUDE.md</span></li></ul></div>
+    <div class="card p-16-18"><h3 class="fs-19">Under arbetet</h3><ul class="b mt-6"><li class="small"><code>/context</code> <span class="muted">– vad tar plats?</span></li><li class="small"><code>/rewind</code> <span class="muted">– backa</span></li><li class="small"><code>/btw</code> <span class="muted">– sidofråga</span></li></ul></div>
+    <div class="card teal p-16-18"><h3 class="fs-19">Innan du skickar</h3><ul class="b mt-6"><li class="small"><code>/diff</code> <span class="muted">– vad ändrades?</span></li><li class="small"><code>/code-review</code> <span class="muted">– buggar</span></li><li class="small"><code>/security-review</code> <span class="muted">– säkerhetshål</span></li></ul></div>
+    <div class="card warm p-16-18"><h3 class="fs-19">Underhåll</h3><ul class="b mt-6"><li class="small"><code>/doctor prompt-audit</code> <span class="muted">– gamla instruktioner</span></li><li class="small"><code>/insights</code> <span class="muted">– hur du jobbar</span></li></ul></div>
+  </div>
+  <div class="card mt-20 p-14-22">
+    <p class="fs-18"><b>Parallellt:</b> <code>claude --worktree &lt;namn&gt;</code> i flera terminaler – eller <code>/batch</code>, som delar upp en stor ändring och kör varje del i ett eget worktree. <span class="muted">Ge varje agent en tydligt avgränsad uppgift.</span></p>
+  </div>
+  <p class="small muted mt-14">Skriv <code>/</code> för att se allt.</p>
+  <div class="notes">Claude Code kommer med en hel del inbyggt – du behöver inte bygga allt själv, men du måste veta att det finns. Plan-läget ändrar ingenting – börja stora ändringar där. /init skapar en första CLAUDE.md. /context visar vad som tar plats, /rewind backar kod och konversation till en checkpoint, /btw är en sidofråga som inte hamnar i historiken. Innan du skickar: /diff, /code-review som granskar diffen efter buggar och /security-review som letar säkerhetshål. /doctor prompt-audit letar efter instruktioner som är inaktuella eller motsäger varandra, /insights ger en rapport om hur du använder Claude Code. Och här kommer worktrees in för att jobba effektivt: flera sessioner i egna worktrees, eller /batch som delar upp en stor ändring i 5–30 delar och kör var och en i ett eget worktree. Se anteckningarna i 3.6 Använd verktygen som redan finns.</div>
+</section>

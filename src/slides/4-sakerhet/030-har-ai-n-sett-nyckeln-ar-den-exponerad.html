@@ -1,0 +1,20 @@
+<section class="slide">
+  <div class="kicker">Hemligheter</div>
+  <h2>Har AI:n sett nyckeln är den exponerad</h2>
+  <div class="d-grid cols-0_9fr-60-1_6fr gap-12 ai-center">
+    <div class="codebox fs-16"><span class="c"># .env</span>
+STRIPE_KEY=sk_live_4f…
+DB_PASSWORD=hunter2</div>
+    <div class="ta-center fs-40 c-accent">→</div>
+    <div>
+      <div class="card p-12-18 mb-10"><p class="fs-18"><b>Kontexten</b> <span class="muted">– skickas till leverantören i varje varv</span></p></div>
+      <div class="card p-12-18 mb-10"><p class="fs-18"><b>Loggfil i klartext</b> <span class="muted">– <code>~/.claude/projects/…</code> i 30 dagar</span></p></div>
+      <div class="card p-12-18"><p class="fs-18"><b>Hos leverantören</b> <span class="muted">– hur länge beror på ditt konto</span></p></div>
+    </div>
+  </div>
+  <p class="small muted mt-18"><code>.gitignore</code> hjälper inte – den styr bara vad som hamnar i git, inte vad AI:n läser.</p>
+  <div class="card warm mt-16 p-14-22">
+    <p class="fs-22 c-warm-ink"><b>Byt ut nyckeln.</b> Det räcker inte att radera filen eller chatten – du vet inte var kopiorna finns.</p>
+  </div>
+  <div class="notes">Om du inte hindrar den läser AI:n dina .env- och local.properties-filer. Och då hamnar nyckeln på tre ställen: i kontexten, som skickas till modellens leverantör i varje varv. I konversationsloggen på din dator – i klartext, i 30 dagar. Och hos leverantören – hur länge beror på vilket konto du har, mer om det strax. En nyckel som AI:n har sett måste bytas ut. Det räcker inte att radera filen eller chatten. Och kan den köra kommandon kan den ofta få fram nycklarna ändå – printenv, en debuglogg, ett felmeddelande. Se anteckningarna i 4.3 Hemligheter.</div>
+</section>

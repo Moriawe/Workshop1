@@ -1,0 +1,15 @@
+<section class="slide">
+  <div class="kicker">Gränser som håller</div>
+  <h2>Lagar som AI:n kan skriva om är inte lagar</h2>
+  <div class="grid g3 gap-18">
+    <div class="card purple p-18-22"><h3>1 · I harness</h3><p class="fs-17">Behörigheter, hooks, sandbox, verktygslistan per subagent, plan-läget</p></div>
+    <div class="card teal p-18-22"><h3>2 · I miljön</h3><p class="fs-17">Container eller VM, tokens med minsta behörighet, filrättigheter, budgettak</p></div>
+    <div class="card warm p-18-22"><h3>3 · I flödet</h3><p class="fs-17">Kompilatorn, CI, branch protection – AI:n kan inte trycka till main</p></div>
+  </div>
+  <p class="small muted m-10-0-0 ta-right">Ju längre ut – desto säkrare →</p>
+  <div class="grid g2 gap-18 mt-14">
+    <div class="card p-18-22"><h3 class="fs-20">Fälla: <code>git commit --no-verify</code></h3><p class="fs-17">Hoppar förbi lokala pre-commit-hooks. Blockera det – och kör samma kontroller i CI.</p></div>
+    <div class="card p-18-22"><h3 class="fs-20">Fälla: AI:n ändrar testet</h3><p class="fs-17">Ett rött test kan ”fixas” genom att ändra testet i stället för koden. Granska teständringar extra noga.</p></div>
+  </div>
+  <div class="notes">AI:n kan ändra en fil på din dator – men inte branch protection på GitHub, inte rättigheterna i en token och inte kundens managed settings. Ju längre ut i ringarna ett skydd ligger, desto säkrare. Kotlin och Swift släpper inte igenom typfel, hur säker AI:n än låter. Ett rött bygge är rött. Se anteckningarna i 3.3 Gränser som håller.</div>
+</section>

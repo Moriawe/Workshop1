@@ -1,0 +1,15 @@
+<section class="slide">
+  <div class="kicker">Hemma · release review</div>
+  <h2>Flera varv innan milestonen är klar</h2>
+  <table class="fs-18 mt-n6">
+    <tr><th>Fokus</th><th>Agent</th><th>Modell</th></tr>
+    <tr><td>Arkitektur + kontrakt mellan repon</td><td><code>review-architecture</code></td><td><span class="pill o">opus</span></td></tr>
+    <tr><td>Korrekthet</td><td><code>review-code</code></td><td><span class="pill o">opus</span></td></tr>
+    <tr><td>Tester</td><td><code>review-tests</code></td><td><span class="pill s">sonnet</span></td></tr>
+    <tr><td>Konventioner, best practice</td><td><code>review-conventions</code></td><td><span class="pill s">sonnet</span></td></tr>
+    <tr><td>Domänfakta</td><td><code>review-domain</code></td><td><span class="pill s">sonnet</span></td></tr>
+    <tr><td>Backend-säkerhet</td><td><code>general-purpose</code></td><td><span class="pill s">sonnet</span></td></tr>
+  </table>
+  <div class="grid g2 gap-16 mt-16"><div class="card p-12-18"><p class="fs-16"><b>Granskarna hittar – Vault Claude dömer.</b> Varje fynd kollas mot besluten. Det som är på riktigt blir issues.</p></div><div class="card teal p-12-18"><p class="fs-16"><b>Opus för omdöme, Sonnet för regler</b> – planera stort, utför billigt i praktiken.</p></div></div>
+  <div class="notes">Inför varje milestone kör jag flera varv med review-agenter som granskar koden, och vi rättar alla fel innan milestonen godkänns. Sex granskare körs parallellt, read-only, var och en med sitt smala fokus och sin egen kontext. Opus där det kräver omdöme – arkitektur och korrekthet – och Sonnet där det mest handlar om att kontrollera mot regler. Granskarna hittar, men Vault Claude dömer: varje fynd kollas mot besluten i vaulten så att medvetna val avfärdas, och det som är på riktigt blir issues. Inboxen töms först, annars rapporterar granskarna sådant vi redan vet. Varje varv sparas som en rapport i docs/reviews. Se anteckningarna i 5.3.4 Release review.</div>
+</section>

@@ -1,0 +1,35 @@
+<section class="slide">
+  <div class="kicker">Agentloopen · exempel</div>
+  <h2 class="mb-20">Ett varv i taget</h2>
+  <div class="lp" data-steps="6" data-step="0">
+    <div class="grid cols-1fr-330 gap-28 ai-start">
+      <div>
+        <div class="lrow hd"><span>#</span><span>Nytt i historiken</span><span></span><span>Modellen svarar</span><span class="ta-right">Hela anropet</span></div>
+        <div class="lrow base" data-s="0"><span class="n">0</span><span>Systemprompt + verktyg + CLAUDE.md</span><span class="tk">38 000</span></div>
+      <div class="lrow" data-s="1"><span class="n">1</span><span><b>Du:</b> ”Sortera fikalistan på datum, nyast först”</span><span class="arr">→</span><span class="out">vill köra Grep("FikaList")</span><span class="tk">38 050</span></div>
+      <div class="lrow" data-s="2"><span class="n">2</span><span>Grep → 3 filer</span><span class="arr">→</span><span class="out">vill köra Read(FikaListViewModel.kt)</span><span class="tk">38 730</span></div>
+      <div class="lrow" data-s="3"><span class="n">3</span><span>Read → 180 rader kod</span><span class="arr">→</span><span class="out">vill köra Edit(FikaListViewModel.kt)</span><span class="tk">43 990</span></div>
+      <div class="lrow" data-s="4"><span class="n">4</span><span>Edit ✓ · hook: ktlint ✓</span><span class="arr">→</span><span class="out">vill köra Bash(./gradlew test)</span><span class="tk">44 690</span></div>
+      <div class="lrow" data-s="5"><span class="n">5</span><span>42 tester gröna</span><span class="arr">→</span><span class="out txt">bara text: ”Klart!” → du ser svaret</span><span class="tk">48 850</span></div>
+      <div class="lrow tot" data-s="5"><span></span><span><b>Första frågan, 5 anrop – totalt:</b></span><span class="tk"><b>214 310</b></span></div>
+      <div class="lrow" data-s="6"><span class="n">6</span><span><b>Du:</b> ”Lägg till en sökruta också”</span><span class="arr">→</span><span class="out txt">… och loopen börjar om</span><span class="tk">49 140</span></div>
+      </div>
+      <div>
+        <div class="mini"><span data-h="6">historik = [din fråga]</span><span>while True:</span><span data-h="1 2 3 4 5">  svar = modell(system, verktyg,
+               historik)</span><span data-h="1 2 3 4 5">  historik.append(svar)</span><span data-h="5">  if not svar.vill_använda_verktyg:</span><span data-h="5">    break</span><span data-h="2 3 4">  resultat = kör_verktyg(svar)</span><span data-h="2 3 4">  historik.append(resultat)</span></div>
+        <div class="lcap">
+        <div data-o="0">Innan du skrivit något: systemprompt, verktyg och CLAUDE.md.</div>
+        <div data-o="1">Modellen kör inget själv – den <b>ber</b> om ett verktyg.</div>
+        <div data-o="2">Loopen kör verktyget och lägger resultatet i historiken.</div>
+        <div data-o="3">En fil = tusentals tokens. Den följer med i <b>alla</b> kommande anrop.</div>
+        <div data-o="4">Hooks körs i loopen – utanför modellen.</div>
+        <div data-o="5">Bara text → <code>break</code>. Fem anrop – och varje anrop skickade <b>allt</b> igen.</div>
+        <div data-o="6">Ny fråga – men <b>hela historiken</b> skickas med igen.</div>
+        </div>
+      </div>
+    </div>
+    <div class="ctx2"><div class="seg bg-grey-1" data-s="0" style="--w:63%"></div><div class="seg bg-warm" data-s="1" style="--w:0.6%"></div><div class="seg bg-teal" data-s="2" style="--w:1.1%"></div><div class="seg bg-teal" data-s="3" style="--w:8.8%"></div><div class="seg bg-teal" data-s="4" style="--w:1.2%"></div><div class="seg bg-teal" data-s="5" style="--w:7%"></div><div class="seg bg-warm" data-s="6" style="--w:0.6%"></div></div>
+    <p class="small muted mt-6 fs-14">Fiktivt projekt: Fikalistan (Android). Ungefärliga tokens per anrop.</p>
+  </div>
+  <div class="notes">[Klicka/pil höger för att stega igenom loopen – 6 steg innan nästa slide.] Nu ett påhittat exempel, ett varv i taget. Kolumnen längst till höger är hela anropet: de 38 000 från start plus allt som hänt hittills. Efter steg 5 summerar vi: första frågan blev fem anrop och 214 310 tokens in – men det är inte vad det kostar, för cachen spelar in. Mer på nästa slide. Filen den läste i steg 3 följer med i alla kommande anrop. Projektet är påhittat och siffrorna ungefärliga.</div>
+</section>

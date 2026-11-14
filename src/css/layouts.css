@@ -1,0 +1,35 @@
+/* Delade slides: titel, agenda, delarnas öppningar och avslutningen. */
+@layer components{
+/* --- delade slides: titel, agenda och varje dels öppning. Rubriken får en egen färgpanel --- */
+.title,.agenda,.section{padding:0}
+.title::before,.agenda::before,.section::before{display:none}
+.pane{background:var(--pc);color:var(--on-strong);padding:56px 44px 60px;display:flex;flex-direction:column;justify-content:flex-end;min-width:0}
+.pane .kicker{color:inherit;opacity:.8}
+.pane h1,.pane h2{font-size:45px;line-height:1.06;margin-bottom:0;text-wrap:balance}
+.pane .big{font-size:24px;line-height:1.3;font-weight:400;opacity:.85;margin-top:18px}
+.opener.active{display:grid;grid-template-columns:460px 1fr}
+.summary{padding:120px 72px 56px 64px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.summary .lede{font-size:30px;line-height:1.25;font-weight:600;letter-spacing:-.01em;margin-bottom:26px}
+.topics li{display:grid;grid-template-columns:220px 1fr;column-gap:20px;align-items:baseline;padding:10px 0;border-top:1px solid var(--line);font-size:20px;line-height:1.3}
+.topics li b{color:var(--accent);font-weight:600}
+.topics.flat li{grid-template-columns:1fr}
+.title.active{display:grid;grid-template-columns:880px 1fr}
+.title .pane{padding:56px 64px 64px}
+.title .pane .kicker{margin-bottom:auto}
+.title .pane h1{font-size:66px}
+.title .side{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:0 40px 64px 104px}
+.title .side p{font-size:30px;font-weight:600}
+.stripes{position:absolute;left:0;top:0;bottom:0;display:flex}
+.stripes i{width:8px;background:var(--pc)}
+.agenda.active{display:grid;grid-template-columns:400px 1fr}
+.toc{list-style:none;padding:104px 72px 48px 64px;display:flex;flex-direction:column;justify-content:center}
+.toc li{display:grid;grid-template-columns:52px 300px 1fr;column-gap:20px;align-items:center;padding:11px 0}
+.toc .num{width:52px;height:52px;display:grid;place-items:center;background:var(--pc);color:var(--on-strong);font-size:26px}
+.toc h3{font-size:24px;line-height:1.15}
+.toc p{font-size:19px;line-height:1.3;color:var(--muted)}
+.closing{background:var(--pc);color:var(--on-strong);justify-content:center;padding:60px 92px;--logo:var(--on-strong)}
+.closing .kicker{color:inherit;opacity:.8}
+.closing h1{font-size:96px}
+.closing .big{opacity:.85;margin-top:20px}
+.mono-svg{font-family:var(--mono)}
+}

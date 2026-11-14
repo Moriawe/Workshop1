@@ -1,0 +1,17 @@
+<section class="slide">
+  <div class="kicker">Lås ner den</div>
+  <h2>Stäng dörrarna</h2>
+  <!-- Tre ringar: ju längre ut, desto svårare för AI:n att ta sig förbi -->
+  <div class="grid g3 gap-18">
+    <div class="card purple p-16-20"><h3 class="fs-20">1 · I harness</h3><div class="codebox fs-14 p-10-14 mt-6">"deny": ["Read(./.env)",
+         "Read(./.env.*)"]</div><p class="fs-16 mt-6">Hooks, <code>/sandbox</code>, verktygslistan per subagent, plan-läget.</p><p class="muted fs-14 mt-6">Spärren helst i organisationens settings.</p></div>
+    <div class="card teal p-16-20"><h3 class="fs-20">2 · I miljön</h3><p class="fs-16"><b>En egen låda</b> – container, devcontainer eller VM. Ett måste med <code>--dangerously-skip-permissions</code>.</p><p class="fs-16 mt-6"><b>Inga hemligheter i klartext</b> – Infisical, Varlock.</p><p class="fs-16 mt-6">Tokens med minsta behörighet, budgettak.</p></div>
+    <div class="card warm p-16-20"><h3 class="fs-20">3 · I flödet</h3><p class="fs-16">Kompilatorn, CI, branch protection – AI:n kan inte trycka till main.</p></div>
+  </div>
+  <p class="small muted m-10-0-0 ta-right">Ju längre ut – desto säkrare →</p>
+  <div class="grid g2 gap-18 mt-14">
+    <div class="card p-16-20"><h3 class="fs-20">Fälla: <code>git commit --no-verify</code></h3><p class="fs-16">Hoppar förbi lokala pre-commit-hooks. Blockera det – och kör samma kontroller i CI.</p></div>
+    <div class="card p-16-20"><h3 class="fs-20">Fälla: AI:n ändrar testet</h3><p class="fs-16">Ett rött test kan ”fixas” genom att ändra testet i stället för koden. Granska teständringar extra noga.</p></div>
+  </div>
+  <div class="notes">Skydd kan sitta på tre ställen, och ju längre ut i ringarna ett skydd ligger, desto säkrare. AI:n kan ändra en fil på din dator – men inte branch protection på GitHub, inte rättigheterna i en token och inte kundens managed settings. Ett, i harness: spärra filerna med deny-regler – helst i organisationens managed settings, så att varken du eller AI:n kan ändra det. Hooks, sandbox-läget där operativsystemet begränsar vilka filer och vilket nätverk kommandona kommer åt, vilka verktyg en subagent får, och plan-läget. Två, i miljön: kör den i en egen låda – en Docker-container, devcontainer eller virtuell maskin. Där når den inte dina SSH-nycklar, andra projekt eller dokument. Kör du med --dangerously-skip-permissions är det ett måste. Ha inga hemligheter i klartext alls: Infisical lägger in hemligheterna i processen när den startar, Varlock låter dig committa ett schema utan värden – de har jag fått rekommenderade men inte testat själv. Och tokens med minsta möjliga behörighet. Tre, i flödet: Kotlin och Swift släpper inte igenom typfel, hur säker AI:n än låter. Ett rött bygge är rött. Två fällor: --no-verify hoppar förbi dina lokala hooks, och AI:n kan få ett test grönt genom att ändra testet. Se anteckningarna i 4.2 Lås ner den.</div>
+</section>

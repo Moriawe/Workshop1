@@ -1,0 +1,22 @@
+<section class="slide">
+  <div class="kicker">Hemma · lagar</div>
+  <h2>Lagar i mitt projekt</h2>
+  <div class="grid cols-1_2fr-1fr gap-24 ai-start">
+    <div class="card purple p-16-22"><h3>Hooks <span class="muted fs-15 fw-400">– tysta när allt är bra</span></h3><ul class="b mt-8">
+      <li class="small"><b>SessionStart</b> – hälsokoll: frontmatter, gamla dokument, filer över 200 rader</li>
+      <li class="small"><b>Före <code>git commit</code></b> – stoppar hemligheter, lint-fel och för långa rubriker</li>
+      <li class="small"><b>Efter commit</b> – påminner om kanban</li>
+      <li class="small"><b>Stop</b> – påminner om learning log</li></ul></div>
+    <div>
+      <div class="codebox fs-14 p-12-16"><span class="c">"deny":</span> [
+  "Read(./**/.env)",
+  "Read(./**/local.properties)",
+  "Read(./**/*.pem)", "Read(./**/*.key)",
+  "Bash(env)", "Bash(printenv:*)", …
+]
+<span class="c">"autoMemoryEnabled":</span> false</div>
+      <p class="small muted mt-10">Inga nycklar i kontexten. Inget dolt minne.</p>
+    </div>
+  </div>
+  <div class="notes">Det vi pratade om i del 2 och 4, i praktiken. Hooks som körs i loopen och är tysta när allt är bra. Vid sessionsstart kollar en hook vaultens hälsa: finns frontmatter, är något dokument för gammalt, är en fil över 200 rader. Innan varje git commit stoppar en hook hemligheter, lint-fel och rubriker över 50 tecken – exit 2 blockerar committen och berättar för Claude varför. Efter en commit påminner en hook om kanban, och när sessionen stannar påminner en om learning log. Deny-reglerna gör att AI:n inte kan läsa .env, local.properties eller nycklar, och inte köra env eller printenv. Och auto memory är avstängt i varje repo. Se anteckningarna i 5.3.2 Lagar i mitt projekt.</div>
+</section>

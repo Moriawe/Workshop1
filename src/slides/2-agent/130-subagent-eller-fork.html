@@ -1,0 +1,14 @@
+<section class="slide">
+  <div class="kicker">Instruktioner · delegering</div>
+  <h2>Subagent eller fork?</h2>
+  <table class="map">
+    <tr><th></th><th>Subagent</th><th>Fork</th></tr>
+    <tr><td>Startar</td><td><b>Tom</b> – vet bara det som står i uppdraget</td><td>Med <b>hela konversationen</b> hittills</td></tr>
+    <tr><td>Systemprompt, verktyg, modell</td><td>Egna – från agentfilen</td><td>Samma som huvudagenten</td></tr>
+    <tr><td>Bra när</td><td>Den ska specialiseras, köras på en billigare modell eller se med färsk blick</td><td>Uppgiften kräver bakgrunden ni redan har – eller du vill prova flera lösningar från samma läge</td></tr>
+    <tr><td>Kostnad</td><td>Läser in sin egen kontext</td><td>Billigare start tack vare caching – men börjar lika full som huvudagenten</td></tr>
+    <tr><td>Svaghet</td><td>Vet inget som inte står i uppdraget</td><td>Svår att specialisera – alla får samma kontext</td></tr>
+  </table>
+  <div class="card p-14-22 mt-auto"><p class="fs-18"><b>Inte samma sak som ett agent team</b> – där pratar agenterna med varandra och delar en att-göra-lista. Experimentellt i Claude Code, och drar betydligt fler tokens.</p></div>
+  <div class="notes">Två sorter. En subagent startar tom: den får sin egen systemprompt från agentfilen, uppdraget som huvudagenten skriver, projektets CLAUDE.md (vissa inbyggda agenter som Explore och Plan hoppar över den) och beskrivningar av sina verktyg. Den får inte er konversation, filerna huvudagenten läst eller det ni kommit överens om – står det inte i uppdraget vet den inte om det. Därför kan den specialiseras: färre verktyg, en billigare modell, och en färsk blick som inte redan hållit med dig – det kopplar tillbaka till sykofansin och till mina review-agenter i del 5. En fork är tvärtom: den ärver hela konversationen, samma systemprompt, samma verktyg och samma modell. Du slipper förklara bakgrunden, och den blir billigare att starta eftersom början av anropet är identisk med huvudagentens och läses från cachen. Men den börjar lika full som huvudagenten, den kan inte köras på en billigare modell, och den kan inte starta egna forkar. I Claude Code startar du en fork med /subtask, eller så gör Claude det själv. Blanda inte ihop det här med agent teams: där är varje teammate en egen session, de pratar direkt med varandra och delar en att-göra-lista. Det är experimentellt och avstängt som standard, och drar betydligt fler tokens. Se anteckningarna i 2.6.3.1 Subagenter och 2.6.3.2 Forkade agenter.</div>
+</section>
