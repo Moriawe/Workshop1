@@ -1,5 +1,5 @@
 <section class="slide">
-  <div class="kicker">Instruktioner · agenter</div>
+  <div class="kicker">Instruktioner · worktrees</div>
   <h2>Worktrees – en egen arbetskopia per agent</h2>
   <div class="grid cols-1fr-1_05fr gap-40 ai-center">
     <div><svg class="w-100p" viewBox="0 0 440 330" role="img" aria-label="Ett gemensamt git-repo med tre arbetsmappar: din, agent 1:s och agent 2:s">
@@ -36,8 +36,6 @@
       </ul>
     </div>
   </div>
-  <div class="card warm mt-22 p-12-20">
-    <p class="fs-18 c-warm-ink"><b>Isolerar filerna – inte besluten.</b> Två agenter kan fortfarande lösa samma sak på olika sätt.</p>
-  </div>
+  <p class="warn mt-22"><b>Isolerar filerna – inte besluten.</b> Två agenter kan fortfarande lösa samma sak på olika sätt.</p>
   <div class="notes">Ett worktree är en git-funktion: en extra arbetsmapp med egna filer och egen branch, som delar samma historik som ditt repo. Det är inte en full kopia – .git delas, bara filerna checkas ut på nytt. Varje agent får sin egen arbetskopia, så den ena kan bygga en feature medan den andra fixar en bugg utan att de skriver i samma filer. claude --worktree auth skapar .claude/worktrees/auth/ på branchen worktree-auth. En subagent med isolation: worktree i frontmattern får alltid ett eget. Gör den inga ändringar tas worktreet bort automatiskt, annars ligger det kvar så du kan granska och merga. Eftersom det är en ny utcheckning saknas gitignorade filer som .env – lägg dem i .worktreeinclude – och beroenden måste installeras. Varning: om agenterna inte kan kommunicera kan de ändra samma saker eller skapa oordning. Man kan ha en organizer- eller teamlead-agent, men Oscar på Queenslab har gjort experiment med flera agenter som pratar med varandra – de fick mindre gjort och det kostade mer. Hur man använder det för att jobba effektivt tar vi i del 3. Se anteckningarna i 2.6.3.3 Worktrees.</div>
 </section>

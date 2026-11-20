@@ -1,0 +1,20 @@
+<section class="slide">
+  <div class="kicker">På jobbet · review</div>
+  <h2>Fem granskare innan push</h2>
+  <div class="grid cols-1_15fr-1fr gap-28 ai-start">
+    <table class="fs-18 mt-n6">
+      <tr><th>Granskare</th><th>Fokus</th></tr>
+      <tr><td><b>Arkitektur</b></td><td>Lager, beroenden, struktur</td></tr>
+      <tr><td><b>Compose</b></td><td>UI-koden</td></tr>
+      <tr><td><b>Kotlin</b></td><td>Korrekthet och idiom</td></tr>
+      <tr><td><b>Säkerhet</b></td><td>OWASP Mobile Top 10, MASVS</td></tr>
+      <tr><td><b>Tester</b></td><td>Testar testerna något?</td></tr>
+    </table>
+    <div>
+      <div class="card purple p-12-18 mb-10"><p class="fs-17"><b>Rules AI:n alltid läser</b> – inga hemligheter i koden, data från andra appar är opålitlig</p></div>
+      <div class="card p-12-18 mb-10"><p class="fs-17"><b>Coverage minst 70&nbsp;%</b> – tröskeln sänks aldrig för att få bygget grönt</p></div>
+      <div class="card teal p-12-18"><p class="fs-17"><b>Hittar den ett säkerhetshål</b> – vad kostar det att fixa, vad vinner vi, och hur ser vi till att det inte kommer tillbaka?</p></div>
+    </div>
+  </div>
+  <div class="notes">Innan jag pushar kör jag /review: fem granskande agenter, var och en för sitt område – arkitektur, Compose, Kotlin, säkerhet och tester. Säkerhetsgranskaren går efter OWASP Mobile Top 10 och MASVS. Granskningen bygger på rules som AI:n alltid läser: inga hemligheter i koden, data från andra appar är opålitlig, inga backend-detaljer i loggar, URL:er eller skärmar, ingen SuppressLint – och varje regel har ett verifieringskommando. Coverage ska vara minst 70 procent i alla moduler, och tröskeln sänks aldrig för att få bygget grönt. En skill letar efter tester som går igenom utan att testa något. Hittar AI:n ett säkerhetshål frågar jag: vad är nackdelen med att fixa det, vad vinner vi, och hur ser vi till att det inte dyker upp igen – en rule, en hook eller en CI-kontroll. Jämför med hemma: där kör jag flera varv med sex granskare innan en milestone är klar. Se anteckningarna i 5.2 På jobbet - utkast.</div>
+</section>

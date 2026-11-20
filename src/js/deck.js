@@ -23,8 +23,7 @@
     else if(e.key==='End')show(slides.length-1);
     else if(e.key==='n'||e.key==='N')notes.classList.toggle('on');
     else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
-    else if((e.key==='s'||e.key==='S')&&slides[i].querySelector('#wheel'))wheel.spin();
-    else if(/^[1-5]$/.test(e.key)&&slides[i].querySelector('#wheel'))wheel.build(+e.key-1);
+    else{const w=slides[i].querySelector('[data-wheel]');if(w&&window.wheel)wheel.key(w,e.key);}
   });
   // --- stegvisa slides (.lp): pil höger/vänster stegar inom sliden innan den byter ---
   function setStep(st,n){st.dataset.step=n;
@@ -35,7 +34,7 @@
     const n=+st.dataset.step+d;if(n<0||n>+st.dataset.steps)return false;setStep(st,n);return true;}
   function next(){if(!stepper(1))show(i+1)}
   function prev(){if(stepper(-1))return;show(i-1);const st=slides[i].querySelector('.lp');if(st)setStep(st,+st.dataset.steps)}
-  stage.addEventListener('click',e=>{if(e.target.closest('button,.sent'))return;(e.clientX>innerWidth/2)?next():prev()});
+  stage.addEventListener('click',e=>{if(e.target.closest('button,.sent,.ctxchip'))return;(e.clientX>innerWidth/2)?next():prev()});
   fit();
   show((parseInt(location.hash.slice(1))||1)-1);
 })();

@@ -1,14 +1,16 @@
 <section class="slide">
   <div class="kicker">Sannolikhetsmaskin</div>
-  <h2>Varje token är ett lotteri</h2>
-  <div id="wheelWrap">
+  <h2>Token för token</h2>
+  <div class="wheelWrap" data-wheel="tokens">
     <div class="pos-relative">
-      <div id="pointer"></div>
-      <svg id="wheel" viewBox="-110 -110 220 220"></svg>
+      <div class="pointer"></div>
+      <svg class="wheel" viewBox="-110 -110 220 220"></svg>
     </div>
     <div class="flex-1">
-      <div id="sentences"></div>
+      <div class="tokline">”Jag har aldrig förstått mig på<span class="toks"></span>”</div>
+      <div class="tokinfo small muted"></div>
+      <p class="small muted mt-26">Varje snurr väljer <b>en</b> token. Sedan får nästa token ett nytt hjul – byggt på allt som valts hittills.</p>
     </div>
   </div>
-  <div class="notes">[Styrning: 1–5 byter mening · S snurrar · klick på en mening väljer den] En LLM förutsäger nästa token – ordbiten vi just såg – utifrån allt som kommit innan. Varje token är ett viktat lotteri. Snurra några gånger: samma fråga, olika svar. Det är poängen. På hjulet står hela ord för att det ska gå att läsa. I verkligheten väljer den en token i taget – "katter" kommer som " k" + "atter", två snurr. Sista exemplet är kod: efter users. väljer den nästa token precis likadant – därför kan den hitta på en metod som inte finns.</div>
+  <div class="notes">[Styrning: S snurrar · R börjar om] En LLM förutsäger nästa token – ordbiten vi just såg – utifrån allt som kommit innan. Varje token är ett viktat lotteri. Snurra en gång: hjulet landar på kanske " k". Nu ritas ett NYTT hjul – för vad som kommer efter " k" (atter, ärlek, aos, affe). Den har alltså inte bestämt sig för "katter" i förväg, den väljer bit för bit. Fortsätt snurra tills meningen får en punkt. Börja om med R och visa att det blir en annan mening. Procentsatserna och uppdelningen i tokens är förenklade för att gå att läsa – en riktig modell väljer bland tiotusentals tokens varje gång.</div>
 </section>

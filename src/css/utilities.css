@@ -102,7 +102,9 @@
 .fs-60{font-size:60px}
 /* font-weight */
 .fw-400{font-weight:400}
+.fw-500{font-weight:500}
 .fw-600{font-weight:600}
+.fs-italic{font-style:italic}
 .fw-700{font-weight:700}
 /* gap */
 .gap-4{gap:4px}

@@ -14,6 +14,8 @@
   --pc:var(--ink);
   /* grön = gör så här, orange = se upp. Samma i alla delar */
   --teal:#1F7A4D; --teal-ink:#145A38; --teal-soft:#E3F3EA; --teal-line:#B5DEC6; --teal-mid:#4FA57B; --teal-on-dark:#84D9AE;
+  /* gul = tips. Används bara till tips-rutan */
+  --tip:#E0AE00; --tip-soft:#FFF5C7; --tip-ink:#6B5200;
   --warm:#B45309; --warm-ink:#7C3A06; --warm-soft:#FDF0DC; --warm-line:#F3D3A4; --warm-mid:#DD8A3C; --warm-on-dark:#F2A65A;
 }
 /* Härledda accentfärger måste räknas ut på samma element som --pc sätts på (en custom property

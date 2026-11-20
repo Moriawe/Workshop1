@@ -25,19 +25,7 @@
         <text class="f-teal" x="970" y="90" text-anchor="middle" font-size="15">tjänsten du kopplar in</text>
       </g>
     </svg>
-  <div class="grid cols-1_15fr-1fr gap-30 mt-22 ai-start">
-    <ul class="b">
-      <li class="small"><b>Ett API är svårt för en AI att upptäcka.</b> En MCP-server berättar själv vad den kan.</li>
-      <li class="small"><b>Lokal</b> – en process på din dator. <b>Remote</b> – en tjänst på nätet.</li>
-      <li class="small"><b>Laddas vid behov</b> – men varje verktyg som används tar plats i kontexten.</li>
-      <li class="small"><b>Jobbar som du</b> – mer om det i del 4.</li>
-    </ul>
-    <div class="card warm p-16-20">
-      <h3 class="fs-20">Är MCP på väg ut?</h3>
-      <p class="fs-16"><b>CLI + skill</b> – ofta billigare för det AI:n redan kan, som <code>git</code> och <code>gh</code>.</p>
-      <p class="fs-16 mt-8"><b>MCP</b> – för tjänster med inloggning och behörigheter.</p>
-      <p class="fs-16 mt-8"><b>Inte antingen eller – båda.</b></p>
-    </div>
-  </div>
+  <p class="big fs-28 fw-600 mt-26">Öppen standard för att koppla verktyg, databaser och tjänster mot en AI.</p>
+  <p class="small mt-14"><b>Fungerar bäst för</b> tjänster med inloggning och behörigheter – som GitHub, Figma eller en databas – där du vill styra vad AI:n kommer åt.</p>
   <div class="notes">MCP – Model Context Protocol – är en öppen standard för att koppla verktyg till AI. Ett vanligt API är svårt för en AI att använda: den måste hitta dokumentationen, förstå vad som går och hur man autentiserar. En MCP-server berättar själv vad den kan, och det exponeras som tools för modellen – samma sorts verktyg som Read och Bash. Servern kan vara en lokal process på din dator (stdio) eller en tjänst på nätet (HTTP). Verktygen laddas vid behov via tool search – i min egen /context låg 142 MCP-verktyg och väntade utanför kontexten – men varje verktyg som används tar plats. Är MCP på väg ut? Det pratas mycket om det. För saker modellen redan kan, som git och gh, är ett CLI-verktyg plus en skill ofta billigare och lika bra. MCP passar för tjänster som kräver inloggning, behörigheter och där organisationen vill styra åtkomsten. Svaret är båda. I del 3 pratar vi om att bara koppla in det du behöver, och i del 4 om att MCP-servern jobbar med din inloggning. Se anteckningarna i 2.7 MCP.</div>
 </section>

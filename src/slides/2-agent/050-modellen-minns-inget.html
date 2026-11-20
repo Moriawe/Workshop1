@@ -44,6 +44,6 @@
       </ul>
     </div>
   </div>
-  <div class="card p-14-22 mt-auto"><p class="fs-18"><b>Tips:</b> <code>/memory</code> – se vilka filer som är inlästa i sessionen, och slå av eller på minnet.</p></div>
+  <p class="tip mt-auto"><b>Tips:</b> <code>/memory</code> – se vilka filer som är inlästa i sessionen, och slå av eller på minnet.</p>
   <div class="notes">Kommer ni ihåg att modellen inte har något state? Varje anrop skickar allt. Det som ska överleva till nästa session måste ligga i en fil som läses in i kontexten – det är allt minne är. Claude Code har två sorter. CLAUDE.md skriver du: instruktioner, och projektets CLAUDE.md delas via git. Auto memory skriver Claude själv medan den jobbar: byggkommandon, saker den lärt sig när den felsökt, dina preferenser. Den ligger i ~/.claude/projects/&lt;projekt&gt;/memory/ – bara på din dator, inte i git. MEMORY.md är ett index; de första 200 raderna eller 25 KB laddas i varje session, resten av filerna läses när de behövs. Ser du "Writing memory" eller "Recalled memory" så läser eller skriver den där. Det är på som standard. Stänga av: /memory, autoMemoryEnabled: false i settings, eller miljövariabeln CLAUDE_CODE_DISABLE_AUTO_MEMORY=1. Jag har stängt av det – jag vill att minnet ligger i projektet där jag och teamet ser det. Mer om det i del 5. Se anteckningarna i 2.3 Minne.</div>
 </section>

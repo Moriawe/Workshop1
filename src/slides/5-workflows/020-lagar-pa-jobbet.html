@@ -1,0 +1,22 @@
+<section class="slide">
+  <div class="kicker">På jobbet · lagar</div>
+  <h2>Lagar på jobbet</h2>
+  <div class="grid cols-1_2fr-1fr gap-24 ai-start">
+    <div class="card purple p-16-22"><h3>Tre lager <span class="muted fs-15 fw-400">– samma kontroller, olika ofta</span></h3><ul class="b mt-8">
+      <li class="small"><b>Git hooks, lokalt</b> – varje commit och push. Inga hårdkodade färger, ingen AI-signatur, coverage minst 70&nbsp;%</li>
+      <li class="small"><b><code>mergeGatePipeline</code></b> – en gång per branch, när den är redo för PR</li>
+      <li class="small"><b>CI på GitHub</b> – varje PR mot <code>dev</code> och <code>main</code></li></ul></div>
+    <div>
+      <div class="codebox fs-14 p-12-16"><span class="c">"deny":</span> [
+  "Read(./**/local.properties)",
+  "Read(./**/.env)",
+  "Bash(gh repo:*)", "Bash(gh auth:*)",
+  "Bash(gh secret:*)", "Bash(gh release:*)"
+]
+<span class="c">"includeCoAuthoredBy":</span> false  <span class="c">← repots regel</span></div>
+      <p class="small muted mt-10">Plus en begränsad GitHub-token – det riktiga skyddet.</p>
+    </div>
+  </div>
+  <p class="tip mt-18"><b>Tips:</b> En settings-fil med ett JSON-fel ignoreras utan varning. Kontrollera den efter varje gång du ändrat den för hand.</p>
+  <div class="notes">Samma idé som hemma, men i tre lager. Git hooks lokalt körs vid varje commit och push: pre-commit stoppar SuppressLint, hårdkodade färger, GlobalScope och android.util.Log och kör ktlintFormat. commit-msg stoppar AI-omnämnanden, emojis och för långa titlar. pre-push kör hela grinden med coverage minst 70 procent. Gradle-grinden mergeGatePipeline körs en gång per branch – den är för långsam för varje commit. Och CI på GitHub kör lint, detekt, ktlint och tester på varje PR. I mina settings får AI:n inte läsa local.properties eller .env, och den får inte röra repo-inställningar, inloggning, secrets eller releaser via gh. Raden includeCoAuthoredBy kommer egentligen från repot: commit-msg-hooken stoppar AI-omnämnanden i commits. Men Claude Code lägger till en Co-Authored-By-rad som standard, så min AI ville hela tiden lägga in signaturen och jag fick säga nej varje gång. I stället för att tjata stängde jag av det i mina settings – en lag i stället för en instruktion. Men spärrar på kommandon jämför bara text – cat .en? tar sig förbi. Read-spärren, tokenen och .gitignore är det riktiga skyddet. Och tipset: min projektfil hade ett JSON-fel en period, och då gällde spärren mot gh aldrig – utan att något sa till. Se anteckningarna i 5.2 På jobbet - utkast.</div>
+</section>

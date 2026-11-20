@@ -16,7 +16,7 @@ h2{font-size:42px;line-height:1.1;font-weight:700;letter-spacing:-.02em;margin-b
 p,li{font-size:26px;line-height:1.45}
 ul{list-style:none}
 ul.b li{position:relative;padding-left:32px;margin-bottom:14px}
-ul.b li::before{content:"";position:absolute;left:4px;top:15px;width:9px;height:9px;background:var(--accent)}
+ul.b li::before{content:"";position:absolute;left:4px;top:15px;top:calc(.5lh - 4.5px);width:9px;height:9px;background:var(--accent)}
 .muted{color:var(--muted)}
 .small{font-size:20px}
 code,.mono{font-family:var(--mono);font-size:.9em;background:var(--sunken);padding:1px 7px;border-radius:var(--r)}

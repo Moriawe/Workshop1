@@ -1,10 +1,18 @@
 <section class="slide">
-  <div class="kicker">Review</div>
+  <div class="kicker">På jobbet · retro</div>
   <h2>Workplan close</h2>
-  <div class="grid g3">
-    <div class="card purple"><div class="num">1</div><h3>Review mot develop</h3><p>Arkitektur, korrekthet, tester, konventioner, säkerhet.</p></div>
-    <div class="card teal"><div class="num c-teal">2</div><h3>Stäng och flytta</h3><p>Alla tasks klara? Findings, decisions och frågor flyttas till sina hem.</p></div>
-    <div class="card"><div class="num c-muted">3</div><h3>RETIRED</h3><p>Workplanen arkiveras. Historiken finns kvar – utan att leta i 28 chattar.</p></div>
+  <p class="big fs-26 mb-18">Inte ”är allt klart?” – utan <b>”har allt ett hem?”</b></p>
+  <div class="grid cols-1_2fr-1fr gap-24 ai-start">
+    <div class="card purple p-16-22"><h3 class="fs-20">Före PR</h3><ul class="b mt-8">
+      <li class="small fs-18">Oavslutat flyttas till issues eller en annan plan</li>
+      <li class="small fs-18">Vilka issues fixade branchen? Jag bekräftar</li>
+      <li class="small fs-18">Beslut till <code>docs/</code> – lärdomar föreslås som rule eller skill</li>
+      <li class="small fs-18">PR-beskrivningen, och testgaten en gång</li>
+      <li class="small fs-18"><b>Jag</b> pushar och öppnar PR:en</li></ul></div>
+    <div class="card teal p-16-22"><h3 class="fs-20">Efter PR</h3><ul class="b mt-8">
+      <li class="small fs-18">Fixade issues får PR-numret</li>
+      <li class="small fs-18">Stänger PR:en sin issue?</li>
+      <li class="small fs-18">Planen till <code>RETIRED</code> – raderas aldrig</li></ul></div>
   </div>
-  <div class="notes">Jag kollar alltid mot koden att alla tasks verkligen gått igenom. Findings och decisions blir antingen en uppdaterad skill, en rule eller dokumentation.</div>
+  <div class="notes">En plan kan alltid stängas. Frågan är inte ”är allt klart?” utan ”har allt ett hem?”. Före PR: oavslutade uppgifter, OPEN-findings och flaggor flyttas till issues eller en annan plan. AI:n kollar mot koden vilka lokala issues branchen faktiskt fixat, och jag bekräftar. Beslut som ändrar hur systemet fungerar skrivs in i docs. Lärdomar för AI:n föreslås som en rule eller skill, och skrivs bara om jag säger ja. Det committas efter min granskning. Sen PR-beskrivningen, och mergeGatePipeline en gång på sista committen. Jag pushar och öppnar PR:en. Efter att PR:en är öppen flyttas fixade issues till fixed-issues med PR-numret, vi kollar att varje PR stänger sin GitHub-issue, och planen flyttas till RETIRED. Den raderas aldrig: besluten är det man går tillbaka till – oftast när någon föreslår något vi redan valt bort. Se anteckningarna i 5.2 På jobbet - utkast.</div>
 </section>

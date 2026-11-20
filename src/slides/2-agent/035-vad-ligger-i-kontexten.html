@@ -1,0 +1,18 @@
+<section class="slide">
+  <div class="kicker">Kontext</div>
+  <h2 class="mb-22">Vad ligger i kontexten?</h2>
+  <div class="grid cols-1fr-330 gap-40 ai-start">
+    <div>
+      <p class="big fs-26 fw-600 mb-18" style="text-wrap:balance">Min egen session: 238k av 1M tokens – och allt skickas i varje anrop.</p>
+      <ul class="b">
+        <li class="small"><b>Konversationen äter mest</b> – 143,7k. Varje meddelande, verktygssvar och fil den läst ligger kvar.</li>
+        <li class="small"><b>Grunden</b> – systemprompt, verktyg och minnesfiler ligger där innan du skrivit något.</li>
+        <li class="small"><b>Skills</b> – bara 6,1k. Bara namn och beskrivning, resten laddas när den behövs.</li>
+        <li class="small"><b>MCP-verktyg (deferred)</b> väntar utanför och laddas först när de behövs.</li>
+      </ul>
+      <p class="tip mt-18"><b>Tips:</b> Kör <code>/context</code> och se vad som tar plats i din egen session. Långa sessioner blir dyrare och sämre.</p>
+    </div>
+    <img class="h-420 w-auto mw-100p r d-block ml-auto" src="kontext-session.png" alt="Kontextvy från Claude Code: 238,1k av 1M använt, uppdelat på meddelanden, verktyg, systemprompt, skills med mera">
+  </div>
+  <div class="notes">Det här är min egen kontext i en session – 238k av 1 miljon. Konversationen äter mest – 143,7k av 238k. Varje meddelande, verktygssvar och fil den läst ligger kvar och skickas med i nästa anrop, det är därför långa sessioner blir dyrare och sämre. Om någon frågar: 142 MCP-verktyg (56,7k) väntar utanför kontexten och laddas först när de behövs, skills tar bara 6,1k eftersom bara namn och beskrivning ligger i kontexten, och autocompact buffer är plats som reserveras för att kunna komprimera historiken. Kör /context i Claude Code så ser ni er egen.</div>
+</section>
